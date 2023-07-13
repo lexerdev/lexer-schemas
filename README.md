@@ -12,3 +12,7 @@ from lexer_schemas.commerce_api.product_entity import ProductRecord
 ProductRecord(product_id="123", name="Real Cool Hat")
 ```
 
+## Development
+
+### Testing
+You can run tests by first building the test docker image `docker-compose build test` then running `docker-compose run test`
