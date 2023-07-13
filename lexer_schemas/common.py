@@ -12,8 +12,8 @@ class GeoCoordinate(BaseModel):
 
 
 class GeoLocation(BaseModel):
-    name: Optional[str]
-    coordinate: Optional[GeoCoordinate]
+    name: Optional[str] = None
+    coordinate: Optional[GeoCoordinate] = None
 
 
 class StoreType(Enum):
@@ -25,9 +25,9 @@ class StoreType(Enum):
 
 class Store(BaseModel):
     store_id: str
-    type: Optional[StoreType]
-    name: Optional[str]
-    location: Optional[GeoLocation]
+    type: Optional[StoreType] = None
+    name: Optional[str] = None
+    location: Optional[GeoLocation] = None
 
 
 class ClickedLink(BaseModel):

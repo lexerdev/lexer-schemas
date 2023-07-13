@@ -5,20 +5,20 @@ from pydantic.networks import HttpUrl
 
 
 class Category(BaseModel):
-    name: Optional[str]
-    description: Optional[str]
+    name: Optional[str] = None
+    description: Optional[str] = None
 
 
 class ProductRecord(BaseModel):
     product_id: str
-    sku: Optional[str]
-    upc: Optional[str]
-    name: Optional[str]
-    description: Optional[str]
-    brand: Optional[str]
-    size: Optional[str]
-    color: Optional[str]
-    price: Optional[float]
-    categories: Optional[List[Category]]
-    url: Optional[str]
+    sku: Optional[str] = None
+    upc: Optional[str] = None
+    name: Optional[str] = None
+    description: Optional[str] = None
+    brand: Optional[str] = None
+    size: Optional[str] = None
+    color: Optional[str] = None
+    price: Optional[float] = None
+    categories: Optional[List[Category]] = None
+    url: Optional[str] = None
     images: List[HttpUrl] = []

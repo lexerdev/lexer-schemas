@@ -24,28 +24,28 @@ class ProductReference(BaseModel):
 
 
 class PurchaseProductReference(BaseModel):
-    product_reference: Optional[ProductReference]
+    product_reference: Optional[ProductReference] = None
     price_paid: confloat(ge=0)  # type: ignore
     quantity: conint(ge=1)  # type: ignore
-    full_price: Optional[float]
-    discount: Optional[float]
+    full_price: Optional[float] = None
+    discount: Optional[float] = None
 
 
 class ReturnProductReference(BaseModel):
-    product_reference: Optional[ProductReference]
+    product_reference: Optional[ProductReference] = None
     price_paid: confloat(le=0)  # type: ignore
     quantity: conint(le=-1)  # type: ignore
 
 
 class TransactionAdjustment(BaseModel):
     price_adjustment: confloat(ge=0)  # type: ignore
-    adjusted_at: Optional[datetime]
-    reason: Optional[str]
+    adjusted_at: Optional[datetime] = None
+    reason: Optional[str] = None
 
 
 class PaymentType(BaseModel):
     name: str
-    total: Optional[float]
+    total: Optional[float] = None
 
 
 class PurchaseEvent(BaseModel):
@@ -53,19 +53,19 @@ class PurchaseEvent(BaseModel):
     action_at: datetime
     purchase_id: str
     type: PurchaseType
-    currency: Optional[str]
-    payment_types: Optional[List[PaymentType]]
-    adjustments: Optional[List[TransactionAdjustment]]
+    currency: Optional[str] = None
+    payment_types: Optional[List[PaymentType]] = None
+    adjustments: Optional[List[TransactionAdjustment]] = None
     products: List[PurchaseProductReference]  # TODO: validate at least one
-    custom_fields: Optional[Dict[str, Any]]
+    custom_fields: Optional[Dict[str, Any]] = None
 
 
 class ReturnEvent(BaseModel):
     link: Link
     action_at: datetime
     return_id: str
-    type: Optional[PurchaseType]
-    currency: Optional[str]
-    adjustments: Optional[List[TransactionAdjustment]]
+    type: Optional[PurchaseType] = None
+    currency: Optional[str] = None
+    adjustments: Optional[List[TransactionAdjustment]] = None
     products: List[PurchaseProductReference]  # TODO: validate at least one
-    custom_fields: Optional[Dict[str, Any]]
+    custom_fields: Optional[Dict[str, Any]] = None

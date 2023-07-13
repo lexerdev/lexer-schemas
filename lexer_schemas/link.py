@@ -31,7 +31,7 @@ class MobileLink(BaseModel, extra=Extra.forbid):
 
 class CustomerLink(BaseModel, extra=Extra.forbid):
     customer_id: str
-    system_name: Optional[str]
+    system_name: Optional[str] = None
 
 
 class ExternalLink(BaseModel, extra=Extra.forbid):

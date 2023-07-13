@@ -7,21 +7,21 @@ from pydantic import BaseModel
 
 class CustomerRecord(BaseModel):
     link: Link
-    email: Optional[str]
-    email_sha256: Optional[str]
-    mobile: Optional[str]
-    customer_id: Optional[str]
-    custom_fields: Optional[Dict[str, Any]]
-    first_name: Optional[str]
-    last_name: Optional[str]
-    gender: Optional[str]
-    date_of_birth: Optional[date]
-    country: Optional[str]
-    state: Optional[str]
-    city: Optional[str]
-    postcode: Optional[str]
-    zip: Optional[str]
-    employee_flag: Optional[bool]
-    customer_type: Optional[str]
-    address_1: Optional[str]
-    address_2: Optional[str]
+    email: Optional[str] = None
+    email_sha256: Optional[str] = None
+    mobile: Optional[str] = None
+    customer_id: Optional[str] = None
+    custom_fields: Optional[Dict[str, Any]] = None
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    gender: Optional[str] = None
+    date_of_birth: Optional[date] = None
+    country: Optional[str] = None
+    state: Optional[str] = None
+    city: Optional[str] = None
+    postcode: Optional[str] = None
+    zip: Optional[str] = None
+    employee_flag: Optional[bool] = None
+    customer_type: Optional[str] = None
+    address_1: Optional[str] = None
+    address_2: Optional[str] = None

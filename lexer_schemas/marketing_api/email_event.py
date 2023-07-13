@@ -17,7 +17,7 @@ EMAIL_REGEX = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
 
 
 class EmailAddress(BaseModel):
-    name: Optional[str]
+    name: Optional[str] = None
     email: str
 
     @validator("email")
@@ -31,42 +31,42 @@ class EmailSend(BaseModel):
     link: Link
     action_at: datetime
     campaign_id: str
-    list: Optional[MarketingList]
-    from_: Optional[EmailAddress] = Field(None, alias="from")
-    to: Optional[EmailAddress]
-    subject: Optional[str]
-    body: Optional[str]
+    list: Optional[MarketingList] = None
+    from_: Optional[EmailAddress] = Field(None, alias="from") = None
+    to: Optional[EmailAddress] = None
+    subject: Optional[str] = None
+    body: Optional[str] = None
 
 
 class EmailOpen(BaseModel):
     link: Link
     action_at: datetime
     campaign_id: str
-    list: Optional[MarketingList]
-    from_: Optional[EmailAddress] = Field(None, alias="from")
-    to: Optional[EmailAddress]
+    list: Optional[MarketingList] = None
+    from_: Optional[EmailAddress] = Field(None, alias="from") = None
+    to: Optional[EmailAddress] = None
 
 
 class EmailClick(BaseModel):
     link: Link
     action_at: datetime
     campaign_id: str
-    list: Optional[MarketingList]
-    from_: Optional[EmailAddress] = Field(None, alias="from")
-    to: Optional[EmailAddress]
-    clicked_link: Optional[ClickedLink]
+    list: Optional[MarketingList] = None
+    from_: Optional[EmailAddress] = Field(None, alias="from") = None
+    to: Optional[EmailAddress] = None
+    clicked_link: Optional[ClickedLink] = None
 
 
 class EmailBounce(BaseModel):
     link: Link
     action_at: datetime
-    list: Optional[MarketingList]
-    from_: Optional[EmailAddress] = Field(None, alias="from")
-    to: Optional[EmailAddress]
+    list: Optional[MarketingList] = None
+    from_: Optional[EmailAddress] = Field(None, alias="from") = None
+    to: Optional[EmailAddress] = None
 
 
 class EmailSubscribe(BaseModel):
     link: Link
     action_at: datetime
-    list: Optional[MarketingList]
+    list: Optional[MarketingList] = None
     status: EmailSubscriptionStatus
