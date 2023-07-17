@@ -2,8 +2,9 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from lexer_schemas.link import Link
 from pydantic import BaseModel, confloat, conint
+
+from lexer_schemas.link import Link
 
 
 class PurchaseType(Enum):

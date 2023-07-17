@@ -2,8 +2,9 @@ from datetime import datetime
 from enum import Enum
 from typing import Optional
 
-from lexer_schemas.link import Link
 from pydantic import BaseModel, Field, confloat
+
+from lexer_schemas.link import Link
 
 
 class GeoCoordinate(BaseModel):

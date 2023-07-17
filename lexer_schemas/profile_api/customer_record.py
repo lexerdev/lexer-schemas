@@ -1,8 +1,9 @@
 from datetime import date
 from typing import Any, Dict, Optional
 
-from lexer_schemas.link import Link
 from pydantic import BaseModel
+
+from lexer_schemas.link import Link
 
 
 class CustomerRecord(BaseModel):
