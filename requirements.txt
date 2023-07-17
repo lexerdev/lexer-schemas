@@ -1,1 +1,1 @@
-pydantic[email]
+pydantic[email]<=1.10

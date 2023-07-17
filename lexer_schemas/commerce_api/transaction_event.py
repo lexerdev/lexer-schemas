@@ -4,6 +4,7 @@ from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, confloat, conint
 
+from lexer_schemas.common import BaseEvent
 from lexer_schemas.link import Link
 
 
@@ -49,24 +50,19 @@ class PaymentType(BaseModel):
     total: Optional[float] = None
 
 
-class PurchaseEvent(BaseModel):
-    link: Link
-    action_at: datetime
-    purchase_id: str
+class BaseTransactionEvent(BaseEvent):
     type: PurchaseType
     currency: Optional[str] = None
+    adjustments: Optional[List[TransactionAdjustment]] = None
+    custom_fields: Optional[Dict[str, Any]] = None
+
+
+class PurchaseEvent(BaseTransactionEvent):
+    purchase_id: str
     payment_types: Optional[List[PaymentType]] = None
-    adjustments: Optional[List[TransactionAdjustment]] = None
-    products: List[PurchaseProductReference]  # TODO: validate at least one
-    custom_fields: Optional[Dict[str, Any]] = None
+    products: List[PurchaseProductReference]
 
 
-class ReturnEvent(BaseModel):
-    link: Link
-    action_at: datetime
+class ReturnEvent(BaseTransactionEvent):
     return_id: str
-    type: Optional[PurchaseType] = None
-    currency: Optional[str] = None
-    adjustments: Optional[List[TransactionAdjustment]] = None
-    products: List[PurchaseProductReference]  # TODO: validate at least one
-    custom_fields: Optional[Dict[str, Any]] = None
+    products: List[ReturnProductReference]

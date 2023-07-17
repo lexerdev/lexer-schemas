@@ -3,14 +3,16 @@ from datetime import datetime
 from enum import Enum
 from typing import Optional
 
-from lexer_schemas.link import Link
-from lexer_schemas.common import (
-    ClickedLink,
-    MarketingList,
-    EmailSubscriptionStatus,
-)
 from pydantic import BaseModel, validator
 from pydantic.fields import Field
+
+from lexer_schemas.common import (
+    BaseEvent,
+    ClickedLink,
+    EmailSubscriptionStatus,
+    MarketingList,
+)
+from lexer_schemas.link import Link
 
 # https://emailregex.com/
 EMAIL_REGEX = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
@@ -27,46 +29,36 @@ class EmailAddress(BaseModel):
         return v.strip()
 
 
-class EmailSend(BaseModel):
-    link: Link
-    action_at: datetime
-    campaign_id: str
+class BaseEmailEvent(BaseEvent):
+    email_id: str
     list: Optional[MarketingList] = None
-    from_: Optional[EmailAddress] = Field(None, alias="from") = None
+
+
+class EmailSend(BaseEmailEvent):
+    campaign_id: Optional[str] = None
+    from_: Optional[EmailAddress] = Field(None, alias="from")
     to: Optional[EmailAddress] = None
     subject: Optional[str] = None
     body: Optional[str] = None
 
 
-class EmailOpen(BaseModel):
-    link: Link
-    action_at: datetime
-    campaign_id: str
-    list: Optional[MarketingList] = None
-    from_: Optional[EmailAddress] = Field(None, alias="from") = None
+class EmailOpen(BaseEmailEvent):
+    campaign_id: Optional[str] = None
+    from_: Optional[EmailAddress] = Field(None, alias="from")
     to: Optional[EmailAddress] = None
 
 
-class EmailClick(BaseModel):
-    link: Link
-    action_at: datetime
-    campaign_id: str
-    list: Optional[MarketingList] = None
-    from_: Optional[EmailAddress] = Field(None, alias="from") = None
+class EmailClick(BaseEmailEvent):
+    campaign_id: Optional[str] = None
+    from_: Optional[EmailAddress] = Field(None, alias="from")
     to: Optional[EmailAddress] = None
     clicked_link: Optional[ClickedLink] = None
 
 
-class EmailBounce(BaseModel):
-    link: Link
-    action_at: datetime
-    list: Optional[MarketingList] = None
-    from_: Optional[EmailAddress] = Field(None, alias="from") = None
+class EmailBounce(BaseEmailEvent):
+    from_: Optional[EmailAddress] = Field(None, alias="from")
     to: Optional[EmailAddress] = None
 
 
-class EmailSubscribe(BaseModel):
-    link: Link
-    action_at: datetime
-    list: Optional[MarketingList] = None
+class EmailSubscribe(BaseEmailEvent):
     status: EmailSubscriptionStatus
