@@ -12,8 +12,10 @@ function cleanup() {
 }
 trap cleanup EXIT
 
-echo "--- running tests"
+echo "--- building tests"
 
 docker-compose --project-name $p build --build-arg BUSTCACHE=$(date +%U) test
+
+echo "--- running tests"
 
 docker-compose --project-name $p run --rm test
