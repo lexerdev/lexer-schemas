@@ -25,4 +25,4 @@ The process of deploying changes should be:
 1. Open a PR for your changes
     - Increment the `VERSION`` file to reflect your changes
 2. Once approved merge your PR
-3. Tag the latest `main` commit with the same version, either through the UI or the cli `git tag -a 0.0.0 -m "first release" && git push origin --tags`
+3. Tag the latest `main` commit with the same version, either through the UI or the cli `git tag -a 0.0.0 -m "first release" --force && git push origin --tags --force`
