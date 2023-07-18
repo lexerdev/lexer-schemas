@@ -2,6 +2,8 @@
 
 This repository contains schemas for Lexer public data ingestion API's
 
+[![Build status](https://badge.buildkite.com/71b600da5678c24261116bf2ba456e9760207385a5d1cce223.svg)](https://buildkite.com/lexer/lexer-schemas)
+
 ## Installation
 Simpily run `pip install git+http://git.camplexer.com/lexer-schemas@0.0.0` in the command line. Or add `lexer_schemas @ git+http://git.camplexer.com/lexer-schemas@0.0.0` to your requrements file.
 
