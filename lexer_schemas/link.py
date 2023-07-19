@@ -62,7 +62,8 @@ Link = Union[
     EmailLink,
     EmailSha256Link,
     EmailMd5Link,
+    CustomerIdLink,
     MobileLink,
-    CustomerLink,
     ExternalLink,
+    CustomerLink,
 ]
