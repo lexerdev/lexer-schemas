@@ -6,6 +6,10 @@ from pydantic import BaseModel, Field, confloat
 
 from lexer_schemas.link import Link
 
+class ProductReferenceType(Enum):
+    sku = "sku"
+    upc = "upc"
+    product_id = "product_id"
 
 class GeoCoordinate(BaseModel):
     latitude: confloat(ge=-90, lt=90)  # type: ignore
