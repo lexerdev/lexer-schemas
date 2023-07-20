@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, confloat, conint
 
-from lexer_schemas.common import BaseEvent
+from lexer_schemas.common import BaseEvent, ProductReferenceType
 from lexer_schemas.link import Link
 
 
@@ -13,15 +13,9 @@ class PurchaseType(Enum):
     ecommerce = "ecommerce"
 
 
-class ProductRefIdType(Enum):
-    sku = "sku"
-    upc = "upc"
-    product_id = "product_id"
-
-
 class ProductReference(BaseModel):
     id: str
-    id_type: ProductRefIdType  # TODO: either take this away or allow simplified entities to specify an id_type
+    id_type: ProductReferenceType 
     dataset_id: str
 
 
