@@ -15,7 +15,7 @@ class PurchaseType(Enum):
 
 class ProductReference(BaseModel):
     id: str
-    id_type: ProductReferenceType  # TODO: either take this away or allow simplified entities to specify an id_type
+    id_type: ProductReferenceType 
     dataset_id: str
 
 
