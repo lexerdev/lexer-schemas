@@ -15,6 +15,7 @@ class TestProductEntity:
             "product_id": "123",
             "sku": None,
             "upc": None,
+            "product_reference_type": "product_id",
             "name": None,
             "description": None,
             "brand": None,
@@ -31,10 +32,10 @@ class TestProductEntity:
     def test_product_record_invalid_product_id(self):
 
         expected_error = (
-            r"1 validation error for ProductRecord\nproduct_id\n  field required"
+            r"If product_reference_type is specified as 'product_id', product_id should not be None"
         )
 
-        with pytest.raises(ValidationError, match=expected_error):
+        with pytest.raises(ValueError, match=expected_error):
             ProductRecord(name="spooky product")
 
 
