@@ -6,39 +6,6 @@ from pydantic import ValidationError
 from lexer_schemas.commerce_api.product_entity import ProductRecord
 from lexer_schemas.commerce_api.transaction_event import PurchaseEvent, ReturnEvent
 
-
-class TestProductEntity:
-    def test_product_record(self):
-        actual_record = ProductRecord(product_id="123")
-
-        expected_record = {
-            "product_id": "123",
-            "sku": None,
-            "upc": None,
-            "product_reference_type": "product_id",
-            "name": None,
-            "description": None,
-            "brand": None,
-            "size": None,
-            "color": None,
-            "price": None,
-            "categories": None,
-            "url": None,
-            "images": [],
-        }
-
-        assert json.loads(actual_record.json()) == expected_record
-
-    def test_product_record_invalid_product_id(self):
-
-        expected_error = (
-            r"If product_reference_type is specified as 'product_id', product_id should not be None"
-        )
-
-        with pytest.raises(ValueError, match=expected_error):
-            ProductRecord(name="spooky product")
-
-
 class TestPurchaseEvent:
     def test_purchase_event(self):
         expected_record = {
