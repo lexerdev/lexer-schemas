@@ -165,86 +165,46 @@ if __name__ == "__main__":
 
     subargps = argp.add_subparsers(dest="action")
 
-    upload_parser = subargps.add_parser("upload")
-    upload_parser.add_argument(
+    api_token_argp = argparse.ArgumentParser(add_help=False)
+    api_token_argp.add_argument(
         "--api-token",
         type=get_env_if_empty("LEXER_UPLOAD_API_TOKEN"),
         help="Lexer File Upload API token",
         default="",
     )
-    upload_parser.add_argument(
-        "--local-filename",
-        type=str,
-        help="local filename of ndjson file to validate or upload",
-        required=True,
-    )
-    upload_parser.add_argument(
-        "--record_type",
-        type=str,
-        choices=list(SCHEMA_FOR_TYPESTR.keys()),
-        help="The record type to upload or validate against",
-        required=True,
-    )
-    upload_parser.add_argument(
+
+    upload_params_argp = argparse.ArgumentParser(add_help=False)
+    upload_params_argp.add_argument(
         "--destination-dataset-id",
         type=str,
         help="The id of the Lexer Dataset to upload the file to.",
         required=True,
     )
-    upload_parser.add_argument(
+    upload_params_argp.add_argument(
         "--destination-filename",
         type=str,
         help="A name for the file that Lexer can use",
         required=True,
     )
 
-    upload_validate_parser = subargps.add_parser("upload_validate")
-    upload_validate_parser.add_argument(
-        "--api-token",
-        type=get_env_if_empty("LEXER_UPLOAD_API_TOKEN"),
-        help="Lexer File Upload API token",
-        default="",
-    )
-    upload_validate_parser.add_argument(
+    read_file_argp = argparse.ArgumentParser(add_help=False)
+    read_file_argp.add_argument(
         "--local-filename",
         type=str,
         help="local filename of ndjson file to validate or upload",
         required=True,
     )
-    upload_validate_parser.add_argument(
-        "--record_type",
-        type=str,
-        choices=list(SCHEMA_FOR_TYPESTR.keys()),
-        help="The record type to upload or validate against",
-        required=True,
-    )
-    upload_validate_parser.add_argument(
-        "--destination-dataset-id",
-        type=str,
-        help="The id of the Lexer Dataset to upload the file to.",
-        required=True,
-    )
-    upload_validate_parser.add_argument(
-        "--destination-filename",
-        type=str,
-        help="A name for the file that Lexer can use",
-        required=True,
-    )
-
-    validate_parser = subargps.add_parser("validate")
-    validate_parser.add_argument(
-        "--local-filename",
-        type=str,
-        help="local filename of ndjson file to validate or upload",
-        required=True,
-    )
-    validate_parser.add_argument(
+    read_file_argp.add_argument(
         "--record-type",
         type=str,
         choices=list(SCHEMA_FOR_TYPESTR.keys()),
         help="The record type to upload or validate against",
         required=True,
     )
+
+    subargps.add_parser("upload_validate", parents=[api_token_argp, upload_params_argp, read_file_argp])
+    subargps.add_parser("upload", parents=[api_token_argp, upload_params_argp, read_file_argp])
+    subargps.add_parser("validate", parents=[read_file_argp])
 
     args = argp.parse_args()
 
