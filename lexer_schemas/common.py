@@ -6,10 +6,23 @@ from pydantic import BaseModel, Field, confloat
 
 from lexer_schemas.link import Link
 
+
+# Root Record Schemas that have been imported.
+imported_api_names = {}
+
+
+def api_name(name):
+    def wrapped(cls):
+        imported_api_names[name] = cls
+
+    return wrapped
+
+
 class ProductReferenceType(Enum):
     sku = "sku"
     upc = "upc"
     product_id = "product_id"
+
 
 class GeoCoordinate(BaseModel):
     latitude: confloat(ge=-90, lt=90)  # type: ignore
