@@ -17,6 +17,7 @@ from lexer_schemas.marketing_api.email_event import (
 from lexer_schemas.marketing_api.sms_event import SMSClick, SMSSend, SMSSubscribe
 from lexer_schemas.profile_api.customer_record import CustomerRecord
 
+# FIXME: The correct version of this mapping needs exist and be imported from lexer_schemas
 SCHEMA_FOR_TYPESTR = {
     "product_record": ProductRecord,
     "purchase_event": PurchaseEvent,
@@ -32,12 +33,28 @@ SCHEMA_FOR_TYPESTR = {
     "customer_record": CustomerRecord,
 }
 
+# FIXME: The correct version of this mapping should exist and be imported from lexer_schemas, or the API should infer it.
+TABLE_FOR_TYPESTR={
+    "product_record": "entity_record",
+    "purchase_event": "identity_history",
+    "return_event": "identity_history",
+    "email_open": "identity_history",
+    "email_send": "identity_history",
+    "email_click": "identity_history",
+    "email_bounce": "identity_history",
+    "email_subscribe": "identity_history",
+    "sms_subscribe": "identity_history",
+    "sms_send": "identity_history",
+    "sms_click": "identity_history",
+    "customer_record": "customer_record",
+}
+
 
 def upload_file(
     local_filename: str,
-    destination_dataset_id: str,
     record_type: str,
     destination_filename: str,
+    destination_dataset_id: str,
     api_token: str,
 ) -> None:
     uploads_response = requests.post(
@@ -49,11 +66,12 @@ def upload_file(
                 "destination_type": "dataset_load",
                 "dataset_id": destination_dataset_id,
                 "record_type": record_type,
+                "table": TABLE_FOR_TYPESTR[record_type],
             },
         },
     )
 
-    if uploads_response.status_code == 200:
+    if uploads_response.status_code == 201:
         uploads_response_json = uploads_response.json()
 
         upload_id = uploads_response_json["id"]
@@ -67,6 +85,8 @@ def upload_file(
                 raise RuntimeError("Upload failed")
 
     else:
+        print(f"Status Code: {uploads_response.status_code}")
+        print(f"Response body: {uploads_response.text}")
         raise RuntimeError("Request to create upload failed")
 
 
@@ -104,19 +124,19 @@ def validate_file(local_filename: str, record_type: str) -> bool:
 
 def validate_upload(
     local_filename: str,
-    destination_dataset_id: str,
     record_type: str,
     destination_filename: str,
+    destination_dataset_id: str,
     api_token: str,
 ) -> bool:
     """Validate the file against the schema for the record type, then if it passes the validation, upload the file using the lexer file upload api."""
     if validate_file(local_filename, record_type):
         upload_file(
             local_filename,
+            record_type,
+            destination_filename,
             destination_dataset_id,
             api_token,
-            destination_filename,
-            record_type,
         )
         return True
     else:
@@ -221,10 +241,10 @@ if __name__ == "__main__":
         ), "API Token must be provided in --api-token command line argument or in environment as LEXER_UPLOAD_API_TOKEN"
         upload_file(
             args.local_filename,
+            args.record_type,
+            args.destination_filename,
             args.destination_dataset_id,
             args.api_token,
-            args.destination_filename,
-            args.record_type,
         )
     elif args.action == "upload_validate":
         assert (
@@ -232,9 +252,9 @@ if __name__ == "__main__":
         ), "API Token must be provided in --api-token command line argument or in environment as LEXER_UPLOAD_API_TOKEN"
         if validate_upload(
             args.local_filename,
-            args.destination_dataset_id,
             args.record_type,
             args.destination_filename,
+            args.destination_dataset_id,
             args.api_token,
         ):
             print("file validated and uploaded successfully")

@@ -1,2 +1,2 @@
 requests==2.31.0
-file:../.. # lexer_schemas
+file:../.. # FIXME: install from public github lexerdev/lexer_schemas
