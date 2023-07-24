@@ -34,7 +34,7 @@ SCHEMA_FOR_TYPESTR = {
 }
 
 # FIXME: The correct version of this mapping should exist and be imported from lexer_schemas, or the API should infer it.
-TABLE_FOR_TYPESTR={
+TABLE_FOR_TYPESTR = {
     "product_record": "entity_record",
     "purchase_event": "identity_history",
     "return_event": "identity_history",
@@ -57,6 +57,10 @@ def upload_file(
     destination_dataset_id: str,
     api_token: str,
 ) -> None:
+
+    # A HTTP POST request to api.lexer.io/v1/uploads, if successful, will return a url that an api user
+    # can run a PUT request on to upload a file. The destination parameters here allow lexer to automatically
+    # trigger a dataset load after the upload of the file.
     uploads_response = requests.post(
         url="https://api.lexer.io/v1/uploads",
         headers={"Auth-Api-Token": api_token, "Content-Type": "application/json"},
@@ -92,15 +96,24 @@ def upload_file(
 
 def validate_file(local_filename: str, record_type: str) -> bool:
     """Validate the files against the schema for the record type"""
+
+    # This refers to the pydantic schema from lexer_schemas that can be used to validate
+    # the rows in the file.
     record_schema = SCHEMA_FOR_TYPESTR[record_type]
     valid_records = 0
     invalid_records = 0
     row_number = 0
 
+    # Note that an NDJSON file is a file containing one json object per line.
+    # We open the file, and iterate it line-by-line, parsing each line into the specific
+    # record schema. The record schema will raise an exception if there is an issue with any record.
+    # This will print out the details of any exceptions encountered alongside the row number of the record.
     with open(local_filename, "r") as f:
         for line in f:
             try:
-                record_schema.parse_raw(line)
+                record_schema.parse_raw(
+                    line
+                )  # Use the record schema to parse a string expected to contain a json object.
                 valid_records += 1
             except Exception as error:
                 print(f"At row number {row_number}: {error}")
