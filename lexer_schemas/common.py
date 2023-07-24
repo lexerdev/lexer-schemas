@@ -14,6 +14,7 @@ imported_api_names = {}
 def api_name(name):
     def wrapped(cls):
         imported_api_names[name] = cls
+        return cls
 
     return wrapped
 
