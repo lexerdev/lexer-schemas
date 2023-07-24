@@ -124,6 +124,10 @@ def validate_upload(
 
 
 if __name__ == "__main__":
+
+    def get_env_if_empty(env_name):
+        return lambda x: x if x != "" else os.environ.get(env_name)
+
     argp = argparse.ArgumentParser()
 
     subargps = argp.add_subparsers(dest="action")
@@ -131,9 +135,9 @@ if __name__ == "__main__":
     upload_parser = subargps.add_parser("upload")
     upload_parser.add_argument(
         "--api-token",
-        default=lambda: os.environ.get("LEXER_UPLOAD_API_TOKEN"),
+        type=get_env_if_empty("LEXER_UPLOAD_API_TOKEN"),
         help="Lexer File Upload API token",
-        required=True,
+        default="",
     )
     upload_parser.add_argument(
         "--local-filename",
@@ -164,9 +168,9 @@ if __name__ == "__main__":
     upload_validate_parser = subargps.add_parser("upload_validate")
     upload_validate_parser.add_argument(
         "--api-token",
-        default=lambda: os.environ.get("LEXER_UPLOAD_API_TOKEN"),
+        type=get_env_if_empty("LEXER_UPLOAD_API_TOKEN"),
         help="Lexer File Upload API token",
-        required=True,
+        default="",
     )
     upload_validate_parser.add_argument(
         "--local-filename",
@@ -213,7 +217,7 @@ if __name__ == "__main__":
 
     if args.action == "upload":
         assert (
-            args.api_token is not None
+            args.api_token != ""
         ), "API Token must be provided in --api-token command line argument or in environment as LEXER_UPLOAD_API_TOKEN"
         upload_file(
             args.local_filename,
@@ -224,13 +228,13 @@ if __name__ == "__main__":
         )
     elif args.action == "upload_validate":
         assert (
-            args.api_token is not None
+            args.api_token != ""
         ), "API Token must be provided in --api-token command line argument or in environment as LEXER_UPLOAD_API_TOKEN"
         if validate_upload(
             args.local_filename,
             args.destination_dataset_id,
             args.record_type,
-            args.desination_filename,
+            args.destination_filename,
             args.api_token,
         ):
             print("file validated and uploaded successfully")
