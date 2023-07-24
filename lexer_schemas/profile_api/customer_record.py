@@ -7,7 +7,7 @@ from lexer_schemas.link import Link
 from lexer_schemas.common import api_name
 
 
-@api_name("cusotmer_record")
+@api_name("customer_record")
 class CustomerRecord(BaseModel):
     link: Link
     email: Optional[str] = None
