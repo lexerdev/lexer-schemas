@@ -9,6 +9,15 @@
  Requirements are defined in `requirements.txt` and can be installed using the command:
 `pip install -r requirements.txt`
 
+## API Token
+
+The API Token used by this script is the one that the Lexer Hub UI refers to as the "Activity API Token"
+This is accessed in Manage -> Integrations -> API Tokens
+
+## Dataset ID
+
+The Dataset ID used in the script is accessible by clicking on the dataset item in the list at Manage -> Datasets, then clicking the view button on the right, to load the Datset Details view.
+
 ## Upload commands
 
 The script is invoked with an action sub command, and various argument parameters.
