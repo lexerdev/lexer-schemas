@@ -1,9 +1,11 @@
+#!/usr/bin/env python3
+
 import argparse
 import csv
 from itertools import groupby
 from typing import Any, Dict
 
-from lexer_schemas.common import api_names
+from lexer_schemas.common import imported_api_names
 from lexer_schemas.profile_api.customer_record import CustomerRecord
 
 
@@ -31,16 +33,16 @@ def run_convert(input_file: str, record_type: str, output_file: str) -> None:
         with open(output_file, "w") as output_data:
             for row in reader:
                 output_data.write(
-                    api_names[record_type](**nest_dotted_columns(row)).json() + "\n"
+                    imported_api_names[record_type](**nest_dotted_columns(row)).json() + "\n"
                 )
 
 
 if __name__ == "__main__":
 
     argp = argparse.ArgumentParser()
-    argp.add_argument("--input-file")
-    argp.add_argument("--record-type")
-    argp.add_argument("--output-file")
+    argp.add_argument("--input-file", required=True)
+    argp.add_argument("--record-type", choices=imported_api_names.keys(), required=True)
+    argp.add_argument("--output-file", required=True)
 
     args = argp.parse_args()
 
