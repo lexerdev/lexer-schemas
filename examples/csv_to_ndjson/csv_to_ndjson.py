@@ -33,7 +33,8 @@ def run_convert(input_file: str, record_type: str, output_file: str) -> None:
         with open(output_file, "w") as output_data:
             for row in reader:
                 output_data.write(
-                    imported_api_names[record_type](**nest_dotted_columns(row)).json() + "\n"
+                    imported_api_names[record_type](**nest_dotted_columns(row)).json()
+                    + "\n"
                 )
 
 
