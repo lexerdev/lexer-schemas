@@ -16,38 +16,7 @@ from lexer_schemas.marketing_api.email_event import (
 )
 from lexer_schemas.marketing_api.sms_event import SMSClick, SMSSend, SMSSubscribe
 from lexer_schemas.profile_api.customer_record import CustomerRecord
-
-# FIXME: The correct version of this mapping needs exist and be imported from lexer_schemas
-SCHEMA_FOR_TYPESTR = {
-    "product_record": ProductRecord,
-    "purchase_event": PurchaseEvent,
-    "return_event": ReturnEvent,
-    "email_open": EmailOpen,
-    "email_send": EmailSend,
-    "email_click": EmailClick,
-    "email_bounce": EmailBounce,
-    "email_subscribe": EmailSubscribe,
-    "sms_subscribe": SMSSubscribe,
-    "sms_send": SMSSend,
-    "sms_click": SMSClick,
-    "customer_record": CustomerRecord,
-}
-
-# FIXME: The correct version of this mapping should exist and be imported from lexer_schemas, or the API should infer it.
-TABLE_FOR_TYPESTR = {
-    "product_record": "entity_record",
-    "purchase_event": "identity_history",
-    "return_event": "identity_history",
-    "email_open": "identity_history",
-    "email_send": "identity_history",
-    "email_click": "identity_history",
-    "email_bounce": "identity_history",
-    "email_subscribe": "identity_history",
-    "sms_subscribe": "identity_history",
-    "sms_send": "identity_history",
-    "sms_click": "identity_history",
-    "customer_record": "customer_record",
-}
+from lexer_schemas.common import imported_api_names
 
 
 def upload_file(
@@ -70,7 +39,6 @@ def upload_file(
                 "destination_type": "dataset_load",
                 "dataset_id": destination_dataset_id,
                 "record_type": record_type,
-                "table": TABLE_FOR_TYPESTR[record_type],
             },
         },
     )
@@ -99,7 +67,7 @@ def validate_file(local_filename: str, record_type: str) -> bool:
 
     # This refers to the pydantic schema from lexer_schemas that can be used to validate
     # the rows in the file.
-    record_schema = SCHEMA_FOR_TYPESTR[record_type]
+    record_schema = imported_api_names[record_type]
     valid_records = 0
     invalid_records = 0
     row_number = 0
@@ -197,13 +165,17 @@ if __name__ == "__main__":
     read_file_argp.add_argument(
         "--record-type",
         type=str,
-        choices=list(SCHEMA_FOR_TYPESTR.keys()),
+        choices=list(imported_api_names.keys()),
         help="The record type to upload or validate against",
         required=True,
     )
 
-    subargps.add_parser("upload_validate", parents=[api_token_argp, upload_params_argp, read_file_argp])
-    subargps.add_parser("upload", parents=[api_token_argp, upload_params_argp, read_file_argp])
+    subargps.add_parser(
+        "upload_validate", parents=[api_token_argp, upload_params_argp, read_file_argp]
+    )
+    subargps.add_parser(
+        "upload", parents=[api_token_argp, upload_params_argp, read_file_argp]
+    )
     subargps.add_parser("validate", parents=[read_file_argp])
 
     args = argp.parse_args()
