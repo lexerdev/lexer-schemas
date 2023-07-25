@@ -4,8 +4,10 @@ from typing import Any, Dict, Optional
 from pydantic import BaseModel
 
 from lexer_schemas.link import Link
+from lexer_schemas.common import api_name
 
 
+@api_name("customer_record")
 class CustomerRecord(BaseModel):
     link: Link
     email: Optional[str] = None
