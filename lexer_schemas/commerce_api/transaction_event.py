@@ -4,7 +4,7 @@ from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, confloat, conint
 
-from lexer_schemas.common import BaseEvent, ProductReferenceType
+from lexer_schemas.common import api_name, BaseEvent, ProductReferenceType
 from lexer_schemas.link import Link
 
 
@@ -15,7 +15,7 @@ class PurchaseType(Enum):
 
 class ProductReference(BaseModel):
     id: str
-    id_type: ProductReferenceType 
+    id_type: ProductReferenceType
     dataset_id: str
 
 
@@ -51,12 +51,14 @@ class BaseTransactionEvent(BaseEvent):
     custom_fields: Optional[Dict[str, Any]] = None
 
 
+@api_name("purchase")
 class PurchaseEvent(BaseTransactionEvent):
     purchase_id: str
     payment_types: Optional[List[PaymentType]] = None
     products: List[PurchaseProductReference]
 
 
+@api_name("return")
 class ReturnEvent(BaseTransactionEvent):
     return_id: str
     products: List[ReturnProductReference]
