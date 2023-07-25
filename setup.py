@@ -18,6 +18,9 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
     ],
     install_requires=[
-        "pydantic[email]",
+        "pydantic[email]==1.9.0",
     ],
+    package_data={
+        "lexer_schemas": ["py.typed"]
+    },
 )
