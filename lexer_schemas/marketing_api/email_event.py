@@ -7,6 +7,7 @@ from pydantic import BaseModel, validator
 from pydantic.fields import Field
 
 from lexer_schemas.common import (
+    api_name,
     BaseEvent,
     ClickedLink,
     EmailSubscriptionStatus,
@@ -34,6 +35,7 @@ class BaseEmailEvent(BaseEvent):
     list: Optional[MarketingList] = None
 
 
+@api_name("email_send")
 class EmailSend(BaseEmailEvent):
     campaign_id: Optional[str] = None
     from_: Optional[EmailAddress] = Field(None, alias="from")
@@ -42,12 +44,14 @@ class EmailSend(BaseEmailEvent):
     body: Optional[str] = None
 
 
+@api_name("email_open")
 class EmailOpen(BaseEmailEvent):
     campaign_id: Optional[str] = None
     from_: Optional[EmailAddress] = Field(None, alias="from")
     to: Optional[EmailAddress] = None
 
 
+@api_name("email_click")
 class EmailClick(BaseEmailEvent):
     campaign_id: Optional[str] = None
     from_: Optional[EmailAddress] = Field(None, alias="from")
@@ -55,10 +59,12 @@ class EmailClick(BaseEmailEvent):
     clicked_link: Optional[ClickedLink] = None
 
 
+@api_name("email_bounce")
 class EmailBounce(BaseEmailEvent):
     from_: Optional[EmailAddress] = Field(None, alias="from")
     to: Optional[EmailAddress] = None
 
 
+@api_name("email_subscribe")
 class EmailSubscribe(BaseEmailEvent):
     status: EmailSubscriptionStatus
