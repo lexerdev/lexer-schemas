@@ -1,0 +1,323 @@
+{
+  "title": "PurchaseEvent",
+  "type": "object",
+  "properties": {
+    "link": {
+      "title": "Link",
+      "anyOf": [
+        {
+          "$ref": "#/definitions/EmailLink"
+        },
+        {
+          "$ref": "#/definitions/EmailSha256Link"
+        },
+        {
+          "$ref": "#/definitions/EmailMd5Link"
+        },
+        {
+          "$ref": "#/definitions/CustomerIdLink"
+        },
+        {
+          "$ref": "#/definitions/MobileLink"
+        },
+        {
+          "$ref": "#/definitions/ExternalLink"
+        },
+        {
+          "$ref": "#/definitions/CustomerLink"
+        }
+      ]
+    },
+    "action_at": {
+      "title": "Action At",
+      "type": "string",
+      "format": "date-time"
+    },
+    "type": {
+      "$ref": "#/definitions/PurchaseType"
+    },
+    "currency": {
+      "title": "Currency",
+      "type": "string"
+    },
+    "adjustments": {
+      "title": "Adjustments",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/TransactionAdjustment"
+      }
+    },
+    "custom_fields": {
+      "title": "Custom Fields",
+      "type": "object"
+    },
+    "purchase_id": {
+      "title": "Purchase Id",
+      "type": "string"
+    },
+    "payment_types": {
+      "title": "Payment Types",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/PaymentType"
+      }
+    },
+    "products": {
+      "title": "Products",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/PurchaseProductReference"
+      }
+    }
+  },
+  "required": [
+    "link",
+    "action_at",
+    "type",
+    "purchase_id",
+    "products"
+  ],
+  "definitions": {
+    "EmailLink": {
+      "title": "EmailLink",
+      "type": "object",
+      "properties": {
+        "email": {
+          "title": "Email",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email"
+      ],
+      "additionalProperties": false
+    },
+    "EmailSha256Link": {
+      "title": "EmailSha256Link",
+      "type": "object",
+      "properties": {
+        "email_sha256": {
+          "title": "Email Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "EmailMd5Link": {
+      "title": "EmailMd5Link",
+      "type": "object",
+      "properties": {
+        "email_md5": {
+          "title": "Email Md5",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email_md5"
+      ],
+      "additionalProperties": false
+    },
+    "CustomerIdLink": {
+      "title": "CustomerIdLink",
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "title": "Customer Id",
+          "type": "string"
+        },
+        "system_name": {
+          "title": "System Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "customer_id"
+      ],
+      "additionalProperties": false
+    },
+    "MobileLink": {
+      "title": "MobileLink",
+      "type": "object",
+      "properties": {
+        "mobile": {
+          "title": "Mobile",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mobile"
+      ],
+      "additionalProperties": false
+    },
+    "ExternalLink": {
+      "title": "ExternalLink",
+      "type": "object",
+      "properties": {
+        "external_id": {
+          "title": "External Id",
+          "type": "string"
+        },
+        "system_name": {
+          "title": "System Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "external_id",
+        "system_name"
+      ],
+      "additionalProperties": false
+    },
+    "LinkType": {
+      "title": "LinkType",
+      "description": "An enumeration.",
+      "enum": [
+        "email",
+        "email_sha256",
+        "customer_id",
+        "mobile",
+        "engage.id",
+        "external_id",
+        "email_md5"
+      ],
+      "type": "string"
+    },
+    "CustomerLink": {
+      "title": "CustomerLink",
+      "type": "object",
+      "properties": {
+        "link_type": {
+          "$ref": "#/definitions/LinkType"
+        },
+        "link_value": {
+          "title": "Link Value",
+          "minLength": 1,
+          "type": "string"
+        },
+        "id_type": {
+          "title": "Id Type",
+          "default": "default",
+          "type": "string"
+        }
+      },
+      "required": [
+        "link_type",
+        "link_value"
+      ],
+      "additionalProperties": false
+    },
+    "PurchaseType": {
+      "title": "PurchaseType",
+      "description": "An enumeration.",
+      "enum": [
+        "physical",
+        "ecommerce"
+      ]
+    },
+    "TransactionAdjustment": {
+      "title": "TransactionAdjustment",
+      "type": "object",
+      "properties": {
+        "price_adjustment": {
+          "title": "Price Adjustment",
+          "minimum": 0,
+          "type": "number"
+        },
+        "adjusted_at": {
+          "title": "Adjusted At",
+          "type": "string",
+          "format": "date-time"
+        },
+        "reason": {
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "price_adjustment"
+      ]
+    },
+    "PaymentType": {
+      "title": "PaymentType",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "total": {
+          "title": "Total",
+          "type": "number"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "ProductReferenceType": {
+      "title": "ProductReferenceType",
+      "description": "An enumeration.",
+      "enum": [
+        "sku",
+        "upc",
+        "product_id"
+      ]
+    },
+    "ProductReference": {
+      "title": "ProductReference",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "id_type": {
+          "$ref": "#/definitions/ProductReferenceType"
+        },
+        "dataset_id": {
+          "title": "Dataset Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "id_type",
+        "dataset_id"
+      ]
+    },
+    "PurchaseProductReference": {
+      "title": "PurchaseProductReference",
+      "type": "object",
+      "properties": {
+        "product_reference": {
+          "$ref": "#/definitions/ProductReference"
+        },
+        "price_paid": {
+          "title": "Price Paid",
+          "minimum": 0,
+          "type": "number"
+        },
+        "quantity": {
+          "title": "Quantity",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "full_price": {
+          "title": "Full Price",
+          "type": "number"
+        },
+        "discount": {
+          "title": "Discount",
+          "type": "number"
+        }
+      },
+      "required": [
+        "price_paid",
+        "quantity"
+      ]
+    }
+  }
+}
