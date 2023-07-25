@@ -1,0 +1,1 @@
+{ "link": { "email": "jane@fake.com" }, "action_at": "2023-03-06T12:26:47Z", "return_id": "53059a...", "type": "ecommerce", "currency": "USD", "products": [ { "product_reference": { "id": "7ede97...", "id_type": "sku", "dataset_id": "0e2187..." }, "price_paid": -50, "quantity": -2 } ], "custom_fields": { "is_damaged": true, "customer_reason": "glass broken on delivery" } }
