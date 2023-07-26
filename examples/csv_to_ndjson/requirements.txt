@@ -1,1 +1,2 @@
-file:../.. # lexer_schemas FIXME: use public github when possible.
+lexer_schemas @ git+https://github.com/lexerdev/lexer-schemas@0.0.0
+
