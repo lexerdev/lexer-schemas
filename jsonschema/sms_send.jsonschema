@@ -1,0 +1,228 @@
+{
+  "title": "SMSSend",
+  "type": "object",
+  "properties": {
+    "link": {
+      "title": "Link",
+      "anyOf": [
+        {
+          "$ref": "#/definitions/EmailLink"
+        },
+        {
+          "$ref": "#/definitions/EmailSha256Link"
+        },
+        {
+          "$ref": "#/definitions/EmailMd5Link"
+        },
+        {
+          "$ref": "#/definitions/CustomerIdLink"
+        },
+        {
+          "$ref": "#/definitions/MobileLink"
+        },
+        {
+          "$ref": "#/definitions/ExternalLink"
+        },
+        {
+          "$ref": "#/definitions/CustomerLink"
+        }
+      ]
+    },
+    "action_at": {
+      "title": "Action At",
+      "type": "string",
+      "format": "date-time"
+    },
+    "sms_id": {
+      "title": "Sms Id",
+      "type": "string"
+    },
+    "list": {
+      "$ref": "#/definitions/MarketingList"
+    },
+    "campaign_id": {
+      "title": "Campaign Id",
+      "type": "string"
+    },
+    "from": {
+      "$ref": "#/definitions/SMSRecipient"
+    },
+    "to": {
+      "$ref": "#/definitions/SMSRecipient"
+    },
+    "body": {
+      "title": "Body",
+      "type": "string"
+    }
+  },
+  "required": [
+    "link",
+    "action_at",
+    "sms_id"
+  ],
+  "definitions": {
+    "EmailLink": {
+      "title": "EmailLink",
+      "type": "object",
+      "properties": {
+        "email": {
+          "title": "Email",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email"
+      ],
+      "additionalProperties": false
+    },
+    "EmailSha256Link": {
+      "title": "EmailSha256Link",
+      "type": "object",
+      "properties": {
+        "email_sha256": {
+          "title": "Email Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "EmailMd5Link": {
+      "title": "EmailMd5Link",
+      "type": "object",
+      "properties": {
+        "email_md5": {
+          "title": "Email Md5",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email_md5"
+      ],
+      "additionalProperties": false
+    },
+    "CustomerIdLink": {
+      "title": "CustomerIdLink",
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "title": "Customer Id",
+          "type": "string"
+        },
+        "system_name": {
+          "title": "System Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "customer_id"
+      ],
+      "additionalProperties": false
+    },
+    "MobileLink": {
+      "title": "MobileLink",
+      "type": "object",
+      "properties": {
+        "mobile": {
+          "title": "Mobile",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mobile"
+      ],
+      "additionalProperties": false
+    },
+    "ExternalLink": {
+      "title": "ExternalLink",
+      "type": "object",
+      "properties": {
+        "external_id": {
+          "title": "External Id",
+          "type": "string"
+        },
+        "system_name": {
+          "title": "System Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "external_id",
+        "system_name"
+      ],
+      "additionalProperties": false
+    },
+    "LinkType": {
+      "title": "LinkType",
+      "description": "An enumeration.",
+      "enum": [
+        "email",
+        "email_sha256",
+        "customer_id",
+        "mobile",
+        "engage.id",
+        "external_id",
+        "email_md5"
+      ],
+      "type": "string"
+    },
+    "CustomerLink": {
+      "title": "CustomerLink",
+      "type": "object",
+      "properties": {
+        "link_type": {
+          "$ref": "#/definitions/LinkType"
+        },
+        "link_value": {
+          "title": "Link Value",
+          "minLength": 1,
+          "type": "string"
+        },
+        "id_type": {
+          "title": "Id Type",
+          "default": "default",
+          "type": "string"
+        }
+      },
+      "required": [
+        "link_type",
+        "link_value"
+      ],
+      "additionalProperties": false
+    },
+    "MarketingList": {
+      "title": "MarketingList",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
+    },
+    "SMSRecipient": {
+      "title": "SMSRecipient",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "number": {
+          "title": "Number",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

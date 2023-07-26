@@ -1,0 +1,97 @@
+{
+  "title": "ProductRecord",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "title": "Product Id",
+      "type": "string"
+    },
+    "sku": {
+      "title": "Sku",
+      "type": "string"
+    },
+    "upc": {
+      "title": "Upc",
+      "type": "string"
+    },
+    "product_reference_type": {
+      "default": "product_id",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProductReferenceType"
+        }
+      ]
+    },
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "brand": {
+      "title": "Brand",
+      "type": "string"
+    },
+    "size": {
+      "title": "Size",
+      "type": "string"
+    },
+    "color": {
+      "title": "Color",
+      "type": "string"
+    },
+    "price": {
+      "title": "Price",
+      "type": "number"
+    },
+    "categories": {
+      "title": "Categories",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/Category"
+      }
+    },
+    "url": {
+      "title": "Url",
+      "type": "string"
+    },
+    "images": {
+      "title": "Images",
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2083,
+        "format": "uri"
+      }
+    }
+  },
+  "definitions": {
+    "ProductReferenceType": {
+      "title": "ProductReferenceType",
+      "description": "An enumeration.",
+      "enum": [
+        "sku",
+        "upc",
+        "product_id"
+      ]
+    },
+    "Category": {
+      "title": "Category",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

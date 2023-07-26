@@ -1,0 +1,241 @@
+{
+  "title": "CustomerRecord",
+  "type": "object",
+  "properties": {
+    "link": {
+      "title": "Link",
+      "anyOf": [
+        {
+          "$ref": "#/definitions/EmailLink"
+        },
+        {
+          "$ref": "#/definitions/EmailSha256Link"
+        },
+        {
+          "$ref": "#/definitions/EmailMd5Link"
+        },
+        {
+          "$ref": "#/definitions/CustomerIdLink"
+        },
+        {
+          "$ref": "#/definitions/MobileLink"
+        },
+        {
+          "$ref": "#/definitions/ExternalLink"
+        },
+        {
+          "$ref": "#/definitions/CustomerLink"
+        }
+      ]
+    },
+    "email": {
+      "title": "Email",
+      "type": "string"
+    },
+    "email_sha256": {
+      "title": "Email Sha256",
+      "type": "string"
+    },
+    "mobile": {
+      "title": "Mobile",
+      "type": "string"
+    },
+    "customer_id": {
+      "title": "Customer Id",
+      "type": "string"
+    },
+    "custom_fields": {
+      "title": "Custom Fields",
+      "type": "object"
+    },
+    "first_name": {
+      "title": "First Name",
+      "type": "string"
+    },
+    "last_name": {
+      "title": "Last Name",
+      "type": "string"
+    },
+    "gender": {
+      "title": "Gender",
+      "type": "string"
+    },
+    "date_of_birth": {
+      "title": "Date Of Birth",
+      "type": "string",
+      "format": "date"
+    },
+    "country": {
+      "title": "Country",
+      "type": "string"
+    },
+    "state": {
+      "title": "State",
+      "type": "string"
+    },
+    "city": {
+      "title": "City",
+      "type": "string"
+    },
+    "postcode": {
+      "title": "Postcode",
+      "type": "string"
+    },
+    "zip": {
+      "title": "Zip",
+      "type": "string"
+    },
+    "employee_flag": {
+      "title": "Employee Flag",
+      "type": "boolean"
+    },
+    "customer_type": {
+      "title": "Customer Type",
+      "type": "string"
+    },
+    "address_1": {
+      "title": "Address 1",
+      "type": "string"
+    },
+    "address_2": {
+      "title": "Address 2",
+      "type": "string"
+    }
+  },
+  "required": [
+    "link"
+  ],
+  "definitions": {
+    "EmailLink": {
+      "title": "EmailLink",
+      "type": "object",
+      "properties": {
+        "email": {
+          "title": "Email",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email"
+      ],
+      "additionalProperties": false
+    },
+    "EmailSha256Link": {
+      "title": "EmailSha256Link",
+      "type": "object",
+      "properties": {
+        "email_sha256": {
+          "title": "Email Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email_sha256"
+      ],
+      "additionalProperties": false
+    },
+    "EmailMd5Link": {
+      "title": "EmailMd5Link",
+      "type": "object",
+      "properties": {
+        "email_md5": {
+          "title": "Email Md5",
+          "type": "string"
+        }
+      },
+      "required": [
+        "email_md5"
+      ],
+      "additionalProperties": false
+    },
+    "CustomerIdLink": {
+      "title": "CustomerIdLink",
+      "type": "object",
+      "properties": {
+        "customer_id": {
+          "title": "Customer Id",
+          "type": "string"
+        },
+        "system_name": {
+          "title": "System Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "customer_id"
+      ],
+      "additionalProperties": false
+    },
+    "MobileLink": {
+      "title": "MobileLink",
+      "type": "object",
+      "properties": {
+        "mobile": {
+          "title": "Mobile",
+          "type": "string"
+        }
+      },
+      "required": [
+        "mobile"
+      ],
+      "additionalProperties": false
+    },
+    "ExternalLink": {
+      "title": "ExternalLink",
+      "type": "object",
+      "properties": {
+        "external_id": {
+          "title": "External Id",
+          "type": "string"
+        },
+        "system_name": {
+          "title": "System Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "external_id",
+        "system_name"
+      ],
+      "additionalProperties": false
+    },
+    "LinkType": {
+      "title": "LinkType",
+      "description": "An enumeration.",
+      "enum": [
+        "email",
+        "email_sha256",
+        "customer_id",
+        "mobile",
+        "engage.id",
+        "external_id",
+        "email_md5"
+      ],
+      "type": "string"
+    },
+    "CustomerLink": {
+      "title": "CustomerLink",
+      "type": "object",
+      "properties": {
+        "link_type": {
+          "$ref": "#/definitions/LinkType"
+        },
+        "link_value": {
+          "title": "Link Value",
+          "minLength": 1,
+          "type": "string"
+        },
+        "id_type": {
+          "title": "Id Type",
+          "default": "default",
+          "type": "string"
+        }
+      },
+      "required": [
+        "link_type",
+        "link_value"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
