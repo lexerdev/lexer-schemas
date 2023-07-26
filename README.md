@@ -25,7 +25,7 @@ You can run tests by first building the test docker image `docker-compose build 
 Generate documentation by first building the docs docker image `docker-compose build docs` then running `docker-compose run docs`
 
 ## Deployment
-For now the package is installed from git.camplexer, we use tags to denote different versions of the package, we follow the `major.minor[.patch][sub]` format [as recommended by python](https://docs.python.org/3/distutils/setupscript.html#additional-meta-data).
+For now the package is installed from github, we use tags to denote different versions of the package, we follow the `major.minor[.patch][sub]` format [as recommended by python](https://docs.python.org/3/distutils/setupscript.html#additional-meta-data).
 The process of deploying changes should be:
 1. Open a PR for your changes
     - Increment the `VERSION`` file to reflect your changes
