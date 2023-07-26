@@ -5,4 +5,5 @@ WORKDIR /home/python
 ADD . .
 
 RUN pip install --upgrade pip && \
-    pip install -r doc-requirements.txt
+    pip install -r doc-requirements.txt && \
+    pip install -e .
