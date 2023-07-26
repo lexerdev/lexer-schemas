@@ -390,4 +390,4 @@ Must be one of:
 | **Required** | No       |
 
 ----------------------------------------------------------------------------------------------------------------------------
-Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans) on 2023-07-26 at 00:41:56 +0000
+Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans)
