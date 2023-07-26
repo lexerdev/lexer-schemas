@@ -1,5 +1,4 @@
 services:
-  
   test:
     build:
       context: .
@@ -7,3 +6,11 @@ services:
     command: pytest tests
     volumes:
       - ${PWD}:/home/python
+  docs:
+    build:
+      context: .
+      dockerfile: ops/docs.Dockerfile
+    command: ops/generate_docs.sh
+    volumes:
+      - ${PWD}:/home/python
+
