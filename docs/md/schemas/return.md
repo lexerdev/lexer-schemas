@@ -364,10 +364,6 @@ Must be one of:
 | **Type**     | `number` |
 | **Required** | Yes      |
 
-| Restrictions |        |
-| ------------ | ------ |
-| **Minimum**  | &ge; 0 |
-
 #### <a name="adjustments_items_adjusted_at"></a>5.1.2. Property `ReturnEvent > adjustments > TransactionAdjustment > adjusted_at`
 
 **Title:** Adjusted At

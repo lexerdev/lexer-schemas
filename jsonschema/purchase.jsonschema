@@ -223,7 +223,6 @@
       "properties": {
         "price_adjustment": {
           "title": "Price Adjustment",
-          "minimum": 0,
           "type": "number"
         },
         "adjusted_at": {
