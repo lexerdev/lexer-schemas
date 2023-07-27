@@ -8,19 +8,68 @@ from lexer_schemas.common import ProductReferenceType, api_name
 
 @api_name("product")
 class ProductRecord(BaseModel):
-    product_id: Optional[str] = None
-    sku: Optional[str] = None
-    upc: Optional[str] = None
-    product_reference_type: ProductReferenceType = ProductReferenceType.product_id
-    name: Optional[str] = None
-    description: Optional[str] = None
-    brand: Optional[str] = None
-    size: Optional[str] = None
-    color: Optional[str] = None
-    price: Optional[float] = None
-    options: Optional[Dict[str, List[str]]] = None
-    url: Optional[str] = None
-    images: List[HttpUrl] = []
+    """A product object. The field referenced in product_reference_type should be unique and used in purchase and return events."""
+
+    product_id: Optional[str] = Field(
+        title="Product ID",
+        description="Unique product_id. Required if used as the product identifier in product_reference_type.",
+        examples=["b7c901..."],
+        default=None,
+    )
+    sku: Optional[str] = Field(
+        title="SKU",
+        description="Unique SKU. Required if used as a product identifier in product_reference_type.",
+        examples=["ac6674..."],
+        default=None,
+    )
+    upc: Optional[str] = Field(
+        title="UPC",
+        description="Unique UPC. Required if used as a product identifier in product_reference_type.",
+        examples=["ce6378..."],
+        default=None,
+    )
+    product_reference_type: ProductReferenceType = Field(
+        title="Product Reference Type",
+        description="Which field is used to identify the product entity. A value must be provided in the specified field.",
+        default=ProductReferenceType.product_id,
+    )
+    name: Optional[str] = Field(
+        title="Product Name", examples=["Organic Sawyer Rib Crew Knit"], default=None
+    )
+    description: Optional[str] = Field(
+        title="Description",
+        examples=[
+            "Whether your look is clean and casual or sharp and sophisticated, Staple Superior has what you need to achieve that effortlessly cool style."
+        ],
+    )
+    brand: Optional[str] = Field(title="Brand Name", examples=["Sawyer"], default=None)
+    size: Optional[str] = Field(title="Size", examples=["L"], default=None)
+    color: Optional[str] = Field(title="Color", examples=["Navy"], default=None)
+    price: Optional[float] = Field(title="Price", examples=[89.00], default=None)
+    options: Optional[Dict[str, List[str]]] = Field(
+        title="Categories",
+        description="Key value pairs of options that define the product, such as departments, categories, styles, etc.",
+        examples=[
+            {
+                "department": ["menswear"],
+                "category": ["outerwear"],
+                "subcategory": ["knits", "wool"],
+            }
+        ],
+        default=None,
+    )
+    url: Optional[str] = Field(
+        title="Product URL",
+        description="A URL to the product listed on the public internet - i.e., an ecommerce link.",
+        examples=["https://fake.com/menswear/sawyer-rib-crew-knit"],
+        default=None,
+    )
+    images: List[HttpUrl] = Field(
+        title="Image URLs",
+        description="An array of Product Image URLs listed on the public internet.",
+        examples=[["https://fake.com/images/menswear/sawyer-rib-crew-knit.jpg"]],
+        default_factory=list,
+    )
 
     @root_validator
     def validate_reference_type(cls, values: dict) -> dict:

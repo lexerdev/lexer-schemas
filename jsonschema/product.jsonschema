@@ -1,20 +1,35 @@
 {
   "title": "ProductRecord",
+  "description": "A product object. The field referenced in product_reference_type should be unique and used in purchase and return events.",
   "type": "object",
   "properties": {
     "product_id": {
-      "title": "Product Id",
+      "title": "Product ID",
+      "description": "Unique product_id. Required if used as the product identifier in product_reference_type.",
+      "examples": [
+        "b7c901..."
+      ],
       "type": "string"
     },
     "sku": {
-      "title": "Sku",
+      "title": "SKU",
+      "description": "Unique SKU. Required if used as a product identifier in product_reference_type.",
+      "examples": [
+        "ac6674..."
+      ],
       "type": "string"
     },
     "upc": {
-      "title": "Upc",
+      "title": "UPC",
+      "description": "Unique UPC. Required if used as a product identifier in product_reference_type.",
+      "examples": [
+        "ce6378..."
+      ],
       "type": "string"
     },
     "product_reference_type": {
+      "title": "Product Reference Type",
+      "description": "Which field is used to identify the product entity. A value must be provided in the specified field.",
       "default": "product_id",
       "allOf": [
         {
@@ -23,31 +38,64 @@
       ]
     },
     "name": {
-      "title": "Name",
+      "title": "Product Name",
+      "examples": [
+        "Organic Sawyer Rib Crew Knit"
+      ],
       "type": "string"
     },
     "description": {
       "title": "Description",
+      "examples": [
+        "Whether your look is clean and casual or sharp and sophisticated, Staple Superior has what you need to achieve that effortlessly cool style."
+      ],
       "type": "string"
     },
     "brand": {
-      "title": "Brand",
+      "title": "Brand Name",
+      "examples": [
+        "Sawyer"
+      ],
       "type": "string"
     },
     "size": {
       "title": "Size",
+      "examples": [
+        "L"
+      ],
       "type": "string"
     },
     "color": {
       "title": "Color",
+      "examples": [
+        "Navy"
+      ],
       "type": "string"
     },
     "price": {
       "title": "Price",
+      "examples": [
+        89.0
+      ],
       "type": "number"
     },
     "options": {
-      "title": "Options",
+      "title": "Categories",
+      "description": "Key value pairs of options that define the product, such as departments, categories, styles, etc.",
+      "examples": [
+        {
+          "department": [
+            "menswear"
+          ],
+          "category": [
+            "outerwear"
+          ],
+          "subcategory": [
+            "knits",
+            "wool"
+          ]
+        }
+      ],
       "type": "object",
       "additionalProperties": {
         "type": "array",
@@ -57,12 +105,21 @@
       }
     },
     "url": {
-      "title": "Url",
+      "title": "Product URL",
+      "description": "A URL to the product listed on the public internet - i.e., an ecommerce link.",
+      "examples": [
+        "https://fake.com/menswear/sawyer-rib-crew-knit"
+      ],
       "type": "string"
     },
     "images": {
-      "title": "Images",
-      "default": [],
+      "title": "Image URLs",
+      "description": "An array of Product Image URLs listed on the public internet.",
+      "examples": [
+        [
+          "https://fake.com/images/menswear/sawyer-rib-crew-knit.jpg"
+        ]
+      ],
       "type": "array",
       "items": {
         "type": "string",
