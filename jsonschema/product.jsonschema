@@ -46,11 +46,14 @@
       "title": "Price",
       "type": "number"
     },
-    "categories": {
-      "title": "Categories",
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/Category"
+    "options": {
+      "title": "Options",
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
       }
     },
     "url": {
@@ -78,20 +81,6 @@
         "upc",
         "product_id"
       ]
-    },
-    "Category": {
-      "title": "Category",
-      "type": "object",
-      "properties": {
-        "name": {
-          "title": "Name",
-          "type": "string"
-        },
-        "description": {
-          "title": "Description",
-          "type": "string"
-        }
-      }
     }
   }
 }
