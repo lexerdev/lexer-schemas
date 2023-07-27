@@ -34,7 +34,7 @@ class ReturnProductReference(BaseModel):
 
 
 class TransactionAdjustment(BaseModel):
-    price_adjustment: confloat(ge=0)  # type: ignore
+    price_adjustment: float
     adjusted_at: Optional[datetime] = None
     reason: Optional[str] = None
 
