@@ -4,7 +4,12 @@ from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, confloat, conint
 
-from lexer_schemas.common import api_name, BaseEvent, ProductReferenceType
+from lexer_schemas.common import (
+    api_name,
+    BaseEvent,
+    ProductReferenceType,
+    Store,
+)
 from lexer_schemas.link import Link
 
 
@@ -49,6 +54,7 @@ class BaseTransactionEvent(BaseEvent):
     currency: Optional[str] = None
     adjustments: Optional[List[TransactionAdjustment]] = None
     custom_fields: Optional[Dict[str, Any]] = None
+    store: Optional[Store] = None
 
 
 @api_name("purchase")
