@@ -658,6 +658,8 @@ Must be one of:
 | **Type**     | `array` |
 | **Required** | Yes     |
 
+**Description:** Contains the 'order lines' in the return event. Each record in this array represents a specific product that was returned including details such as quantity returned, refund price etc.
+
 |                      | Array restrictions |
 | -------------------- | ------------------ |
 | **Min items**        | N/A                |
