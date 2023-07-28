@@ -1,5 +1,6 @@
 {
   "title": "EmailSubscribe",
+  "description": "An Email Subscribe Event object `record_type=email_subscribe`.",
   "type": "object",
   "properties": {
     "link": {
@@ -35,6 +36,10 @@
     },
     "email_id": {
       "title": "Email Id",
+      "description": "A unique identifier for an individual email event.",
+      "examples": [
+        "send-job-a7e23-jane-doe"
+      ],
       "type": "string"
     },
     "list": {
@@ -188,10 +193,17 @@
       "properties": {
         "id": {
           "title": "Id",
+          "examples": [
+            "7bff7a..."
+          ],
           "type": "string"
         },
         "name": {
           "title": "Name",
+          "examples": [
+            "All Customers List",
+            "Lapsed Customers"
+          ],
           "type": "string"
         }
       },
@@ -202,7 +214,7 @@
     },
     "EmailSubscriptionStatus": {
       "title": "EmailSubscriptionStatus",
-      "description": "An enumeration.",
+      "description": "The type of subscribe event:\n  `subscribed` - explicitly subscribed to marketing emails\n  `unsubscribed` - explicitly unsubscribed to marketing emails\n  `transactional` - **not** explicitly subscribed but can still be sent 'transactional' emails\n  `undeliverable` - **not** explicitly unsubscribed but emails sent to them are bouncing or are otherwise undeliverable",
       "enum": [
         "subscribed",
         "unsubscribed",

@@ -34,13 +34,15 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
-| Property                   | Pattern | Type             | Deprecated | Definition                               | Title/Description |
-| -------------------------- | ------- | ---------------- | ---------- | ---------------------------------------- | ----------------- |
-| + [link](#link )           | No      | Combination      | No         | -                                        | Link              |
-| + [action_at](#action_at ) | No      | string           | No         | -                                        | Action At         |
-| + [email_id](#email_id )   | No      | string           | No         | -                                        | Email Id          |
-| - [list](#list )           | No      | object           | No         | In #/definitions/MarketingList           | -                 |
-| + [status](#status )       | No      | enum (of string) | No         | In #/definitions/EmailSubscriptionStatus | An enumeration.   |
+**Description:** An Email Subscribe Event object `record_type=email_subscribe`.
+
+| Property                   | Pattern | Type             | Deprecated | Definition                               | Title/Description                                                                                                                                                                                                                                                                                                                                                                                         |
+| -------------------------- | ------- | ---------------- | ---------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| + [link](#link )           | No      | Combination      | No         | -                                        | Link                                                                                                                                                                                                                                                                                                                                                                                                      |
+| + [action_at](#action_at ) | No      | string           | No         | -                                        | Action At                                                                                                                                                                                                                                                                                                                                                                                                 |
+| + [email_id](#email_id )   | No      | string           | No         | -                                        | Email Id                                                                                                                                                                                                                                                                                                                                                                                                  |
+| - [list](#list )           | No      | object           | No         | In #/definitions/MarketingList           | -                                                                                                                                                                                                                                                                                                                                                                                                         |
+| + [status](#status )       | No      | enum (of string) | No         | In #/definitions/EmailSubscriptionStatus | The type of subscribe event:<br />  \`subscribed\` - explicitly subscribed to marketing emails<br />  \`unsubscribed\` - explicitly unsubscribed to marketing emails<br />  \`transactional\` - **not** explicitly subscribed but can still be sent 'transactional' emails<br />  \`undeliverable\` - **not** explicitly unsubscribed but emails sent to them are bouncing or are otherwise undeliverable |
 
 ## <a name="link"></a>1. Property `EmailSubscribe > link`
 
@@ -290,6 +292,14 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for an individual email event.
+
+**Example:** 
+
+```json
+"send-job-a7e23-jane-doe"
+```
+
 ## <a name="list"></a>4. Property `EmailSubscribe > list`
 
 |                           |                                                                           |
@@ -313,6 +323,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"7bff7a..."
+```
+
 ### <a name="list_name"></a>4.2. Property `EmailSubscribe > list > name`
 
 **Title:** Name
@@ -322,6 +338,16 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Examples:** 
+
+```json
+"All Customers List"
+```
+
+```json
+"Lapsed Customers"
+```
+
 ## <a name="status"></a>5. Property `EmailSubscribe > status`
 
 |                |                                       |
@@ -330,7 +356,11 @@ Must be one of:
 | **Required**   | Yes                                   |
 | **Defined in** | #/definitions/EmailSubscriptionStatus |
 
-**Description:** An enumeration.
+**Description:** The type of subscribe event:
+  `subscribed` - explicitly subscribed to marketing emails
+  `unsubscribed` - explicitly unsubscribed to marketing emails
+  `transactional` - **not** explicitly subscribed but can still be sent 'transactional' emails
+  `undeliverable` - **not** explicitly unsubscribed but emails sent to them are bouncing or are otherwise undeliverable
 
 Must be one of:
 * "subscribed"

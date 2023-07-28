@@ -194,10 +194,17 @@
       "properties": {
         "id": {
           "title": "Id",
+          "examples": [
+            "7bff7a..."
+          ],
           "type": "string"
         },
         "name": {
           "title": "Name",
+          "examples": [
+            "All Customers List",
+            "Lapsed Customers"
+          ],
           "type": "string"
         }
       },

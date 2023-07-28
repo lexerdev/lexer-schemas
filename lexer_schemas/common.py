@@ -58,8 +58,8 @@ class ClickedLink(BaseModel):
 
 
 class MarketingList(BaseModel):
-    id: str
-    name: str
+    id: str = Field(examples=["7bff7a..."])
+    name: str = Field(examples=["All Customers List", "Lapsed Customers"])
 
 
 class SMSSubscriptionStatus(Enum):
@@ -72,6 +72,14 @@ class SMSSubscriptionStatus(Enum):
 
 
 class EmailSubscriptionStatus(Enum):
+    """
+    The type of subscribe event:
+    `subscribed` - explicitly subscribed to marketing emails
+    `unsubscribed` - explicitly unsubscribed to marketing emails
+    `transactional` - **not** explicitly subscribed but can still be sent 'transactional' emails
+    `undeliverable` - **not** explicitly unsubscribed but emails sent to them are bouncing or are otherwise undeliverable
+    """
+
     subscribed = "subscribed"
     unsubscribed = "unsubscribed"
     transactional = "transactional"

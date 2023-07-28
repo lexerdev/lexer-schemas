@@ -313,6 +313,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"7bff7a..."
+```
+
 ### <a name="list_name"></a>4.2. Property `SMSSubscribe > list > name`
 
 **Title:** Name
@@ -321,6 +327,16 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Examples:** 
+
+```json
+"All Customers List"
+```
+
+```json
+"Lapsed Customers"
+```
 
 ## <a name="status"></a>5. Property `SMSSubscribe > status`
 

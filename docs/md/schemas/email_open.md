@@ -38,6 +38,8 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
+**Description:** An Email Open Event object `record_type=email_open`.
+
 | Property                       | Pattern | Type        | Deprecated | Definition                     | Title/Description |
 | ------------------------------ | ------- | ----------- | ---------- | ------------------------------ | ----------------- |
 | + [link](#link )               | No      | Combination | No         | -                              | Link              |
@@ -45,8 +47,8 @@
 | + [email_id](#email_id )       | No      | string      | No         | -                              | Email Id          |
 | - [list](#list )               | No      | object      | No         | In #/definitions/MarketingList | -                 |
 | - [campaign_id](#campaign_id ) | No      | string      | No         | -                              | Campaign Id       |
-| - [from](#from )               | No      | object      | No         | In #/definitions/EmailAddress  | -                 |
-| - [to](#to )                   | No      | object      | No         | Same as [from](#from )         | -                 |
+| - [from](#from )               | No      | object      | No         | In                             | From              |
+| - [to](#to )                   | No      | object      | No         | Same as [from](#from )         | To                |
 
 ## <a name="link"></a>1. Property `EmailOpen > link`
 
@@ -296,6 +298,14 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for an individual email event.
+
+**Example:** 
+
+```json
+"send-job-a7e23-jane-doe"
+```
+
 ## <a name="list"></a>4. Property `EmailOpen > list`
 
 |                           |                                                                           |
@@ -319,6 +329,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"7bff7a..."
+```
+
 ### <a name="list_name"></a>4.2. Property `EmailOpen > list > name`
 
 **Title:** Name
@@ -327,6 +343,16 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Examples:** 
+
+```json
+"All Customers List"
+```
+
+```json
+"Lapsed Customers"
+```
 
 ## <a name="campaign_id"></a>5. Property `EmailOpen > campaign_id`
 
@@ -337,14 +363,26 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Description:** Campaign Identifier or Name.
+
+**Example:** 
+
+```json
+"Black friday Menswear Teaser Aug 2020"
+```
+
 ## <a name="from"></a>6. Property `EmailOpen > from`
+
+**Title:** From
 
 |                           |                                                                           |
 | ------------------------- | ------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                  |
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
-| **Defined in**            | #/definitions/EmailAddress                                                |
+| **Defined in**            |                                                                           |
+
+**Description:** Sender Details
 
 | Property                | Pattern | Type   | Deprecated | Definition | Title/Description |
 | ----------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
@@ -360,6 +398,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+"Jane Doe"
+```
+
 ### <a name="from_email"></a>6.2. Property `EmailOpen > from > email`
 
 **Title:** Email
@@ -369,7 +413,19 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"jane@example.com"
+```
+
+| Restrictions                      |                                                                                                                                                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)``` [Test](https://regex101.com/?regex=%28%5E%5Ba-zA-Z0-9_.%2B-%5D%2B%40%5Ba-zA-Z0-9-%5D%2B%5C.%5Ba-zA-Z0-9-.%5D%2B%24%29&testString=%22jane%40example.com%22) |
+
 ## <a name="to"></a>7. Property `EmailOpen > to`
+
+**Title:** To
 
 |                           |                                                                           |
 | ------------------------- | ------------------------------------------------------------------------- |
@@ -377,6 +433,8 @@ Must be one of:
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 | **Same definition as**    | [from](#from)                                                             |
+
+**Description:** Recipient Details
 
 ----------------------------------------------------------------------------------------------------------------------------
 Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans)

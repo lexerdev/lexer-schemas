@@ -321,6 +321,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"7bff7a..."
+```
+
 ### <a name="list_name"></a>4.2. Property `SMSSend > list > name`
 
 **Title:** Name
@@ -329,6 +335,16 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Examples:** 
+
+```json
+"All Customers List"
+```
+
+```json
+"Lapsed Customers"
+```
 
 ## <a name="campaign_id"></a>5. Property `SMSSend > campaign_id`
 

@@ -1,5 +1,6 @@
 {
   "title": "EmailClick",
+  "description": "An Email Click Event object `record_type=email_click`.",
   "type": "object",
   "properties": {
     "link": {
@@ -35,6 +36,10 @@
     },
     "email_id": {
       "title": "Email Id",
+      "description": "A unique identifier for an individual email event.",
+      "examples": [
+        "send-job-a7e23-jane-doe"
+      ],
       "type": "string"
     },
     "list": {
@@ -42,13 +47,29 @@
     },
     "campaign_id": {
       "title": "Campaign Id",
+      "description": "Campaign Identifier or Name.",
+      "examples": [
+        "Black friday Menswear Teaser Aug 2020"
+      ],
       "type": "string"
     },
     "from": {
-      "$ref": "#/definitions/EmailAddress"
+      "title": "From",
+      "description": "Sender Details",
+      "allOf": [
+        {
+          "$ref": "#/definitions/EmailAddress"
+        }
+      ]
     },
     "to": {
-      "$ref": "#/definitions/EmailAddress"
+      "title": "To",
+      "description": "Recipient Details",
+      "allOf": [
+        {
+          "$ref": "#/definitions/EmailAddress"
+        }
+      ]
     },
     "clicked_link": {
       "$ref": "#/definitions/ClickedLink"
@@ -197,10 +218,17 @@
       "properties": {
         "id": {
           "title": "Id",
+          "examples": [
+            "7bff7a..."
+          ],
           "type": "string"
         },
         "name": {
           "title": "Name",
+          "examples": [
+            "All Customers List",
+            "Lapsed Customers"
+          ],
           "type": "string"
         }
       },
@@ -215,10 +243,17 @@
       "properties": {
         "name": {
           "title": "Name",
+          "examples": [
+            "Jane Doe"
+          ],
           "type": "string"
         },
         "email": {
           "title": "Email",
+          "examples": [
+            "jane@example.com"
+          ],
+          "pattern": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
           "type": "string"
         }
       },
