@@ -21,7 +21,7 @@ class TestProductEntity:
             "size": None,
             "color": None,
             "price": None,
-            "categories": None,
+            "options": None,
             "url": None,
             "images": [],
         }
@@ -42,25 +42,20 @@ class TestProductEntity:
             "size": None,
             "color": None,
             "price": None,
-            "categories": None,
+            "options": None,
             "url": None,
             "images": [],
         }
 
         assert json.loads(actual_record.json()) == expected_record
 
-
     def test_product_record_no_product_id(self):
-
-        expected_error = (
-            r"If product_reference_type is specified as 'product_id', product_id should not be None"
-        )
+        expected_error = r"If product_reference_type is specified as 'product_id', product_id should not be None"
 
         with pytest.raises(ValueError, match=expected_error):
             ProductRecord(product_reference_type="product_id")
 
     def test_product_record_no_sku(self):
-
         expected_error = (
             r"If product_reference_type is specified as 'sku', sku should not be None"
         )
@@ -69,7 +64,6 @@ class TestProductEntity:
             ProductRecord(product_reference_type="sku")
 
     def test_product_record_no_upc(self):
-
         expected_error = (
             r"If product_reference_type is specified as 'upc', upc should not be None"
         )

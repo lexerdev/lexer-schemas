@@ -1,14 +1,9 @@
-from typing import List, Optional
-from pydantic import BaseModel, root_validator
+from typing import Dict, List, Optional
+
+from pydantic import BaseModel, Field, root_validator
 from pydantic.networks import HttpUrl
 
-from lexer_schemas.common import api_name, ProductReferenceType
-
-
-@api_name("category")
-class Category(BaseModel):
-    name: Optional[str] = None
-    description: Optional[str] = None
+from lexer_schemas.common import ProductReferenceType, api_name
 
 
 @api_name("product")
@@ -23,7 +18,7 @@ class ProductRecord(BaseModel):
     size: Optional[str] = None
     color: Optional[str] = None
     price: Optional[float] = None
-    categories: Optional[List[Category]] = None
+    options: Optional[Dict[str, List[str]]] = None
     url: Optional[str] = None
     images: List[HttpUrl] = []
 

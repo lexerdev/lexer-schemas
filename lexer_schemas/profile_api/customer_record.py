@@ -3,8 +3,8 @@ from typing import Any, Dict, Optional
 
 from pydantic import BaseModel
 
-from lexer_schemas.link import Link
 from lexer_schemas.common import api_name
+from lexer_schemas.link import Link
 
 
 @api_name("customer_record")
