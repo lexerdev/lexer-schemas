@@ -117,8 +117,8 @@ class TestReturnEvent:
             "store": {
                 "store_id": "X233445",
                 "name": "Best Street Store",
+                "type": "outlet",
                 "location": None,
-                "type": None,
             },
             "custom_fields": {"is_full_return": True},
         }
