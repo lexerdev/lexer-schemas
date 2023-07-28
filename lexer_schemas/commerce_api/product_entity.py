@@ -8,23 +8,27 @@ from lexer_schemas.common import ProductReferenceType, api_name
 
 @api_name("product")
 class ProductRecord(BaseModel):
-    """A product object `record_type=product`. The field referenced in product_reference_type should be unique and used in purchase and return events."""
+    """
+    A product object `record_type=product`.
+    Product records are used to represent the current and historical products offered by your brand, including your product taxonomy.
+    The field referenced in `product_reference_type` should be unique and used in purchase and return events.
+    """
 
     product_id: Optional[str] = Field(
         title="Product ID",
-        description="Unique product_id. Required if used as the product identifier in product_reference_type.",
+        description="Unique product_id. Required if `product_id` is used as the product identifier in `product_reference_type`.",
         examples=["b7c901..."],
         default=None,
     )
     sku: Optional[str] = Field(
         title="SKU",
-        description="Unique SKU. Required if used as a product identifier in product_reference_type.",
+        description="Unique SKU. Required if `sku` is used as a product identifier in `product_reference_type`.",
         examples=["ac6674..."],
         default=None,
     )
     upc: Optional[str] = Field(
         title="UPC",
-        description="Unique UPC. Required if used as a product identifier in product_reference_type.",
+        description="Unique UPC. Required if `upc` is used as a product identifier in `product_reference_type`.",
         examples=["ce6378..."],
         default=None,
     )

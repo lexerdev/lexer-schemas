@@ -25,7 +25,9 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
-**Description:** A product object `record_type=product`. The field referenced in product_reference_type should be unique and used in purchase and return events.
+**Description:** A product object `record_type=product`.
+Product records are used to represent the current and historical products offered by your brand, including your product taxonomy.
+The field referenced in `product_reference_type` should be unique and used in purchase and return events.
 
 | Property                                             | Pattern | Type             | Deprecated | Definition | Title/Description      |
 | ---------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ---------------------- |
@@ -52,7 +54,7 @@
 | **Type**     | `string` |
 | **Required** | No       |
 
-**Description:** Unique product_id. Required if used as the product identifier in product_reference_type.
+**Description:** Unique product_id. Required if `product_id` is used as the product identifier in `product_reference_type`.
 
 **Example:** 
 
@@ -69,7 +71,7 @@
 | **Type**     | `string` |
 | **Required** | No       |
 
-**Description:** Unique SKU. Required if used as a product identifier in product_reference_type.
+**Description:** Unique SKU. Required if `sku` is used as a product identifier in `product_reference_type`.
 
 **Example:** 
 
@@ -86,7 +88,7 @@
 | **Type**     | `string` |
 | **Required** | No       |
 
-**Description:** Unique UPC. Required if used as a product identifier in product_reference_type.
+**Description:** Unique UPC. Required if `upc` is used as a product identifier in `product_reference_type`.
 
 **Example:** 
 

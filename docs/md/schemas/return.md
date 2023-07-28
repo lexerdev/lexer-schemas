@@ -56,6 +56,7 @@
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
 **Description:** A return event object `record_type=return`.
+Represents transaction data related to customers returning products and is used to enrich profiles with their complete purchase history.
 
 | Property                           | Pattern | Type             | Deprecated | Definition                    | Title/Description |
 | ---------------------------------- | ------- | ---------------- | ---------- | ----------------------------- | ----------------- |
@@ -561,6 +562,12 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Example:** 
+
+```json
+"St Kilda Outlet"
+```
 
 ### <a name="store_location"></a>7.4. Property `ReturnEvent > store > location`
 

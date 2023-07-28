@@ -35,6 +35,7 @@
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
 **Description:** An Email Subscribe Event object `record_type=email_subscribe`.
+These events are used to enrich profiles with attributes like “Email Subscription Status”, "Email Deliverability" or “Email Subscribe Date”
 
 | Property                   | Pattern | Type             | Deprecated | Definition                               | Title/Description                                                                                                                                                                                                                                                                                                                                                                                   |
 | -------------------------- | ------- | ---------------- | ---------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

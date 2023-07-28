@@ -1,6 +1,6 @@
 {
   "title": "SMSSend",
-  "description": "An SMS Send Event object `record_type=sms_send`.",
+  "description": "An SMS Send Event object `record_type=sms_send`.\nThese events are used to enrich profiles with attributes like \u201cLast SMS Send Data\u201d or \u201cNumber of SMS Sent\u201d.",
   "type": "object",
   "properties": {
     "link": {

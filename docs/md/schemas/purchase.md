@@ -62,6 +62,7 @@
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
 **Description:** A purchase event object `record_type=purchase`.
+Represents transaction data and is used to enrich profiles with their complete purchase history.
 
 | Property                           | Pattern | Type             | Deprecated | Definition                    | Title/Description |
 | ---------------------------------- | ------- | ---------------- | ---------- | ----------------------------- | ----------------- |
@@ -569,6 +570,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"St Kilda Outlet"
+```
+
 ### <a name="store_location"></a>7.4. Property `PurchaseEvent > store > location`
 
 |                           |                                                                           |
@@ -728,6 +735,8 @@ Must be one of:
 | ------------ | ------- |
 | **Type**     | `array` |
 | **Required** | Yes     |
+
+**Description:** Contains the 'order lines' in the purchase event. Each record in this array represents a specific product that was purcased including details such as quantity, price paid etc.
 
 |                      | Array restrictions |
 | -------------------- | ------------------ |

@@ -28,7 +28,10 @@ class BaseSMSEvent(BaseEvent):
 
 @api_name("sms_subscribe")
 class SMSSubscribe(BaseSMSEvent):
-    """An SMS Subscribe Event object `record_type=sms_subscribe`."""
+    """
+    An SMS Subscribe Event object `record_type=sms_subscribe`.
+    These events are used to enrich profiles with attributes like “SMS Subscribe Date” or “Subscribed to SMS List”.
+    """
 
     action_at: datetime
     status: SMSSubscriptionStatus
@@ -47,7 +50,10 @@ ToField = Field(description="Recipient Details", default=None)
 
 @api_name("sms_send")
 class SMSSend(BaseSMSEvent):
-    """An SMS Send Event object `record_type=sms_send`."""
+    """
+    An SMS Send Event object `record_type=sms_send`.
+    These events are used to enrich profiles with attributes like “Last SMS Send Data” or “Number of SMS Sent”.
+    """
 
     campaign_id: Optional[str] = CampaignField
     from_: Optional[SMSRecipient] = FromField
@@ -61,7 +67,10 @@ class SMSSend(BaseSMSEvent):
 
 @api_name("sms_click")
 class SMSClick(BaseSMSEvent):
-    """An SMS Click Event object `record_type=sms_click`."""
+    """
+    An SMS Click Event object `record_type=sms_click`.
+    These events are used to enrich profiles with attributes like “SMS Click Dates” or “Number of SMS Clicked”.
+    """
 
     campaign_id: Optional[str] = CampaignField
     from_: Optional[SMSRecipient] = FromField

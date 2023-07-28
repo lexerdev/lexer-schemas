@@ -1,6 +1,6 @@
 {
   "title": "EmailSubscribe",
-  "description": "An Email Subscribe Event object `record_type=email_subscribe`.",
+  "description": "An Email Subscribe Event object `record_type=email_subscribe`.\nThese events are used to enrich profiles with attributes like \u201cEmail Subscription Status\u201d, \"Email Deliverability\" or \u201cEmail Subscribe Date\u201d",
   "type": "object",
   "properties": {
     "link": {

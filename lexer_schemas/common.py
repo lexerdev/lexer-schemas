@@ -48,7 +48,7 @@ class Store(BaseModel):
 
     store_id: Optional[str] = Field(examples=["40bf96..."], default=None)
     type: StoreType
-    name: str
+    name: str = Field(examples=["St Kilda Outlet"])
     location: Optional[GeoLocation] = None
 
 

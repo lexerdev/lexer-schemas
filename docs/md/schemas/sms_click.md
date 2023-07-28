@@ -39,6 +39,7 @@
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
 **Description:** An SMS Click Event object `record_type=sms_click`.
+These events are used to enrich profiles with attributes like “SMS Click Dates” or “Number of SMS Clicked”.
 
 | Property                       | Pattern | Type        | Deprecated | Definition                     | Title/Description |
 | ------------------------------ | ------- | ----------- | ---------- | ------------------------------ | ----------------- |

@@ -39,6 +39,7 @@
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
 **Description:** An Email Open Event object `record_type=email_open`.
+These events are used to enrich profiles with attributes like “Campaigns Opened” or “Email Open Rate”.
 
 | Property                       | Pattern | Type        | Deprecated | Definition                     | Title/Description |
 | ------------------------------ | ------- | ----------- | ---------- | ------------------------------ | ----------------- |

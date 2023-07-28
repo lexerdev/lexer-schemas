@@ -1,6 +1,6 @@
 {
   "title": "EmailSend",
-  "description": "An Email Send Event object `record_type=email_send`.",
+  "description": "An Email Send Event object `record_type=email_send`.\nThese events are used to enrich profiles with attributes like \u201cNumber of Emails Sent\u201d or \u201cCampaigns Sent\u201d.",
   "type": "object",
   "properties": {
     "link": {

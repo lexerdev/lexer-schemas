@@ -47,6 +47,8 @@
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
 **Description:** A customer object `record_type=customer_record`.
+Represents customer information, such as traditional CRM entries, user account information, and so on, in the CDXP.
+The Lexer CDXP will resolve related customer records into one profile, creating a single representation of a profile based on the rules configured within the Hub.
 
 | Property                           | Pattern | Type        | Deprecated | Definition | Title/Description   |
 | ---------------------------------- | ------- | ----------- | ---------- | ---------- | ------------------- |

@@ -41,6 +41,7 @@
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
 **Description:** An Email Send Event object `record_type=email_send`.
+These events are used to enrich profiles with attributes like “Number of Emails Sent” or “Campaigns Sent”.
 
 | Property                       | Pattern | Type        | Deprecated | Definition                     | Title/Description |
 | ------------------------------ | ------- | ----------- | ---------- | ------------------------------ | ----------------- |

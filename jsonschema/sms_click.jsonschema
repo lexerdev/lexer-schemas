@@ -1,6 +1,6 @@
 {
   "title": "SMSClick",
-  "description": "An SMS Click Event object `record_type=sms_click`.",
+  "description": "An SMS Click Event object `record_type=sms_click`.\nThese events are used to enrich profiles with attributes like \u201cSMS Click Dates\u201d or \u201cNumber of SMS Clicked\u201d.",
   "type": "object",
   "properties": {
     "link": {

@@ -49,7 +49,10 @@ ToField = Field(description="Recipient Details", default=None)
 
 @api_name("email_send")
 class EmailSend(BaseEmailEvent):
-    """An Email Send Event object `record_type=email_send`."""
+    """
+    An Email Send Event object `record_type=email_send`.
+    These events are used to enrich profiles with attributes like “Number of Emails Sent” or “Campaigns Sent”.
+    """
 
     campaign_id: Optional[str] = CampaignField
     from_: Optional[EmailAddress] = FromField
@@ -68,7 +71,10 @@ class EmailSend(BaseEmailEvent):
 
 @api_name("email_open")
 class EmailOpen(BaseEmailEvent):
-    """An Email Open Event object `record_type=email_open`."""
+    """
+    An Email Open Event object `record_type=email_open`.
+    These events are used to enrich profiles with attributes like “Campaigns Opened” or “Email Open Rate”.
+    """
 
     campaign_id: Optional[str] = CampaignField
     from_: Optional[EmailAddress] = FromField
@@ -77,7 +83,10 @@ class EmailOpen(BaseEmailEvent):
 
 @api_name("email_click")
 class EmailClick(BaseEmailEvent):
-    """An Email Click Event object `record_type=email_click`."""
+    """
+    An Email Click Event object `record_type=email_click`.
+    These events are used to enrich profiles with attributes like “Email Click Rate” or “Click Dates”.
+    """
 
     campaign_id: Optional[str] = CampaignField
     from_: Optional[EmailAddress] = FromField
@@ -95,6 +104,9 @@ class EmailBounce(BaseEmailEvent):
 
 @api_name("email_subscribe")
 class EmailSubscribe(BaseEmailEvent):
-    """An Email Subscribe Event object `record_type=email_subscribe`."""
+    """
+    An Email Subscribe Event object `record_type=email_subscribe`.
+    These events are used to enrich profiles with attributes like “Email Subscription Status”, "Email Deliverability" or “Email Subscribe Date”
+    """
 
     status: EmailSubscriptionStatus

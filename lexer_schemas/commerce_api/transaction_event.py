@@ -60,16 +60,24 @@ class BaseTransactionEvent(BaseEvent):
 
 @api_name("purchase")
 class PurchaseEvent(BaseTransactionEvent):
-    """A purchase event object `record_type=purchase`."""
+    """
+    A purchase event object `record_type=purchase`.
+    Represents transaction data and is used to enrich profiles with their complete purchase history.
+    """
 
     purchase_id: str = Field(examples=["53059a..."])
     payment_types: Optional[List[PaymentType]] = None
-    products: List[PurchaseProductReference]
+    products: List[PurchaseProductReference] = Field(
+        description="Contains the 'order lines' in the purchase event. Each record in this array represents a specific product that was purcased including details such as quantity, price paid etc."
+    )
 
 
 @api_name("return")
 class ReturnEvent(BaseTransactionEvent):
-    """A return event object `record_type=return`."""
+    """
+    A return event object `record_type=return`.
+    Represents transaction data related to customers returning products and is used to enrich profiles with their complete purchase history.
+    """
 
     return_id: str
     products: List[ReturnProductReference]

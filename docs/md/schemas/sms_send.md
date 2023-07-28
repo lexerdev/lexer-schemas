@@ -40,6 +40,7 @@
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
 **Description:** An SMS Send Event object `record_type=sms_send`.
+These events are used to enrich profiles with attributes like “Last SMS Send Data” or “Number of SMS Sent”.
 
 | Property                       | Pattern | Type        | Deprecated | Definition                     | Title/Description |
 | ------------------------------ | ------- | ----------- | ---------- | ------------------------------ | ----------------- |

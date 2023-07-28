@@ -1,6 +1,6 @@
 {
   "title": "PurchaseEvent",
-  "description": "A purchase event object `record_type=purchase`.",
+  "description": "A purchase event object `record_type=purchase`.\nRepresents transaction data and is used to enrich profiles with their complete purchase history.",
   "type": "object",
   "properties": {
     "link": {
@@ -82,6 +82,7 @@
     },
     "products": {
       "title": "Products",
+      "description": "Contains the 'order lines' in the purchase event. Each record in this array represents a specific product that was purcased including details such as quantity, price paid etc.",
       "type": "array",
       "items": {
         "$ref": "#/definitions/PurchaseProductReference"
@@ -361,6 +362,9 @@
         },
         "name": {
           "title": "Name",
+          "examples": [
+            "St Kilda Outlet"
+          ],
           "type": "string"
         },
         "location": {

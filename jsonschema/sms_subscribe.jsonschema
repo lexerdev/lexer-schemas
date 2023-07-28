@@ -1,6 +1,6 @@
 {
   "title": "SMSSubscribe",
-  "description": "An SMS Subscribe Event object `record_type=sms_subscribe`.",
+  "description": "An SMS Subscribe Event object `record_type=sms_subscribe`.\nThese events are used to enrich profiles with attributes like \u201cSMS Subscribe Date\u201d or \u201cSubscribed to SMS List\u201d.",
   "type": "object",
   "properties": {
     "link": {

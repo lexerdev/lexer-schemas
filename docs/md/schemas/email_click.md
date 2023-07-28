@@ -42,6 +42,7 @@
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
 **Description:** An Email Click Event object `record_type=email_click`.
+These events are used to enrich profiles with attributes like “Email Click Rate” or “Click Dates”.
 
 | Property                         | Pattern | Type        | Deprecated | Definition                     | Title/Description |
 | -------------------------------- | ------- | ----------- | ---------- | ------------------------------ | ----------------- |

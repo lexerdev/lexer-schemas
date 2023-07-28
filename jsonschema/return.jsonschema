@@ -1,6 +1,6 @@
 {
   "title": "ReturnEvent",
-  "description": "A return event object `record_type=return`.",
+  "description": "A return event object `record_type=return`.\nRepresents transaction data related to customers returning products and is used to enrich profiles with their complete purchase history.",
   "type": "object",
   "properties": {
     "link": {
@@ -351,6 +351,9 @@
         },
         "name": {
           "title": "Name",
+          "examples": [
+            "St Kilda Outlet"
+          ],
           "type": "string"
         },
         "location": {
