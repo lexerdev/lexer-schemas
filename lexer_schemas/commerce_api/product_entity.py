@@ -8,7 +8,7 @@ from lexer_schemas.common import ProductReferenceType, api_name
 
 @api_name("product")
 class ProductRecord(BaseModel):
-    """A product object. The field referenced in product_reference_type should be unique and used in purchase and return events."""
+    """A product object `record_type=product`. The field referenced in product_reference_type should be unique and used in purchase and return events."""
 
     product_id: Optional[str] = Field(
         title="Product ID",

@@ -55,6 +55,8 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
+**Description:** A return event object `record_type=return`.
+
 | Property                           | Pattern | Type             | Deprecated | Definition                    | Title/Description |
 | ---------------------------------- | ------- | ---------------- | ---------- | ----------------------------- | ----------------- |
 | + [link](#link )                   | No      | Combination      | No         | -                             | Link              |
@@ -329,6 +331,14 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Description:** Currency code as ISO 4217
+
+**Example:** 
+
+```json
+"USD"
+```
+
 ## <a name="adjustments"></a>5. Property `ReturnEvent > adjustments`
 
 **Title:** Adjustments
@@ -374,6 +384,12 @@ Must be one of:
 | **Type**     | `number` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+50.0
+```
+
 #### <a name="adjustments_items_adjusted_at"></a>5.1.2. Property `ReturnEvent > adjustments > TransactionAdjustment > adjusted_at`
 
 **Title:** Adjusted At
@@ -393,6 +409,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+"gift card"
+```
+
 ## <a name="custom_fields"></a>6. Property `ReturnEvent > custom_fields`
 
 **Title:** Custom Fields
@@ -402,6 +424,17 @@ Must be one of:
 | **Type**                  | `object`                                                                  |
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilite automated processing in the Lexer CDP.
+
+**Example:** 
+
+```json
+{
+    "is_damaged": true,
+    "customer_reason": "glass broken on delivery"
+}
+```
 
 ## <a name="store"></a>7. Property `ReturnEvent > store`
 
@@ -414,9 +447,9 @@ Must be one of:
 
 | Property                       | Pattern | Type             | Deprecated | Definition                   | Title/Description |
 | ------------------------------ | ------- | ---------------- | ---------- | ---------------------------- | ----------------- |
-| + [store_id](#store_store_id ) | No      | string           | No         | -                            | Store Id          |
-| - [type](#store_type )         | No      | enum (of string) | No         | In #/definitions/StoreType   | An enumeration.   |
-| - [name](#store_name )         | No      | string           | No         | -                            | Name              |
+| - [store_id](#store_store_id ) | No      | string           | No         | -                            | Store Id          |
+| + [type](#store_type )         | No      | enum (of string) | No         | In #/definitions/StoreType   | An enumeration.   |
+| + [name](#store_name )         | No      | string           | No         | -                            | Name              |
 | - [location](#store_location ) | No      | object           | No         | In #/definitions/GeoLocation | -                 |
 
 ### <a name="store_store_id"></a>7.1. Property `ReturnEvent > store > store_id`
@@ -426,14 +459,14 @@ Must be one of:
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
-| **Required** | Yes      |
+| **Required** | No       |
 
 ### <a name="store_type"></a>7.2. Property `ReturnEvent > store > type`
 
 |                |                         |
 | -------------- | ----------------------- |
 | **Type**       | `enum (of string)`      |
-| **Required**   | No                      |
+| **Required**   | Yes                     |
 | **Defined in** | #/definitions/StoreType |
 
 **Description:** An enumeration.
@@ -451,7 +484,7 @@ Must be one of:
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
-| **Required** | No       |
+| **Required** | Yes      |
 
 ### <a name="store_location"></a>7.4. Property `ReturnEvent > store > location`
 

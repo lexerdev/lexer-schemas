@@ -61,6 +61,8 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
+**Description:** A purchase event object `record_type=purchase`.
+
 | Property                           | Pattern | Type             | Deprecated | Definition                    | Title/Description |
 | ---------------------------------- | ------- | ---------------- | ---------- | ----------------------------- | ----------------- |
 | + [link](#link )                   | No      | Combination      | No         | -                             | Link              |
@@ -336,6 +338,14 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Description:** Currency code as ISO 4217
+
+**Example:** 
+
+```json
+"USD"
+```
+
 ## <a name="adjustments"></a>5. Property `PurchaseEvent > adjustments`
 
 **Title:** Adjustments
@@ -381,6 +391,12 @@ Must be one of:
 | **Type**     | `number` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+50.0
+```
+
 #### <a name="adjustments_items_adjusted_at"></a>5.1.2. Property `PurchaseEvent > adjustments > TransactionAdjustment > adjusted_at`
 
 **Title:** Adjusted At
@@ -400,6 +416,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+"gift card"
+```
+
 ## <a name="custom_fields"></a>6. Property `PurchaseEvent > custom_fields`
 
 **Title:** Custom Fields
@@ -409,6 +431,17 @@ Must be one of:
 | **Type**                  | `object`                                                                  |
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
+
+**Description:** Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilite automated processing in the Lexer CDP.
+
+**Example:** 
+
+```json
+{
+    "is_damaged": true,
+    "customer_reason": "glass broken on delivery"
+}
+```
 
 ## <a name="store"></a>7. Property `PurchaseEvent > store`
 
@@ -421,9 +454,9 @@ Must be one of:
 
 | Property                       | Pattern | Type             | Deprecated | Definition                   | Title/Description |
 | ------------------------------ | ------- | ---------------- | ---------- | ---------------------------- | ----------------- |
-| + [store_id](#store_store_id ) | No      | string           | No         | -                            | Store Id          |
-| - [type](#store_type )         | No      | enum (of string) | No         | In #/definitions/StoreType   | An enumeration.   |
-| - [name](#store_name )         | No      | string           | No         | -                            | Name              |
+| - [store_id](#store_store_id ) | No      | string           | No         | -                            | Store Id          |
+| + [type](#store_type )         | No      | enum (of string) | No         | In #/definitions/StoreType   | An enumeration.   |
+| + [name](#store_name )         | No      | string           | No         | -                            | Name              |
 | - [location](#store_location ) | No      | object           | No         | In #/definitions/GeoLocation | -                 |
 
 ### <a name="store_store_id"></a>7.1. Property `PurchaseEvent > store > store_id`
@@ -433,14 +466,14 @@ Must be one of:
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
-| **Required** | Yes      |
+| **Required** | No       |
 
 ### <a name="store_type"></a>7.2. Property `PurchaseEvent > store > type`
 
 |                |                         |
 | -------------- | ----------------------- |
 | **Type**       | `enum (of string)`      |
-| **Required**   | No                      |
+| **Required**   | Yes                     |
 | **Defined in** | #/definitions/StoreType |
 
 **Description:** An enumeration.
@@ -458,7 +491,7 @@ Must be one of:
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
-| **Required** | No       |
+| **Required** | Yes      |
 
 ### <a name="store_location"></a>7.4. Property `PurchaseEvent > store > location`
 
@@ -534,6 +567,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"53059a..."
+```
+
 ## <a name="payment_types"></a>9. Property `PurchaseEvent > payment_types`
 
 **Title:** Payment Types
@@ -578,6 +617,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"visa"
+```
+
 #### <a name="payment_types_items_total"></a>9.1.2. Property `PurchaseEvent > payment_types > PaymentType > total`
 
 **Title:** Total
@@ -586,6 +631,12 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `number` |
 | **Required** | No       |
+
+**Example:** 
+
+```json
+100.0
+```
 
 ## <a name="products"></a>10. Property `PurchaseEvent > products`
 
@@ -682,6 +733,12 @@ Must be one of:
 | **Type**     | `number` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+90.0
+```
+
 | Restrictions |        |
 | ------------ | ------ |
 | **Minimum**  | &ge; 0 |
@@ -694,6 +751,12 @@ Must be one of:
 | ------------ | --------- |
 | **Type**     | `integer` |
 | **Required** | Yes       |
+
+**Example:** 
+
+```json
+2
+```
 
 | Restrictions |        |
 | ------------ | ------ |
@@ -708,6 +771,12 @@ Must be one of:
 | **Type**     | `number` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+50.0
+```
+
 #### <a name="products_items_discount"></a>10.1.5. Property `PurchaseEvent > products > PurchaseProductReference > discount`
 
 **Title:** Discount
@@ -716,6 +785,12 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `number` |
 | **Required** | No       |
+
+**Example:** 
+
+```json
+10.0
+```
 
 ----------------------------------------------------------------------------------------------------------------------------
 Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans)

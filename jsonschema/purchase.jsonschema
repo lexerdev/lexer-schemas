@@ -1,5 +1,6 @@
 {
   "title": "PurchaseEvent",
+  "description": "A purchase event object `record_type=purchase`.",
   "type": "object",
   "properties": {
     "link": {
@@ -38,6 +39,10 @@
     },
     "currency": {
       "title": "Currency",
+      "description": "Currency code as ISO 4217",
+      "examples": [
+        "USD"
+      ],
       "type": "string"
     },
     "adjustments": {
@@ -49,6 +54,13 @@
     },
     "custom_fields": {
       "title": "Custom Fields",
+      "description": "Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilite automated processing in the Lexer CDP.",
+      "examples": [
+        {
+          "is_damaged": true,
+          "customer_reason": "glass broken on delivery"
+        }
+      ],
       "type": "object"
     },
     "store": {
@@ -56,6 +68,9 @@
     },
     "purchase_id": {
       "title": "Purchase Id",
+      "examples": [
+        "53059a..."
+      ],
       "type": "string"
     },
     "payment_types": {
@@ -226,6 +241,9 @@
       "properties": {
         "price_adjustment": {
           "title": "Price Adjustment",
+          "examples": [
+            50.0
+          ],
           "type": "number"
         },
         "adjusted_at": {
@@ -235,6 +253,9 @@
         },
         "reason": {
           "title": "Reason",
+          "examples": [
+            "gift card"
+          ],
           "type": "string"
         }
       },
@@ -307,7 +328,8 @@
         }
       },
       "required": [
-        "store_id"
+        "type",
+        "name"
       ]
     },
     "PaymentType": {
@@ -316,10 +338,16 @@
       "properties": {
         "name": {
           "title": "Name",
+          "examples": [
+            "visa"
+          ],
           "type": "string"
         },
         "total": {
           "title": "Total",
+          "examples": [
+            100.0
+          ],
           "type": "number"
         }
       },
@@ -367,20 +395,32 @@
         },
         "price_paid": {
           "title": "Price Paid",
+          "examples": [
+            90.0
+          ],
           "minimum": 0,
           "type": "number"
         },
         "quantity": {
           "title": "Quantity",
+          "examples": [
+            2
+          ],
           "minimum": 1,
           "type": "integer"
         },
         "full_price": {
           "title": "Full Price",
+          "examples": [
+            50.0
+          ],
           "type": "number"
         },
         "discount": {
           "title": "Discount",
+          "examples": [
+            10.0
+          ],
           "type": "number"
         }
       },

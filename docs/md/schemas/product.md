@@ -25,7 +25,7 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
-**Description:** A product object. The field referenced in product_reference_type should be unique and used in purchase and return events.
+**Description:** A product object `record_type=product`. The field referenced in product_reference_type should be unique and used in purchase and return events.
 
 | Property                                             | Pattern | Type             | Deprecated | Definition | Title/Description      |
 | ---------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ---------------------- |
