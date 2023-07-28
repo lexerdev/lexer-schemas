@@ -300,7 +300,10 @@
       "type": "object",
       "properties": {
         "name": {
-          "title": "Name",
+          "title": "Location Name",
+          "examples": [
+            "St Kilda"
+          ],
           "type": "string"
         },
         "coordinate": {
@@ -310,10 +313,14 @@
     },
     "Store": {
       "title": "Store",
+      "description": "A store entity.",
       "type": "object",
       "properties": {
         "store_id": {
           "title": "Store Id",
+          "examples": [
+            "40bf96..."
+          ],
           "type": "string"
         },
         "type": {

@@ -71,7 +71,7 @@
 | - [currency](#currency )           | No      | string           | No         | -                             | Currency          |
 | - [adjustments](#adjustments )     | No      | array            | No         | -                             | Adjustments       |
 | - [custom_fields](#custom_fields ) | No      | object           | No         | -                             | Custom Fields     |
-| - [store](#store )                 | No      | object           | No         | In #/definitions/Store        | -                 |
+| - [store](#store )                 | No      | object           | No         | In #/definitions/Store        | A store entity.   |
 | + [purchase_id](#purchase_id )     | No      | string           | No         | -                             | Purchase Id       |
 | - [payment_types](#payment_types ) | No      | array            | No         | -                             | Payment Types     |
 | + [products](#products )           | No      | array            | No         | -                             | Products          |
@@ -452,6 +452,8 @@ Must be one of:
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 | **Defined in**            | #/definitions/Store                                                       |
 
+**Description:** A store entity.
+
 | Property                       | Pattern | Type             | Deprecated | Definition                   | Title/Description |
 | ------------------------------ | ------- | ---------------- | ---------- | ---------------------------- | ----------------- |
 | - [store_id](#store_store_id ) | No      | string           | No         | -                            | Store Id          |
@@ -467,6 +469,12 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Example:** 
+
+```json
+"40bf96..."
+```
 
 ### <a name="store_type"></a>7.2. Property `PurchaseEvent > store > type`
 
@@ -504,17 +512,23 @@ Must be one of:
 
 | Property                                    | Pattern | Type   | Deprecated | Definition                     | Title/Description |
 | ------------------------------------------- | ------- | ------ | ---------- | ------------------------------ | ----------------- |
-| - [name](#store_location_name )             | No      | string | No         | -                              | Name              |
+| - [name](#store_location_name )             | No      | string | No         | -                              | Location Name     |
 | - [coordinate](#store_location_coordinate ) | No      | object | No         | In #/definitions/GeoCoordinate | -                 |
 
 #### <a name="store_location_name"></a>7.4.1. Property `PurchaseEvent > store > location > name`
 
-**Title:** Name
+**Title:** Location Name
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Example:** 
+
+```json
+"St Kilda"
+```
 
 #### <a name="store_location_coordinate"></a>7.4.2. Property `PurchaseEvent > store > location > coordinate`
 
