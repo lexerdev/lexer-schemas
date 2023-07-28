@@ -2,7 +2,7 @@ import re
 from enum import Enum
 from typing import Optional, Union
 
-from pydantic import BaseModel, constr, validator
+from pydantic import BaseModel, Field, constr, validator
 
 # https://emailregex.com/
 EMAIL_REGEX = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
@@ -21,7 +21,7 @@ class LinkType(str, Enum):
 
 
 class EmailLink(BaseModel, extra="forbid"):
-    email: str
+    email: str = Field(examples=["jane@example.com"], pattern=EMAIL_REGEX)
 
     @validator("email")
     def validate_email(cls, v: str, values: dict) -> str:
@@ -31,28 +31,52 @@ class EmailLink(BaseModel, extra="forbid"):
 
 
 class EmailSha256Link(BaseModel, extra="forbid"):
-    email_sha256: str
+    email_sha256: str = Field(
+        description="Ensure that the email address is lowercase before hashing.",
+        examples=["8c87b489ce35cf2e2f39f80e282cb2e804932a56a213983eeeb428407d43b52d"],
+    )
 
 
 class EmailMd5Link(BaseModel, extra="forbid"):
-    email_md5: str
+    email_md5: str = Field(
+        description="Ensure that the email address is lowercase before hashing.",
+        examples=["9e26471d35a78862c17e467d87cddedf"],
+    )
 
 
 class MobileLink(BaseModel, extra="forbid"):
-    mobile: str
+    mobile: str = Field(
+        description="Formatted with the international code with no spaces or symbols.",
+        examples=["61491570006"],
+    )
 
 
 class CustomerIdLink(BaseModel, extra="forbid"):
-    customer_id: str
-    system_name: Optional[str] = None
+    customer_id: str = Field(
+        description="A unique identifier for a customer.",
+        examples=["123456789"],
+    )
+    system_name: Optional[str] = Field(
+        description="An optional name for the system of origin.",
+        examples=["SuperPOS 2000"],
+        default=None,
+    )
 
 
 class ExternalLink(BaseModel, extra="forbid"):
-    external_id: str
-    system_name: str
+    external_id: str = Field(
+        description="A unique identifier for a customer in an external system.",
+        examples=["123456789"],
+    )
+    system_name: str = Field(
+        description="A unique identifer for the external system itself.",
+        examples=["super_pos_2000"],
+    )
 
 
 class CustomerLink(BaseModel, extra="forbid"):
+    """This type of link is deprecated. Please use one of the other specific link types instead."""
+
     link_type: LinkType
     link_value: constr(min_length=1)  # type: ignore
     id_type: Optional[str] = default_id_type

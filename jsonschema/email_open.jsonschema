@@ -84,6 +84,10 @@
       "properties": {
         "email": {
           "title": "Email",
+          "examples": [
+            "jane@example.com"
+          ],
+          "pattern": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
           "type": "string"
         }
       },
@@ -98,6 +102,10 @@
       "properties": {
         "email_sha256": {
           "title": "Email Sha256",
+          "description": "Ensure that the email address is lowercase before hashing.",
+          "examples": [
+            "8c87b489ce35cf2e2f39f80e282cb2e804932a56a213983eeeb428407d43b52d"
+          ],
           "type": "string"
         }
       },
@@ -112,6 +120,10 @@
       "properties": {
         "email_md5": {
           "title": "Email Md5",
+          "description": "Ensure that the email address is lowercase before hashing.",
+          "examples": [
+            "9e26471d35a78862c17e467d87cddedf"
+          ],
           "type": "string"
         }
       },
@@ -126,10 +138,18 @@
       "properties": {
         "customer_id": {
           "title": "Customer Id",
+          "description": "A unique identifier for a customer.",
+          "examples": [
+            "123456789"
+          ],
           "type": "string"
         },
         "system_name": {
           "title": "System Name",
+          "description": "An optional name for the system of origin.",
+          "examples": [
+            "SuperPOS 2000"
+          ],
           "type": "string"
         }
       },
@@ -144,6 +164,10 @@
       "properties": {
         "mobile": {
           "title": "Mobile",
+          "description": "Formatted with the international code with no spaces or symbols.",
+          "examples": [
+            "61491570006"
+          ],
           "type": "string"
         }
       },
@@ -158,10 +182,18 @@
       "properties": {
         "external_id": {
           "title": "External Id",
+          "description": "A unique identifier for a customer in an external system.",
+          "examples": [
+            "123456789"
+          ],
           "type": "string"
         },
         "system_name": {
           "title": "System Name",
+          "description": "A unique identifer for the external system itself.",
+          "examples": [
+            "super_pos_2000"
+          ],
           "type": "string"
         }
       },
@@ -187,6 +219,7 @@
     },
     "CustomerLink": {
       "title": "CustomerLink",
+      "description": "This type of link is deprecated. Please use one of the other specific link types instead.",
       "type": "object",
       "properties": {
         "link_type": {

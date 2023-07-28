@@ -15,7 +15,7 @@ from lexer_schemas.link import Link
 
 class SMSRecipient(BaseModel):
     name: Optional[str] = Field(examples=["Jane Doe"], default=None)
-    number: Optional[str] = Field(examples=["+61491570006"], default=None)
+    number: Optional[str] = Field(examples=["61491570006"], default=None)
 
 
 class BaseSMSEvent(BaseEvent):
