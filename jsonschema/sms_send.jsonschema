@@ -1,5 +1,6 @@
 {
   "title": "SMSSend",
+  "description": "An SMS Send Event object `record_type=sms_send`.",
   "type": "object",
   "properties": {
     "link": {
@@ -35,6 +36,10 @@
     },
     "sms_id": {
       "title": "Sms Id",
+      "description": "A unique identifier for an individual SMS event.",
+      "examples": [
+        "send-job-a7e23-jane-doe"
+      ],
       "type": "string"
     },
     "list": {
@@ -42,16 +47,36 @@
     },
     "campaign_id": {
       "title": "Campaign Id",
+      "description": "Campaign Identifier or Name.",
+      "examples": [
+        "Black friday Menswear Teaser Aug 2020"
+      ],
       "type": "string"
     },
     "from": {
-      "$ref": "#/definitions/SMSRecipient"
+      "title": "From",
+      "description": "Sender Details",
+      "allOf": [
+        {
+          "$ref": "#/definitions/SMSRecipient"
+        }
+      ]
     },
     "to": {
-      "$ref": "#/definitions/SMSRecipient"
+      "title": "To",
+      "description": "Recipient Details",
+      "allOf": [
+        {
+          "$ref": "#/definitions/SMSRecipient"
+        }
+      ]
     },
     "body": {
       "title": "Body",
+      "description": "Body of the SMS message",
+      "examples": [
+        "Get ready to SAVE BIG at our Exclusive Black Friday Sale!"
+      ],
       "type": "string"
     }
   },
@@ -223,10 +248,16 @@
       "properties": {
         "name": {
           "title": "Name",
+          "examples": [
+            "Jane Doe"
+          ],
           "type": "string"
         },
         "number": {
           "title": "Number",
+          "examples": [
+            "+61491570006"
+          ],
           "type": "string"
         }
       }

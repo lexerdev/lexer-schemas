@@ -63,6 +63,16 @@ class MarketingList(BaseModel):
 
 
 class SMSSubscriptionStatus(Enum):
+    """
+    The type of subscribe event:
+    `subscribed` - explicitly subscribed to marketing SMS messages
+    `unsubscribed` - explicitly unsubscribed from marketing SMS messages
+    `transactional` - **not** explicitly subscribed but can still be sent 'transactional' SMS messages
+    `undeliverable` - **not** explicitly unsubscribed but SMS messages sent to them are not deliverable
+    `list_subscribed` - subscribed to a specific SMS marketing list
+    `list_unsubscribed` - unsubscribed from a specific SMS marketing list
+    """
+
     subscribed = "subscribed"
     unsubscribed = "unsubscribed"
     transactional = "transactional"
@@ -75,7 +85,7 @@ class EmailSubscriptionStatus(Enum):
     """
     The type of subscribe event:
     `subscribed` - explicitly subscribed to marketing emails
-    `unsubscribed` - explicitly unsubscribed to marketing emails
+    `unsubscribed` - explicitly unsubscribed from marketing emails
     `transactional` - **not** explicitly subscribed but can still be sent 'transactional' emails
     `undeliverable` - **not** explicitly unsubscribed but emails sent to them are bouncing or are otherwise undeliverable
     """

@@ -1,5 +1,6 @@
 {
   "title": "SMSSubscribe",
+  "description": "An SMS Subscribe Event object `record_type=sms_subscribe`.",
   "type": "object",
   "properties": {
     "link": {
@@ -35,6 +36,10 @@
     },
     "sms_id": {
       "title": "Sms Id",
+      "description": "A unique identifier for an individual SMS event.",
+      "examples": [
+        "send-job-a7e23-jane-doe"
+      ],
       "type": "string"
     },
     "list": {
@@ -209,7 +214,7 @@
     },
     "SMSSubscriptionStatus": {
       "title": "SMSSubscriptionStatus",
-      "description": "An enumeration.",
+      "description": "The type of subscribe event:\n`subscribed` - explicitly subscribed to marketing SMS messages\n`unsubscribed` - explicitly unsubscribed from marketing SMS messages\n`transactional` - **not** explicitly subscribed but can still be sent 'transactional' SMS messages\n`undeliverable` - **not** explicitly unsubscribed but SMS messages sent to them are not deliverable\n`list_subscribed` - subscribed to a specific SMS marketing list\n`list_unsubscribed` - unsubscribed from a specific SMS marketing list",
       "enum": [
         "subscribed",
         "unsubscribed",

@@ -38,6 +38,8 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
+**Description:** An SMS Click Event object `record_type=sms_click`.
+
 | Property                       | Pattern | Type        | Deprecated | Definition                     | Title/Description |
 | ------------------------------ | ------- | ----------- | ---------- | ------------------------------ | ----------------- |
 | + [link](#link )               | No      | Combination | No         | -                              | Link              |
@@ -45,8 +47,8 @@
 | + [sms_id](#sms_id )           | No      | string      | No         | -                              | Sms Id            |
 | - [list](#list )               | No      | object      | No         | In #/definitions/MarketingList | -                 |
 | - [campaign_id](#campaign_id ) | No      | string      | No         | -                              | Campaign Id       |
-| - [from](#from )               | No      | object      | No         | In #/definitions/SMSRecipient  | -                 |
-| - [to](#to )                   | No      | object      | No         | Same as [from](#from )         | -                 |
+| - [from](#from )               | No      | object      | No         | In                             | From              |
+| - [to](#to )                   | No      | object      | No         | Same as [from](#from )         | To                |
 
 ## <a name="link"></a>1. Property `SMSClick > link`
 
@@ -296,6 +298,14 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for an individual SMS event.
+
+**Example:** 
+
+```json
+"send-job-a7e23-jane-doe"
+```
+
 ## <a name="list"></a>4. Property `SMSClick > list`
 
 |                           |                                                                           |
@@ -353,14 +363,26 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Description:** Campaign Identifier or Name.
+
+**Example:** 
+
+```json
+"Black friday Menswear Teaser Aug 2020"
+```
+
 ## <a name="from"></a>6. Property `SMSClick > from`
+
+**Title:** From
 
 |                           |                                                                           |
 | ------------------------- | ------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                  |
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
-| **Defined in**            | #/definitions/SMSRecipient                                                |
+| **Defined in**            |                                                                           |
+
+**Description:** Sender Details
 
 | Property                  | Pattern | Type   | Deprecated | Definition | Title/Description |
 | ------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
@@ -376,6 +398,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+"Jane Doe"
+```
+
 ### <a name="from_number"></a>6.2. Property `SMSClick > from > number`
 
 **Title:** Number
@@ -385,7 +413,15 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+"+61491570006"
+```
+
 ## <a name="to"></a>7. Property `SMSClick > to`
+
+**Title:** To
 
 |                           |                                                                           |
 | ------------------------- | ------------------------------------------------------------------------- |
@@ -393,6 +429,8 @@ Must be one of:
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 | **Same definition as**    | [from](#from)                                                             |
+
+**Description:** Recipient Details
 
 ----------------------------------------------------------------------------------------------------------------------------
 Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans)
