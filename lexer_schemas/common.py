@@ -2,10 +2,8 @@ from datetime import datetime
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, Field, confloat
-
 from lexer_schemas.link import Link
-
+from pydantic import BaseModel, Field, confloat
 
 # Root Record Schemas that have been imported.
 imported_api_names = {}
@@ -43,9 +41,9 @@ class StoreType(Enum):
 
 
 class Store(BaseModel):
-    store_id: str
-    type: Optional[StoreType] = None
-    name: Optional[str] = None
+    store_id: Optional[str] = None
+    type: StoreType
+    name: str
     location: Optional[GeoLocation] = None
 
 

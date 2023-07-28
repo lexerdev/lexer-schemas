@@ -2,15 +2,9 @@ from datetime import datetime
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, confloat, conint
-
-from lexer_schemas.common import (
-    api_name,
-    BaseEvent,
-    ProductReferenceType,
-    Store,
-)
+from lexer_schemas.common import BaseEvent, ProductReferenceType, Store, api_name
 from lexer_schemas.link import Link
+from pydantic import BaseModel, confloat, conint
 
 
 class PurchaseType(Enum):

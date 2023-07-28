@@ -1,10 +1,10 @@
 import json
 
 import pytest
-from pydantic import ValidationError
-
 from lexer_schemas.commerce_api.product_entity import ProductRecord
 from lexer_schemas.commerce_api.transaction_event import PurchaseEvent, ReturnEvent
+from pydantic import ValidationError
+
 
 class TestPurchaseEvent:
     def test_purchase_event(self):
@@ -36,10 +36,10 @@ class TestPurchaseEvent:
                 }
             ],
             "store": {
-                "store_id": "X233445",
+                "store_id": None,
                 "name": "Best Street Store",
+                "type": "concession",
                 "location": None,
-                "type": None
             },
             "custom_fields": {"is_gift": True, "gift_message": "Happy Birthday Kevin!"},
         }
@@ -117,8 +117,8 @@ class TestReturnEvent:
             "store": {
                 "store_id": "X233445",
                 "name": "Best Street Store",
+                "type": "outlet",
                 "location": None,
-                "type": None
             },
             "custom_fields": {"is_full_return": True},
         }
