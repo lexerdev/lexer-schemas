@@ -35,6 +35,12 @@ class TestPurchaseEvent:
                     "discount": 10.0,
                 }
             ],
+            "store": {
+                "store_id": "X233445",
+                "name": "Best Street Store",
+                "location": None,
+                "type": None
+            },
             "custom_fields": {"is_gift": True, "gift_message": "Happy Birthday Kevin!"},
         }
         actual_record = PurchaseEvent.parse_obj(expected_record)
@@ -108,6 +114,12 @@ class TestReturnEvent:
                     "quantity": -2,
                 }
             ],
+            "store": {
+                "store_id": "X233445",
+                "name": "Best Street Store",
+                "location": None,
+                "type": None
+            },
             "custom_fields": {"is_full_return": True},
         }
         actual_record = ReturnEvent.parse_obj(expected_record)

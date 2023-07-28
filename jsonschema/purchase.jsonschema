@@ -51,6 +51,9 @@
       "title": "Custom Fields",
       "type": "object"
     },
+    "store": {
+      "$ref": "#/definitions/Store"
+    },
     "purchase_id": {
       "title": "Purchase Id",
       "type": "string"
@@ -237,6 +240,74 @@
       },
       "required": [
         "price_adjustment"
+      ]
+    },
+    "StoreType": {
+      "title": "StoreType",
+      "description": "An enumeration.",
+      "enum": [
+        "physical",
+        "online",
+        "concession",
+        "outlet"
+      ]
+    },
+    "GeoCoordinate": {
+      "title": "GeoCoordinate",
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "title": "Latitude",
+          "exclusiveMaximum": 90,
+          "minimum": -90,
+          "type": "number"
+        },
+        "longitude": {
+          "title": "Longitude",
+          "exclusiveMaximum": 180,
+          "minimum": -180,
+          "type": "number"
+        }
+      },
+      "required": [
+        "latitude",
+        "longitude"
+      ]
+    },
+    "GeoLocation": {
+      "title": "GeoLocation",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "coordinate": {
+          "$ref": "#/definitions/GeoCoordinate"
+        }
+      }
+    },
+    "Store": {
+      "title": "Store",
+      "type": "object",
+      "properties": {
+        "store_id": {
+          "title": "Store Id",
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/StoreType"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/definitions/GeoLocation"
+        }
+      },
+      "required": [
+        "store_id"
       ]
     },
     "PaymentType": {
