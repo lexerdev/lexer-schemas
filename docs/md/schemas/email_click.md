@@ -41,6 +41,9 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
+**Description:** An Email Click Event object `record_type=email_click`.
+These events are used to enrich profiles with attributes like “Email Click Rate” or “Click Dates”.
+
 | Property                         | Pattern | Type        | Deprecated | Definition                     | Title/Description |
 | -------------------------------- | ------- | ----------- | ---------- | ------------------------------ | ----------------- |
 | + [link](#link )                 | No      | Combination | No         | -                              | Link              |
@@ -48,8 +51,8 @@
 | + [email_id](#email_id )         | No      | string      | No         | -                              | Email Id          |
 | - [list](#list )                 | No      | object      | No         | In #/definitions/MarketingList | -                 |
 | - [campaign_id](#campaign_id )   | No      | string      | No         | -                              | Campaign Id       |
-| - [from](#from )                 | No      | object      | No         | In #/definitions/EmailAddress  | -                 |
-| - [to](#to )                     | No      | object      | No         | Same as [from](#from )         | -                 |
+| - [from](#from )                 | No      | object      | No         | In                             | From              |
+| - [to](#to )                     | No      | object      | No         | Same as [from](#from )         | To                |
 | - [clicked_link](#clicked_link ) | No      | object      | No         | In #/definitions/ClickedLink   | -                 |
 
 ## <a name="link"></a>1. Property `EmailClick > link`
@@ -94,6 +97,16 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"jane@example.com"
+```
+
+| Restrictions                      |                                                                                                                                                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)``` [Test](https://regex101.com/?regex=%28%5E%5Ba-zA-Z0-9_.%2B-%5D%2B%40%5Ba-zA-Z0-9-%5D%2B%5C.%5Ba-zA-Z0-9-.%5D%2B%24%29&testString=%22jane%40example.com%22) |
+
 ### <a name="link_anyOf_i1"></a>1.2. Property `EmailClick > link > anyOf > EmailSha256Link`
 
 |                           |                                                         |
@@ -116,6 +129,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** Ensure that the email address is lowercase before hashing.
+
+**Example:** 
+
+```json
+"8c87b489ce35cf2e2f39f80e282cb2e804932a56a213983eeeb428407d43b52d"
+```
+
 ### <a name="link_anyOf_i2"></a>1.3. Property `EmailClick > link > anyOf > EmailMd5Link`
 
 |                           |                                                         |
@@ -137,6 +158,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Description:** Ensure that the email address is lowercase before hashing.
+
+**Example:** 
+
+```json
+"9e26471d35a78862c17e467d87cddedf"
+```
 
 ### <a name="link_anyOf_i3"></a>1.4. Property `EmailClick > link > anyOf > CustomerIdLink`
 
@@ -161,6 +190,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for a customer.
+
+**Example:** 
+
+```json
+"123456789"
+```
+
 #### <a name="link_anyOf_i3_system_name"></a>1.4.2. Property `EmailClick > link > anyOf > CustomerIdLink > system_name`
 
 **Title:** System Name
@@ -169,6 +206,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Description:** An optional name for the system of origin.
+
+**Example:** 
+
+```json
+"SuperPOS 2000"
+```
 
 ### <a name="link_anyOf_i4"></a>1.5. Property `EmailClick > link > anyOf > MobileLink`
 
@@ -191,6 +236,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Description:** Formatted with the international code with no spaces or symbols.
+
+**Example:** 
+
+```json
+"61491570006"
+```
 
 ### <a name="link_anyOf_i5"></a>1.6. Property `EmailClick > link > anyOf > ExternalLink`
 
@@ -215,6 +268,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for a customer in an external system.
+
+**Example:** 
+
+```json
+"123456789"
+```
+
 #### <a name="link_anyOf_i5_system_name"></a>1.6.2. Property `EmailClick > link > anyOf > ExternalLink > system_name`
 
 **Title:** System Name
@@ -224,6 +285,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifer for the external system itself.
+
+**Example:** 
+
+```json
+"super_pos_2000"
+```
+
 ### <a name="link_anyOf_i6"></a>1.7. Property `EmailClick > link > anyOf > CustomerLink`
 
 |                           |                                                         |
@@ -232,6 +301,8 @@
 | **Required**              | No                                                      |
 | **Additional properties** | [[Not allowed]](# "Additional Properties not allowed.") |
 | **Defined in**            | #/definitions/CustomerLink                              |
+
+**Description:** This type of link is deprecated. Please use one of the other specific link types instead.
 
 | Property                                   | Pattern | Type             | Deprecated | Definition                | Title/Description |
 | ------------------------------------------ | ------- | ---------------- | ---------- | ------------------------- | ----------------- |
@@ -300,6 +371,14 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for an individual email event.
+
+**Example:** 
+
+```json
+"send-job-a7e23-jane-doe"
+```
+
 ## <a name="list"></a>4. Property `EmailClick > list`
 
 |                           |                                                                           |
@@ -323,6 +402,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"7bff7a..."
+```
+
 ### <a name="list_name"></a>4.2. Property `EmailClick > list > name`
 
 **Title:** Name
@@ -331,6 +416,16 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Examples:** 
+
+```json
+"All Customers List"
+```
+
+```json
+"Lapsed Customers"
+```
 
 ## <a name="campaign_id"></a>5. Property `EmailClick > campaign_id`
 
@@ -341,14 +436,26 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Description:** Campaign Identifier or Name.
+
+**Example:** 
+
+```json
+"Black friday Menswear Teaser Aug 2020"
+```
+
 ## <a name="from"></a>6. Property `EmailClick > from`
+
+**Title:** From
 
 |                           |                                                                           |
 | ------------------------- | ------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                  |
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
-| **Defined in**            | #/definitions/EmailAddress                                                |
+| **Defined in**            |                                                                           |
+
+**Description:** Sender Details
 
 | Property                | Pattern | Type   | Deprecated | Definition | Title/Description |
 | ----------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
@@ -364,6 +471,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+"Jane Doe"
+```
+
 ### <a name="from_email"></a>6.2. Property `EmailClick > from > email`
 
 **Title:** Email
@@ -373,7 +486,19 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"jane@example.com"
+```
+
+| Restrictions                      |                                                                                                                                                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)``` [Test](https://regex101.com/?regex=%28%5E%5Ba-zA-Z0-9_.%2B-%5D%2B%40%5Ba-zA-Z0-9-%5D%2B%5C.%5Ba-zA-Z0-9-.%5D%2B%24%29&testString=%22jane%40example.com%22) |
+
 ## <a name="to"></a>7. Property `EmailClick > to`
+
+**Title:** To
 
 |                           |                                                                           |
 | ------------------------- | ------------------------------------------------------------------------- |
@@ -381,6 +506,8 @@ Must be one of:
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 | **Same definition as**    | [from](#from)                                                             |
+
+**Description:** Recipient Details
 
 ## <a name="clicked_link"></a>8. Property `EmailClick > clicked_link`
 

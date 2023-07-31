@@ -39,6 +39,9 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
+**Description:** An SMS Send Event object `record_type=sms_send`.
+These events are used to enrich profiles with attributes like “Last SMS Send Data” or “Number of SMS Sent”.
+
 | Property                       | Pattern | Type        | Deprecated | Definition                     | Title/Description |
 | ------------------------------ | ------- | ----------- | ---------- | ------------------------------ | ----------------- |
 | + [link](#link )               | No      | Combination | No         | -                              | Link              |
@@ -46,8 +49,8 @@
 | + [sms_id](#sms_id )           | No      | string      | No         | -                              | Sms Id            |
 | - [list](#list )               | No      | object      | No         | In #/definitions/MarketingList | -                 |
 | - [campaign_id](#campaign_id ) | No      | string      | No         | -                              | Campaign Id       |
-| - [from](#from )               | No      | object      | No         | In #/definitions/SMSRecipient  | -                 |
-| - [to](#to )                   | No      | object      | No         | Same as [from](#from )         | -                 |
+| - [from](#from )               | No      | object      | No         | In                             | From              |
+| - [to](#to )                   | No      | object      | No         | Same as [from](#from )         | To                |
 | - [body](#body )               | No      | string      | No         | -                              | Body              |
 
 ## <a name="link"></a>1. Property `SMSSend > link`
@@ -92,6 +95,16 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"jane@example.com"
+```
+
+| Restrictions                      |                                                                                                                                                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)``` [Test](https://regex101.com/?regex=%28%5E%5Ba-zA-Z0-9_.%2B-%5D%2B%40%5Ba-zA-Z0-9-%5D%2B%5C.%5Ba-zA-Z0-9-.%5D%2B%24%29&testString=%22jane%40example.com%22) |
+
 ### <a name="link_anyOf_i1"></a>1.2. Property `SMSSend > link > anyOf > EmailSha256Link`
 
 |                           |                                                         |
@@ -114,6 +127,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** Ensure that the email address is lowercase before hashing.
+
+**Example:** 
+
+```json
+"8c87b489ce35cf2e2f39f80e282cb2e804932a56a213983eeeb428407d43b52d"
+```
+
 ### <a name="link_anyOf_i2"></a>1.3. Property `SMSSend > link > anyOf > EmailMd5Link`
 
 |                           |                                                         |
@@ -135,6 +156,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Description:** Ensure that the email address is lowercase before hashing.
+
+**Example:** 
+
+```json
+"9e26471d35a78862c17e467d87cddedf"
+```
 
 ### <a name="link_anyOf_i3"></a>1.4. Property `SMSSend > link > anyOf > CustomerIdLink`
 
@@ -159,6 +188,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for a customer.
+
+**Example:** 
+
+```json
+"123456789"
+```
+
 #### <a name="link_anyOf_i3_system_name"></a>1.4.2. Property `SMSSend > link > anyOf > CustomerIdLink > system_name`
 
 **Title:** System Name
@@ -167,6 +204,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Description:** An optional name for the system of origin.
+
+**Example:** 
+
+```json
+"SuperPOS 2000"
+```
 
 ### <a name="link_anyOf_i4"></a>1.5. Property `SMSSend > link > anyOf > MobileLink`
 
@@ -189,6 +234,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Description:** Formatted with the international code with no spaces or symbols.
+
+**Example:** 
+
+```json
+"61491570006"
+```
 
 ### <a name="link_anyOf_i5"></a>1.6. Property `SMSSend > link > anyOf > ExternalLink`
 
@@ -213,6 +266,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for a customer in an external system.
+
+**Example:** 
+
+```json
+"123456789"
+```
+
 #### <a name="link_anyOf_i5_system_name"></a>1.6.2. Property `SMSSend > link > anyOf > ExternalLink > system_name`
 
 **Title:** System Name
@@ -222,6 +283,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifer for the external system itself.
+
+**Example:** 
+
+```json
+"super_pos_2000"
+```
+
 ### <a name="link_anyOf_i6"></a>1.7. Property `SMSSend > link > anyOf > CustomerLink`
 
 |                           |                                                         |
@@ -230,6 +299,8 @@
 | **Required**              | No                                                      |
 | **Additional properties** | [[Not allowed]](# "Additional Properties not allowed.") |
 | **Defined in**            | #/definitions/CustomerLink                              |
+
+**Description:** This type of link is deprecated. Please use one of the other specific link types instead.
 
 | Property                                   | Pattern | Type             | Deprecated | Definition                | Title/Description |
 | ------------------------------------------ | ------- | ---------------- | ---------- | ------------------------- | ----------------- |
@@ -298,6 +369,14 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for an individual SMS event.
+
+**Example:** 
+
+```json
+"send-job-a7e23-jane-doe"
+```
+
 ## <a name="list"></a>4. Property `SMSSend > list`
 
 |                           |                                                                           |
@@ -321,6 +400,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"7bff7a..."
+```
+
 ### <a name="list_name"></a>4.2. Property `SMSSend > list > name`
 
 **Title:** Name
@@ -329,6 +414,16 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Examples:** 
+
+```json
+"All Customers List"
+```
+
+```json
+"Lapsed Customers"
+```
 
 ## <a name="campaign_id"></a>5. Property `SMSSend > campaign_id`
 
@@ -339,14 +434,26 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Description:** Campaign Identifier or Name.
+
+**Example:** 
+
+```json
+"Black friday Menswear Teaser Aug 2020"
+```
+
 ## <a name="from"></a>6. Property `SMSSend > from`
+
+**Title:** From
 
 |                           |                                                                           |
 | ------------------------- | ------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                  |
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
-| **Defined in**            | #/definitions/SMSRecipient                                                |
+| **Defined in**            |                                                                           |
+
+**Description:** Sender Details
 
 | Property                  | Pattern | Type   | Deprecated | Definition | Title/Description |
 | ------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
@@ -362,6 +469,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+"Jane Doe"
+```
+
 ### <a name="from_number"></a>6.2. Property `SMSSend > from > number`
 
 **Title:** Number
@@ -371,7 +484,15 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+"61491570006"
+```
+
 ## <a name="to"></a>7. Property `SMSSend > to`
+
+**Title:** To
 
 |                           |                                                                           |
 | ------------------------- | ------------------------------------------------------------------------- |
@@ -379,6 +500,8 @@ Must be one of:
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 | **Same definition as**    | [from](#from)                                                             |
+
+**Description:** Recipient Details
 
 ## <a name="body"></a>8. Property `SMSSend > body`
 
@@ -388,6 +511,14 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Description:** Body of the SMS message
+
+**Example:** 
+
+```json
+"Get ready to SAVE BIG at our Exclusive Black Friday Sale!"
+```
 
 ----------------------------------------------------------------------------------------------------------------------------
 Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans)

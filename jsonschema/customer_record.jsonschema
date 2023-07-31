@@ -1,9 +1,23 @@
 {
   "title": "CustomerRecord",
+  "description": "A customer object `record_type=customer_record`.\nRepresents customer information, such as traditional CRM entries, user account information, and so on, in the CDXP.\nThe Lexer CDXP will resolve related customer records into one profile, creating a single representation of a profile based on the rules configured within the Hub.",
   "type": "object",
   "properties": {
     "link": {
       "title": "Link",
+      "description": "A value that uniquely identifies the customer, i.e. the primary key for customer records.",
+      "examples": [
+        {
+          "email": "jane@example.com"
+        },
+        {
+          "customer_id": "C-2819279",
+          "system_name": "super_pos_2000"
+        },
+        {
+          "mobile": "61491570006"
+        }
+      ],
       "anyOf": [
         {
           "$ref": "#/definitions/EmailLink"
@@ -29,72 +43,132 @@
       ]
     },
     "email": {
-      "title": "Email",
+      "title": "Email Address",
+      "description": "Raw email address. This will not be used for linking, but is available for use as an attribute in the CDE",
+      "examples": [
+        "jane@fake.com"
+      ],
       "type": "string"
     },
     "email_sha256": {
       "title": "Email Sha256",
+      "description": "A hexadecimal string representing SHA 256 sum of a lowercased email address with trimmed whitespace. This will not be used for linking, but is available for use as an attribute in the CDE",
+      "examples": [
+        "8b1885..."
+      ],
       "type": "string"
     },
     "mobile": {
-      "title": "Mobile",
+      "title": "Mobile Phone Number",
+      "description": "A mobile phone number including country code, no whitespace or punctuation. This will not be used for linking, but is available for use as an attribute in the CDE",
+      "examples": [
+        "61491570006"
+      ],
       "type": "string"
     },
     "customer_id": {
       "title": "Customer Id",
+      "examples": [
+        "b6ef3b..."
+      ],
       "type": "string"
     },
     "custom_fields": {
       "title": "Custom Fields",
+      "description": "Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilite automated processing in the Lexer CDP.",
+      "examples": [
+        {
+          "churn_risk": 0.291,
+          "loyalty_status": "platinum"
+        }
+      ],
       "type": "object"
     },
     "first_name": {
       "title": "First Name",
+      "examples": [
+        "Jane"
+      ],
       "type": "string"
     },
     "last_name": {
       "title": "Last Name",
+      "examples": [
+        "Doe"
+      ],
       "type": "string"
     },
     "gender": {
       "title": "Gender",
+      "examples": [
+        "Female"
+      ],
       "type": "string"
     },
     "date_of_birth": {
       "title": "Date Of Birth",
-      "type": "string",
-      "format": "date"
+      "description": "An ISO8601 date string referring to the customer's date of birth",
+      "format": "date",
+      "examples": [
+        "2023-07-28"
+      ],
+      "type": "string"
     },
     "country": {
       "title": "Country",
+      "examples": [
+        "Australia"
+      ],
       "type": "string"
     },
     "state": {
       "title": "State",
+      "examples": [
+        "Victoria"
+      ],
       "type": "string"
     },
     "city": {
       "title": "City",
+      "examples": [
+        "St Kilda"
+      ],
       "type": "string"
     },
     "postcode": {
       "title": "Postcode",
+      "examples": [
+        "3182"
+      ],
       "type": "string"
     },
     "zip": {
       "title": "Zip",
+      "examples": [
+        "90291"
+      ],
       "type": "string"
     },
     "employee_flag": {
       "title": "Employee Flag",
+      "description": "`true` if this customer is an employee of the business. Useful for suppressing them from messages, ad campaigns, and excluding them from searches.",
+      "examples": [
+        false
+      ],
       "type": "boolean"
     },
     "customer_type": {
       "title": "Customer Type",
+      "examples": [
+        "VIP"
+      ],
       "type": "string"
     },
     "address_1": {
       "title": "Address 1",
+      "examples": [
+        "Inkerman St"
+      ],
       "type": "string"
     },
     "address_2": {
@@ -112,6 +186,10 @@
       "properties": {
         "email": {
           "title": "Email",
+          "examples": [
+            "jane@example.com"
+          ],
+          "pattern": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
           "type": "string"
         }
       },
@@ -126,6 +204,10 @@
       "properties": {
         "email_sha256": {
           "title": "Email Sha256",
+          "description": "Ensure that the email address is lowercase before hashing.",
+          "examples": [
+            "8c87b489ce35cf2e2f39f80e282cb2e804932a56a213983eeeb428407d43b52d"
+          ],
           "type": "string"
         }
       },
@@ -140,6 +222,10 @@
       "properties": {
         "email_md5": {
           "title": "Email Md5",
+          "description": "Ensure that the email address is lowercase before hashing.",
+          "examples": [
+            "9e26471d35a78862c17e467d87cddedf"
+          ],
           "type": "string"
         }
       },
@@ -154,10 +240,18 @@
       "properties": {
         "customer_id": {
           "title": "Customer Id",
+          "description": "A unique identifier for a customer.",
+          "examples": [
+            "123456789"
+          ],
           "type": "string"
         },
         "system_name": {
           "title": "System Name",
+          "description": "An optional name for the system of origin.",
+          "examples": [
+            "SuperPOS 2000"
+          ],
           "type": "string"
         }
       },
@@ -172,6 +266,10 @@
       "properties": {
         "mobile": {
           "title": "Mobile",
+          "description": "Formatted with the international code with no spaces or symbols.",
+          "examples": [
+            "61491570006"
+          ],
           "type": "string"
         }
       },
@@ -186,10 +284,18 @@
       "properties": {
         "external_id": {
           "title": "External Id",
+          "description": "A unique identifier for a customer in an external system.",
+          "examples": [
+            "123456789"
+          ],
           "type": "string"
         },
         "system_name": {
           "title": "System Name",
+          "description": "A unique identifer for the external system itself.",
+          "examples": [
+            "super_pos_2000"
+          ],
           "type": "string"
         }
       },
@@ -215,6 +321,7 @@
     },
     "CustomerLink": {
       "title": "CustomerLink",
+      "description": "This type of link is deprecated. Please use one of the other specific link types instead.",
       "type": "object",
       "properties": {
         "link_type": {

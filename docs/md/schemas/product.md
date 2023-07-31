@@ -25,50 +25,80 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
-| Property                                             | Pattern | Type             | Deprecated | Definition | Title/Description |
-| ---------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ----------------- |
-| - [product_id](#product_id )                         | No      | string           | No         | -          | Product Id        |
-| - [sku](#sku )                                       | No      | string           | No         | -          | Sku               |
-| - [upc](#upc )                                       | No      | string           | No         | -          | Upc               |
-| - [product_reference_type](#product_reference_type ) | No      | enum (of string) | No         | In         | An enumeration.   |
-| - [name](#name )                                     | No      | string           | No         | -          | Name              |
-| - [description](#description )                       | No      | string           | No         | -          | Description       |
-| - [brand](#brand )                                   | No      | string           | No         | -          | Brand             |
-| - [size](#size )                                     | No      | string           | No         | -          | Size              |
-| - [color](#color )                                   | No      | string           | No         | -          | Color             |
-| - [price](#price )                                   | No      | number           | No         | -          | Price             |
-| - [options](#options )                               | No      | object           | No         | -          | Options           |
-| - [url](#url )                                       | No      | string           | No         | -          | Url               |
-| - [images](#images )                                 | No      | array of string  | No         | -          | Images            |
+**Description:** A product object `record_type=product`.
+Product records are used to represent the current and historical products offered by your brand, including your product taxonomy.
+The field referenced in `product_reference_type` should be unique and used in purchase and return events.
+
+| Property                                             | Pattern | Type             | Deprecated | Definition | Title/Description      |
+| ---------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ---------------------- |
+| - [product_id](#product_id )                         | No      | string           | No         | -          | Product ID             |
+| - [sku](#sku )                                       | No      | string           | No         | -          | SKU                    |
+| - [upc](#upc )                                       | No      | string           | No         | -          | UPC                    |
+| - [product_reference_type](#product_reference_type ) | No      | enum (of string) | No         | In         | Product Reference Type |
+| - [name](#name )                                     | No      | string           | No         | -          | Product Name           |
+| - [description](#description )                       | No      | string           | No         | -          | Description            |
+| - [brand](#brand )                                   | No      | string           | No         | -          | Brand Name             |
+| - [size](#size )                                     | No      | string           | No         | -          | Size                   |
+| - [color](#color )                                   | No      | string           | No         | -          | Color                  |
+| - [price](#price )                                   | No      | number           | No         | -          | Price                  |
+| - [options](#options )                               | No      | object           | No         | -          | Categories             |
+| - [url](#url )                                       | No      | string           | No         | -          | Product URL            |
+| - [images](#images )                                 | No      | array of string  | No         | -          | Image URLs             |
 
 ## <a name="product_id"></a>1. Property `ProductRecord > product_id`
 
-**Title:** Product Id
+**Title:** Product ID
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Description:** Unique product_id. Required if `product_id` is used as the product identifier in `product_reference_type`.
+
+**Example:** 
+
+```json
+"b7c901..."
+```
 
 ## <a name="sku"></a>2. Property `ProductRecord > sku`
 
-**Title:** Sku
+**Title:** SKU
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Description:** Unique SKU. Required if `sku` is used as a product identifier in `product_reference_type`.
+
+**Example:** 
+
+```json
+"ac6674..."
+```
 
 ## <a name="upc"></a>3. Property `ProductRecord > upc`
 
-**Title:** Upc
+**Title:** UPC
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Description:** Unique UPC. Required if `upc` is used as a product identifier in `product_reference_type`.
+
+**Example:** 
+
+```json
+"ce6378..."
+```
+
 ## <a name="product_reference_type"></a>4. Property `ProductRecord > product_reference_type`
+
+**Title:** Product Reference Type
 
 |                |                    |
 | -------------- | ------------------ |
@@ -77,7 +107,7 @@
 | **Default**    | `"product_id"`     |
 | **Defined in** |                    |
 
-**Description:** An enumeration.
+**Description:** Which field is used to identify the product entity. A value must be provided in the specified field.
 
 Must be one of:
 * "sku"
@@ -86,12 +116,18 @@ Must be one of:
 
 ## <a name="name"></a>5. Property `ProductRecord > name`
 
-**Title:** Name
+**Title:** Product Name
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Example:** 
+
+```json
+"Organic Sawyer Rib Crew Knit"
+```
 
 ## <a name="description"></a>6. Property `ProductRecord > description`
 
@@ -102,14 +138,26 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+"Whether your look is clean and casual or sharp and sophisticated, Staple Superior has what you need to achieve that effortlessly cool style."
+```
+
 ## <a name="brand"></a>7. Property `ProductRecord > brand`
 
-**Title:** Brand
+**Title:** Brand Name
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Example:** 
+
+```json
+"Sawyer"
+```
 
 ## <a name="size"></a>8. Property `ProductRecord > size`
 
@@ -120,6 +168,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+"L"
+```
+
 ## <a name="color"></a>9. Property `ProductRecord > color`
 
 **Title:** Color
@@ -128,6 +182,12 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Example:** 
+
+```json
+"Navy"
+```
 
 ## <a name="price"></a>10. Property `ProductRecord > price`
 
@@ -138,15 +198,40 @@ Must be one of:
 | **Type**     | `number` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+89.0
+```
+
 ## <a name="options"></a>11. Property `ProductRecord > options`
 
-**Title:** Options
+**Title:** Categories
 
 |                           |                                                                                                                   |
 | ------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | **Type**                  | `object`                                                                                                          |
 | **Required**              | No                                                                                                                |
 | **Additional properties** | [[Should-conform]](#options_additionalProperties "Each additional property must conform to the following schema") |
+
+**Description:** Key value pairs of options that define the product, such as departments, categories, styles, etc.
+
+**Example:** 
+
+```json
+{
+    "department": [
+        "menswear"
+    ],
+    "category": [
+        "outerwear"
+    ],
+    "subcategory": [
+        "knits",
+        "wool"
+    ]
+}
+```
 
 | Property                             | Pattern | Type            | Deprecated | Definition | Title/Description |
 | ------------------------------------ | ------- | --------------- | ---------- | ---------- | ----------------- |
@@ -180,22 +265,39 @@ Must be one of:
 
 ## <a name="url"></a>12. Property `ProductRecord > url`
 
-**Title:** Url
+**Title:** Product URL
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Description:** A URL to the product listed on the public internet - i.e., an ecommerce link.
+
+**Example:** 
+
+```json
+"https://fake.com/menswear/sawyer-rib-crew-knit"
+```
+
 ## <a name="images"></a>13. Property `ProductRecord > images`
 
-**Title:** Images
+**Title:** Image URLs
 
 |              |                   |
 | ------------ | ----------------- |
 | **Type**     | `array of string` |
 | **Required** | No                |
-| **Default**  | `[]`              |
+
+**Description:** An array of Product Image URLs listed on the public internet.
+
+**Example:** 
+
+```json
+[
+    "https://fake.com/images/menswear/sawyer-rib-crew-knit.jpg"
+]
+```
 
 |                      | Array restrictions |
 | -------------------- | ------------------ |

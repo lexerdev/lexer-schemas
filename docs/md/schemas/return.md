@@ -55,6 +55,9 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
+**Description:** A return event object `record_type=return`.
+Represents transaction data related to customers returning products and is used to enrich profiles with their complete purchase history.
+
 | Property                           | Pattern | Type             | Deprecated | Definition                    | Title/Description |
 | ---------------------------------- | ------- | ---------------- | ---------- | ----------------------------- | ----------------- |
 | + [link](#link )                   | No      | Combination      | No         | -                             | Link              |
@@ -63,7 +66,7 @@
 | - [currency](#currency )           | No      | string           | No         | -                             | Currency          |
 | - [adjustments](#adjustments )     | No      | array            | No         | -                             | Adjustments       |
 | - [custom_fields](#custom_fields ) | No      | object           | No         | -                             | Custom Fields     |
-| - [store](#store )                 | No      | object           | No         | In #/definitions/Store        | -                 |
+| - [store](#store )                 | No      | object           | No         | In #/definitions/Store        | A store entity.   |
 | + [return_id](#return_id )         | No      | string           | No         | -                             | Return Id         |
 | + [products](#products )           | No      | array            | No         | -                             | Products          |
 
@@ -109,6 +112,16 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"jane@example.com"
+```
+
+| Restrictions                      |                                                                                                                                                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)``` [Test](https://regex101.com/?regex=%28%5E%5Ba-zA-Z0-9_.%2B-%5D%2B%40%5Ba-zA-Z0-9-%5D%2B%5C.%5Ba-zA-Z0-9-.%5D%2B%24%29&testString=%22jane%40example.com%22) |
+
 ### <a name="link_anyOf_i1"></a>1.2. Property `ReturnEvent > link > anyOf > EmailSha256Link`
 
 |                           |                                                         |
@@ -131,6 +144,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** Ensure that the email address is lowercase before hashing.
+
+**Example:** 
+
+```json
+"8c87b489ce35cf2e2f39f80e282cb2e804932a56a213983eeeb428407d43b52d"
+```
+
 ### <a name="link_anyOf_i2"></a>1.3. Property `ReturnEvent > link > anyOf > EmailMd5Link`
 
 |                           |                                                         |
@@ -152,6 +173,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Description:** Ensure that the email address is lowercase before hashing.
+
+**Example:** 
+
+```json
+"9e26471d35a78862c17e467d87cddedf"
+```
 
 ### <a name="link_anyOf_i3"></a>1.4. Property `ReturnEvent > link > anyOf > CustomerIdLink`
 
@@ -176,6 +205,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for a customer.
+
+**Example:** 
+
+```json
+"123456789"
+```
+
 #### <a name="link_anyOf_i3_system_name"></a>1.4.2. Property `ReturnEvent > link > anyOf > CustomerIdLink > system_name`
 
 **Title:** System Name
@@ -184,6 +221,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Description:** An optional name for the system of origin.
+
+**Example:** 
+
+```json
+"SuperPOS 2000"
+```
 
 ### <a name="link_anyOf_i4"></a>1.5. Property `ReturnEvent > link > anyOf > MobileLink`
 
@@ -206,6 +251,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Description:** Formatted with the international code with no spaces or symbols.
+
+**Example:** 
+
+```json
+"61491570006"
+```
 
 ### <a name="link_anyOf_i5"></a>1.6. Property `ReturnEvent > link > anyOf > ExternalLink`
 
@@ -230,6 +283,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for a customer in an external system.
+
+**Example:** 
+
+```json
+"123456789"
+```
+
 #### <a name="link_anyOf_i5_system_name"></a>1.6.2. Property `ReturnEvent > link > anyOf > ExternalLink > system_name`
 
 **Title:** System Name
@@ -239,6 +300,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifer for the external system itself.
+
+**Example:** 
+
+```json
+"super_pos_2000"
+```
+
 ### <a name="link_anyOf_i6"></a>1.7. Property `ReturnEvent > link > anyOf > CustomerLink`
 
 |                           |                                                         |
@@ -247,6 +316,8 @@
 | **Required**              | No                                                      |
 | **Additional properties** | [[Not allowed]](# "Additional Properties not allowed.") |
 | **Defined in**            | #/definitions/CustomerLink                              |
+
+**Description:** This type of link is deprecated. Please use one of the other specific link types instead.
 
 | Property                                   | Pattern | Type             | Deprecated | Definition                | Title/Description |
 | ------------------------------------------ | ------- | ---------------- | ---------- | ------------------------- | ----------------- |
@@ -329,6 +400,14 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Description:** Currency code as ISO 4217
+
+**Example:** 
+
+```json
+"USD"
+```
+
 ## <a name="adjustments"></a>5. Property `ReturnEvent > adjustments`
 
 **Title:** Adjustments
@@ -374,6 +453,12 @@ Must be one of:
 | **Type**     | `number` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+50.0
+```
+
 #### <a name="adjustments_items_adjusted_at"></a>5.1.2. Property `ReturnEvent > adjustments > TransactionAdjustment > adjusted_at`
 
 **Title:** Adjusted At
@@ -393,6 +478,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | No       |
 
+**Example:** 
+
+```json
+"gift card"
+```
+
 ## <a name="custom_fields"></a>6. Property `ReturnEvent > custom_fields`
 
 **Title:** Custom Fields
@@ -403,6 +494,17 @@ Must be one of:
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
+**Description:** Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilite automated processing in the Lexer CDP.
+
+**Example:** 
+
+```json
+{
+    "is_damaged": true,
+    "customer_reason": "glass broken on delivery"
+}
+```
+
 ## <a name="store"></a>7. Property `ReturnEvent > store`
 
 |                           |                                                                           |
@@ -412,11 +514,13 @@ Must be one of:
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 | **Defined in**            | #/definitions/Store                                                       |
 
+**Description:** A store entity.
+
 | Property                       | Pattern | Type             | Deprecated | Definition                   | Title/Description |
 | ------------------------------ | ------- | ---------------- | ---------- | ---------------------------- | ----------------- |
-| + [store_id](#store_store_id ) | No      | string           | No         | -                            | Store Id          |
-| - [type](#store_type )         | No      | enum (of string) | No         | In #/definitions/StoreType   | An enumeration.   |
-| - [name](#store_name )         | No      | string           | No         | -                            | Name              |
+| - [store_id](#store_store_id ) | No      | string           | No         | -                            | Store Id          |
+| + [type](#store_type )         | No      | enum (of string) | No         | In #/definitions/StoreType   | An enumeration.   |
+| + [name](#store_name )         | No      | string           | No         | -                            | Name              |
 | - [location](#store_location ) | No      | object           | No         | In #/definitions/GeoLocation | -                 |
 
 ### <a name="store_store_id"></a>7.1. Property `ReturnEvent > store > store_id`
@@ -426,14 +530,20 @@ Must be one of:
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
-| **Required** | Yes      |
+| **Required** | No       |
+
+**Example:** 
+
+```json
+"40bf96..."
+```
 
 ### <a name="store_type"></a>7.2. Property `ReturnEvent > store > type`
 
 |                |                         |
 | -------------- | ----------------------- |
 | **Type**       | `enum (of string)`      |
-| **Required**   | No                      |
+| **Required**   | Yes                     |
 | **Defined in** | #/definitions/StoreType |
 
 **Description:** An enumeration.
@@ -451,7 +561,13 @@ Must be one of:
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
-| **Required** | No       |
+| **Required** | Yes      |
+
+**Example:** 
+
+```json
+"St Kilda Outlet"
+```
 
 ### <a name="store_location"></a>7.4. Property `ReturnEvent > store > location`
 
@@ -464,17 +580,23 @@ Must be one of:
 
 | Property                                    | Pattern | Type   | Deprecated | Definition                     | Title/Description |
 | ------------------------------------------- | ------- | ------ | ---------- | ------------------------------ | ----------------- |
-| - [name](#store_location_name )             | No      | string | No         | -                              | Name              |
+| - [name](#store_location_name )             | No      | string | No         | -                              | Location Name     |
 | - [coordinate](#store_location_coordinate ) | No      | object | No         | In #/definitions/GeoCoordinate | -                 |
 
 #### <a name="store_location_name"></a>7.4.1. Property `ReturnEvent > store > location > name`
 
-**Title:** Name
+**Title:** Location Name
 
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Example:** 
+
+```json
+"St Kilda"
+```
 
 #### <a name="store_location_coordinate"></a>7.4.2. Property `ReturnEvent > store > location > coordinate`
 
@@ -535,6 +657,8 @@ Must be one of:
 | ------------ | ------- |
 | **Type**     | `array` |
 | **Required** | Yes     |
+
+**Description:** Contains the 'order lines' in the return event. Each record in this array represents a specific product that was returned including details such as quantity returned, refund price etc.
 
 |                      | Array restrictions |
 | -------------------- | ------------------ |

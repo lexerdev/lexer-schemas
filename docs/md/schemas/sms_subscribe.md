@@ -34,13 +34,16 @@
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
-| Property                   | Pattern | Type             | Deprecated | Definition                             | Title/Description |
-| -------------------------- | ------- | ---------------- | ---------- | -------------------------------------- | ----------------- |
-| + [link](#link )           | No      | Combination      | No         | -                                      | Link              |
-| + [action_at](#action_at ) | No      | string           | No         | -                                      | Action At         |
-| + [sms_id](#sms_id )       | No      | string           | No         | -                                      | Sms Id            |
-| - [list](#list )           | No      | object           | No         | In #/definitions/MarketingList         | -                 |
-| + [status](#status )       | No      | enum (of string) | No         | In #/definitions/SMSSubscriptionStatus | An enumeration.   |
+**Description:** An SMS Subscribe Event object `record_type=sms_subscribe`.
+These events are used to enrich profiles with attributes like “SMS Subscribe Date” or “Subscribed to SMS List”.
+
+| Property                   | Pattern | Type             | Deprecated | Definition                             | Title/Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| -------------------------- | ------- | ---------------- | ---------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| + [link](#link )           | No      | Combination      | No         | -                                      | Link                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| + [action_at](#action_at ) | No      | string           | No         | -                                      | Action At                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| + [sms_id](#sms_id )       | No      | string           | No         | -                                      | Sms Id                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| - [list](#list )           | No      | object           | No         | In #/definitions/MarketingList         | -                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| + [status](#status )       | No      | enum (of string) | No         | In #/definitions/SMSSubscriptionStatus | The type of subscribe event:<br />\`subscribed\` - explicitly subscribed to marketing SMS messages<br />\`unsubscribed\` - explicitly unsubscribed from marketing SMS messages<br />\`transactional\` - **not** explicitly subscribed but can still be sent 'transactional' SMS messages<br />\`undeliverable\` - **not** explicitly unsubscribed but SMS messages sent to them are not deliverable<br />\`list_subscribed\` - subscribed to a specific SMS marketing list<br />\`list_unsubscribed\` - unsubscribed from a specific SMS marketing list |
 
 ## <a name="link"></a>1. Property `SMSSubscribe > link`
 
@@ -84,6 +87,16 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"jane@example.com"
+```
+
+| Restrictions                      |                                                                                                                                                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)``` [Test](https://regex101.com/?regex=%28%5E%5Ba-zA-Z0-9_.%2B-%5D%2B%40%5Ba-zA-Z0-9-%5D%2B%5C.%5Ba-zA-Z0-9-.%5D%2B%24%29&testString=%22jane%40example.com%22) |
+
 ### <a name="link_anyOf_i1"></a>1.2. Property `SMSSubscribe > link > anyOf > EmailSha256Link`
 
 |                           |                                                         |
@@ -106,6 +119,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** Ensure that the email address is lowercase before hashing.
+
+**Example:** 
+
+```json
+"8c87b489ce35cf2e2f39f80e282cb2e804932a56a213983eeeb428407d43b52d"
+```
+
 ### <a name="link_anyOf_i2"></a>1.3. Property `SMSSubscribe > link > anyOf > EmailMd5Link`
 
 |                           |                                                         |
@@ -127,6 +148,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Description:** Ensure that the email address is lowercase before hashing.
+
+**Example:** 
+
+```json
+"9e26471d35a78862c17e467d87cddedf"
+```
 
 ### <a name="link_anyOf_i3"></a>1.4. Property `SMSSubscribe > link > anyOf > CustomerIdLink`
 
@@ -151,6 +180,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for a customer.
+
+**Example:** 
+
+```json
+"123456789"
+```
+
 #### <a name="link_anyOf_i3_system_name"></a>1.4.2. Property `SMSSubscribe > link > anyOf > CustomerIdLink > system_name`
 
 **Title:** System Name
@@ -159,6 +196,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+
+**Description:** An optional name for the system of origin.
+
+**Example:** 
+
+```json
+"SuperPOS 2000"
+```
 
 ### <a name="link_anyOf_i4"></a>1.5. Property `SMSSubscribe > link > anyOf > MobileLink`
 
@@ -181,6 +226,14 @@
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | Yes      |
+
+**Description:** Formatted with the international code with no spaces or symbols.
+
+**Example:** 
+
+```json
+"61491570006"
+```
 
 ### <a name="link_anyOf_i5"></a>1.6. Property `SMSSubscribe > link > anyOf > ExternalLink`
 
@@ -205,6 +258,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for a customer in an external system.
+
+**Example:** 
+
+```json
+"123456789"
+```
+
 #### <a name="link_anyOf_i5_system_name"></a>1.6.2. Property `SMSSubscribe > link > anyOf > ExternalLink > system_name`
 
 **Title:** System Name
@@ -214,6 +275,14 @@
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifer for the external system itself.
+
+**Example:** 
+
+```json
+"super_pos_2000"
+```
+
 ### <a name="link_anyOf_i6"></a>1.7. Property `SMSSubscribe > link > anyOf > CustomerLink`
 
 |                           |                                                         |
@@ -222,6 +291,8 @@
 | **Required**              | No                                                      |
 | **Additional properties** | [[Not allowed]](# "Additional Properties not allowed.") |
 | **Defined in**            | #/definitions/CustomerLink                              |
+
+**Description:** This type of link is deprecated. Please use one of the other specific link types instead.
 
 | Property                                   | Pattern | Type             | Deprecated | Definition                | Title/Description |
 | ------------------------------------------ | ------- | ---------------- | ---------- | ------------------------- | ----------------- |
@@ -290,6 +361,14 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Description:** A unique identifier for an individual SMS event.
+
+**Example:** 
+
+```json
+"send-job-a7e23-jane-doe"
+```
+
 ## <a name="list"></a>4. Property `SMSSubscribe > list`
 
 |                           |                                                                           |
@@ -313,6 +392,12 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Example:** 
+
+```json
+"7bff7a..."
+```
+
 ### <a name="list_name"></a>4.2. Property `SMSSubscribe > list > name`
 
 **Title:** Name
@@ -322,6 +407,16 @@ Must be one of:
 | **Type**     | `string` |
 | **Required** | Yes      |
 
+**Examples:** 
+
+```json
+"All Customers List"
+```
+
+```json
+"Lapsed Customers"
+```
+
 ## <a name="status"></a>5. Property `SMSSubscribe > status`
 
 |                |                                     |
@@ -330,7 +425,13 @@ Must be one of:
 | **Required**   | Yes                                 |
 | **Defined in** | #/definitions/SMSSubscriptionStatus |
 
-**Description:** An enumeration.
+**Description:** The type of subscribe event:
+`subscribed` - explicitly subscribed to marketing SMS messages
+`unsubscribed` - explicitly unsubscribed from marketing SMS messages
+`transactional` - **not** explicitly subscribed but can still be sent 'transactional' SMS messages
+`undeliverable` - **not** explicitly unsubscribed but SMS messages sent to them are not deliverable
+`list_subscribed` - subscribed to a specific SMS marketing list
+`list_unsubscribed` - unsubscribed from a specific SMS marketing list
 
 Must be one of:
 * "subscribed"

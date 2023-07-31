@@ -16,6 +16,9 @@ from lexer_schemas.commerce_api.product_entity import ProductRecord
 ProductRecord(product_id="123", name="Real Cool Hat")
 ```
 
+## Documentation
+A web version of the schemas is available here: https://lexerdev.github.io/lexer-schemas/
+
 ## Examples
 
 In `/examples`, there are a few scripts that use the Lexer Schema package and also some example data files.

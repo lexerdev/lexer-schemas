@@ -1,5 +1,6 @@
 {
   "title": "SMSSubscribe",
+  "description": "An SMS Subscribe Event object `record_type=sms_subscribe`.\nThese events are used to enrich profiles with attributes like \u201cSMS Subscribe Date\u201d or \u201cSubscribed to SMS List\u201d.",
   "type": "object",
   "properties": {
     "link": {
@@ -35,6 +36,10 @@
     },
     "sms_id": {
       "title": "Sms Id",
+      "description": "A unique identifier for an individual SMS event.",
+      "examples": [
+        "send-job-a7e23-jane-doe"
+      ],
       "type": "string"
     },
     "list": {
@@ -57,6 +62,10 @@
       "properties": {
         "email": {
           "title": "Email",
+          "examples": [
+            "jane@example.com"
+          ],
+          "pattern": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
           "type": "string"
         }
       },
@@ -71,6 +80,10 @@
       "properties": {
         "email_sha256": {
           "title": "Email Sha256",
+          "description": "Ensure that the email address is lowercase before hashing.",
+          "examples": [
+            "8c87b489ce35cf2e2f39f80e282cb2e804932a56a213983eeeb428407d43b52d"
+          ],
           "type": "string"
         }
       },
@@ -85,6 +98,10 @@
       "properties": {
         "email_md5": {
           "title": "Email Md5",
+          "description": "Ensure that the email address is lowercase before hashing.",
+          "examples": [
+            "9e26471d35a78862c17e467d87cddedf"
+          ],
           "type": "string"
         }
       },
@@ -99,10 +116,18 @@
       "properties": {
         "customer_id": {
           "title": "Customer Id",
+          "description": "A unique identifier for a customer.",
+          "examples": [
+            "123456789"
+          ],
           "type": "string"
         },
         "system_name": {
           "title": "System Name",
+          "description": "An optional name for the system of origin.",
+          "examples": [
+            "SuperPOS 2000"
+          ],
           "type": "string"
         }
       },
@@ -117,6 +142,10 @@
       "properties": {
         "mobile": {
           "title": "Mobile",
+          "description": "Formatted with the international code with no spaces or symbols.",
+          "examples": [
+            "61491570006"
+          ],
           "type": "string"
         }
       },
@@ -131,10 +160,18 @@
       "properties": {
         "external_id": {
           "title": "External Id",
+          "description": "A unique identifier for a customer in an external system.",
+          "examples": [
+            "123456789"
+          ],
           "type": "string"
         },
         "system_name": {
           "title": "System Name",
+          "description": "A unique identifer for the external system itself.",
+          "examples": [
+            "super_pos_2000"
+          ],
           "type": "string"
         }
       },
@@ -160,6 +197,7 @@
     },
     "CustomerLink": {
       "title": "CustomerLink",
+      "description": "This type of link is deprecated. Please use one of the other specific link types instead.",
       "type": "object",
       "properties": {
         "link_type": {
@@ -188,10 +226,17 @@
       "properties": {
         "id": {
           "title": "Id",
+          "examples": [
+            "7bff7a..."
+          ],
           "type": "string"
         },
         "name": {
           "title": "Name",
+          "examples": [
+            "All Customers List",
+            "Lapsed Customers"
+          ],
           "type": "string"
         }
       },
@@ -202,7 +247,7 @@
     },
     "SMSSubscriptionStatus": {
       "title": "SMSSubscriptionStatus",
-      "description": "An enumeration.",
+      "description": "The type of subscribe event:\n`subscribed` - explicitly subscribed to marketing SMS messages\n`unsubscribed` - explicitly unsubscribed from marketing SMS messages\n`transactional` - **not** explicitly subscribed but can still be sent 'transactional' SMS messages\n`undeliverable` - **not** explicitly unsubscribed but SMS messages sent to them are not deliverable\n`list_subscribed` - subscribed to a specific SMS marketing list\n`list_unsubscribed` - unsubscribed from a specific SMS marketing list",
       "enum": [
         "subscribed",
         "unsubscribed",
