@@ -46,7 +46,7 @@ class CustomerRecord(BaseModel):
     )
     custom_fields: Optional[Dict[str, Any]] = Field(
         default=None,
-        description="Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilite automated processing in the Lexer CDP.",
+        description="Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilitate automated processing in the Lexer CDP.",
         examples=[{"churn_risk": 0.291, "loyalty_status": "platinum"}],
     )
     first_name: Optional[str] = Field(
