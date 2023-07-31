@@ -51,7 +51,7 @@ class BaseTransactionEvent(BaseEvent):
     )
     adjustments: Optional[List[TransactionAdjustment]] = None
     custom_fields: Optional[Dict[str, Any]] = Field(
-        description="Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilite automated processing in the Lexer CDP.",
+        description="Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilitate automated processing in the Lexer CDP.",
         examples=[{"is_damaged": True, "customer_reason": "glass broken on delivery"}],
         default=None,
     )
