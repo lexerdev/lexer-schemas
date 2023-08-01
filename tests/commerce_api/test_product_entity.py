@@ -43,7 +43,7 @@ class TestProductEntity:
             "price": None,
             "options": None,
             "url": None,
-            "images": [],
+            "images": None,
         }
 
         assert json.loads(actual_record.json()) == expected_record
