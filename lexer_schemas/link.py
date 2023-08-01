@@ -27,7 +27,7 @@ class EmailLink(BaseModel, extra="forbid"):
     def validate_email(cls, v: str, values: dict) -> str:
         if not re.match(EMAIL_REGEX, v):
             raise ValueError("email link value does not match email regex pattern")
-        return v.strip()
+        return v.lower().strip()
 
 
 class EmailSha256Link(BaseModel, extra="forbid"):
@@ -35,6 +35,10 @@ class EmailSha256Link(BaseModel, extra="forbid"):
         description="Ensure that the email address is lowercase before hashing.",
         examples=["8c87b489ce35cf2e2f39f80e282cb2e804932a56a213983eeeb428407d43b52d"],
     )
+
+    @validator("email_sha256")
+    def validate_email(cls, v: str, values: dict) -> str:
+        return v.lower().strip()
 
 
 class EmailMd5Link(BaseModel, extra="forbid"):
