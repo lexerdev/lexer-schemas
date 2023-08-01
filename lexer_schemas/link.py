@@ -37,7 +37,7 @@ class EmailSha256Link(BaseModel, extra="forbid"):
     )
 
     @validator("email_sha256")
-    def validate_email(cls, v: str, values: dict) -> str:
+    def validate_email_sha256(cls, v: str, values: dict) -> str:
         return v.lower().strip()
 
 
@@ -46,6 +46,10 @@ class EmailMd5Link(BaseModel, extra="forbid"):
         description="Ensure that the email address is lowercase before hashing.",
         examples=["9e26471d35a78862c17e467d87cddedf"],
     )
+
+    @validator("email_md5")
+    def validate_email_md5(cls, v: str, values: dict) -> str:
+        return v.lower().strip()
 
 
 class MobileLink(BaseModel, extra="forbid"):

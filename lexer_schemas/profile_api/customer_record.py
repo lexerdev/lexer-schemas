@@ -86,3 +86,9 @@ class CustomerRecord(BaseModel):
         if v:
             return v.lower()
         return v
+    
+    @validator("email_sha256")
+    def lower_email_sha256(cls, v: str, values: dict) -> Optional[str]:
+        if v:
+            return v.lower()
+        return v
