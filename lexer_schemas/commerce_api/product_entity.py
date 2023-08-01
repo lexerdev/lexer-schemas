@@ -1,9 +1,8 @@
 from typing import Dict, List, Optional
 
+from lexer_schemas.common import ProductReferenceType, api_name
 from pydantic import BaseModel, Field, root_validator
 from pydantic.networks import HttpUrl
-
-from lexer_schemas.common import ProductReferenceType, api_name
 
 
 @api_name("product")
@@ -68,11 +67,11 @@ class ProductRecord(BaseModel):
         examples=["https://fake.com/menswear/sawyer-rib-crew-knit"],
         default=None,
     )
-    images: List[HttpUrl] = Field(
+    images: Optional[List[HttpUrl]] = Field(
         title="Image URLs",
         description="An array of Product Image URLs listed on the public internet.",
         examples=[["https://fake.com/images/menswear/sawyer-rib-crew-knit.jpg"]],
-        default_factory=list,
+        default=None,
     )
 
     @root_validator

@@ -1,9 +1,8 @@
 import json
 
 import pytest
-from pydantic import ValidationError
-
 from lexer_schemas.commerce_api.product_entity import ProductRecord
+from pydantic import ValidationError
 
 
 class TestProductEntity:
@@ -23,12 +22,12 @@ class TestProductEntity:
             "price": None,
             "options": None,
             "url": None,
-            "images": [],
+            "images": None,
         }
 
         assert json.loads(actual_record.json()) == expected_record
 
-    def test_product_record(self):
+    def test_product_record_sku(self):
         actual_record = ProductRecord(sku="123", product_reference_type="sku")
 
         expected_record = {
@@ -44,7 +43,7 @@ class TestProductEntity:
             "price": None,
             "options": None,
             "url": None,
-            "images": [],
+            "images": None,
         }
 
         assert json.loads(actual_record.json()) == expected_record
