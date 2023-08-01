@@ -1,7 +1,7 @@
 from datetime import date
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, validator
 
 from lexer_schemas.common import api_name
 from lexer_schemas.link import Link
@@ -80,3 +80,15 @@ class CustomerRecord(BaseModel):
         default=None, title="Address 1", examples=["Inkerman St"]
     )
     address_2: Optional[str] = Field(default=None, title="Address 2")
+
+    @validator("email")
+    def lower_email(cls, v: str, values: dict) -> Optional[str]:
+        if v:
+            return v.lower()
+        return v
+    
+    @validator("email_sha256")
+    def lower_email_sha256(cls, v: str, values: dict) -> Optional[str]:
+        if v:
+            return v.lower()
+        return v
