@@ -54,7 +54,7 @@
     },
     "custom_fields": {
       "title": "Custom Fields",
-      "description": "Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilite automated processing in the Lexer CDP.",
+      "description": "Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilitate automated processing in the Lexer CDP.",
       "examples": [
         {
           "is_damaged": true,
@@ -82,7 +82,7 @@
     },
     "products": {
       "title": "Products",
-      "description": "Contains the 'order lines' in the purchase event. Each record in this array represents a specific product that was purcased including details such as quantity, price paid etc.",
+      "description": "Contains the 'order lines' in the purchase event. Each record in this array represents a specific product that was purchased including details such as quantity, price paid etc.",
       "type": "array",
       "items": {
         "$ref": "#/definitions/PurchaseProductReference"
@@ -421,13 +421,15 @@
         },
         "dataset_id": {
           "title": "Dataset Id",
+          "examples": [
+            "9wyqa53dnx"
+          ],
           "type": "string"
         }
       },
       "required": [
         "id",
-        "id_type",
-        "dataset_id"
+        "id_type"
       ]
     },
     "PurchaseProductReference": {

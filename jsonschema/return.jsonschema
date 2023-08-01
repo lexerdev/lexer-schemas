@@ -54,7 +54,7 @@
     },
     "custom_fields": {
       "title": "Custom Fields",
-      "description": "Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilite automated processing in the Lexer CDP.",
+      "description": "Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilitate automated processing in the Lexer CDP.",
       "examples": [
         {
           "is_damaged": true,
@@ -388,13 +388,15 @@
         },
         "dataset_id": {
           "title": "Dataset Id",
+          "examples": [
+            "9wyqa53dnx"
+          ],
           "type": "string"
         }
       },
       "required": [
         "id",
-        "id_type",
-        "dataset_id"
+        "id_type"
       ]
     },
     "ReturnProductReference": {
