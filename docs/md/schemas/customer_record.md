@@ -468,7 +468,7 @@ Must be one of:
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
-**Description:** Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilite automated processing in the Lexer CDP.
+**Description:** Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilitate automated processing in the Lexer CDP.
 
 **Example:** 
 

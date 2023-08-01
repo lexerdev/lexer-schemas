@@ -494,7 +494,7 @@ Must be one of:
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 
-**Description:** Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilite automated processing in the Lexer CDP.
+**Description:** Custom Fields. Properties are open, but a dataset may be configured to accept only particular fields to facilitate automated processing in the Lexer CDP.
 
 **Example:** 
 
@@ -700,7 +700,7 @@ Must be one of:
 | ------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------------------- | ----------------- |
 | + [id](#products_items_product_reference_id )                 | No      | string           | No         | -                                     | Id                |
 | + [id_type](#products_items_product_reference_id_type )       | No      | enum (of string) | No         | In #/definitions/ProductReferenceType | An enumeration.   |
-| + [dataset_id](#products_items_product_reference_dataset_id ) | No      | string           | No         | -                                     | Dataset Id        |
+| - [dataset_id](#products_items_product_reference_dataset_id ) | No      | string           | No         | -                                     | Dataset Id        |
 
 ##### <a name="products_items_product_reference_id"></a>9.1.1.1. Property `ReturnEvent > products > ReturnProductReference > product_reference > id`
 
@@ -733,7 +733,13 @@ Must be one of:
 |              |          |
 | ------------ | -------- |
 | **Type**     | `string` |
-| **Required** | Yes      |
+| **Required** | No       |
+
+**Example:** 
+
+```json
+"9wyqa53dnx"
+```
 
 #### <a name="products_items_price_paid"></a>9.1.2. Property `ReturnEvent > products > ReturnProductReference > price_paid`
 

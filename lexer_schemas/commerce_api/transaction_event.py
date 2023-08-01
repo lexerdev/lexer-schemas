@@ -16,7 +16,7 @@ class PurchaseType(Enum):
 class ProductReference(BaseModel):
     id: str
     id_type: ProductReferenceType
-    dataset_id: str
+    dataset_id: Optional[str] = Field(examples=["9wyqa53dnx"], default=None)
 
 
 class PurchaseProductReference(BaseModel):
