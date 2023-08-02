@@ -7,7 +7,7 @@
 
 `upload.py` requires Python 3.7 or later.
  Requirements are defined in `requirements.txt` and can be installed using the command:
-`pip install -r requirements.txt`
+`pip3 install -r requirements.txt`
 
 ## API Token
 
@@ -30,7 +30,7 @@ Upload a file, skipping validation.
 
     ./upload.py upload \
          --local-filename my_file.ndjson \
-         --record-type customer_profile \
+         --record-type customer_record \
          --destination-dataset-id a1b2c3d4 \
          --destination-filename=my_file.ndjson \
          --api-token xxxxxxx
@@ -43,7 +43,7 @@ Validate a file, and upload if valid.
 
     ./upload.py validate_upload
          --local-filename my_file.ndjson \
-         --record-type customer_profile \
+         --record-type customer_record \
          --destination-dataset-id a1b2c3d4 \
          --destination-filename=my_file.ndjson \
          --api-token xxxxxxx
@@ -56,7 +56,7 @@ Validate a file
 
     ./upload.py validate \
         --local-filename my_file.ndjson \
-        --record-type customer_profile
+        --record-type customer_record
 
 ## More help
 
