@@ -41,7 +41,7 @@ Note: requires api-token
 
 Validate a file, and upload if valid.
 
-    ./upload.py validate_upload
+    ./upload.py upload_validate \
          --local-filename my_file.ndjson \
          --record-type customer_record \
          --destination-dataset-id a1b2c3d4 \
