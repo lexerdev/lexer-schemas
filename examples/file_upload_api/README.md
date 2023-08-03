@@ -32,7 +32,6 @@ Upload a file, skipping validation.
          --local-filename my_file.ndjson \
          --record-type customer_record \
          --destination-dataset-id a1b2c3d4 \
-         --destination-filename=my_file.ndjson \
          --api-token xxxxxxx
 
 Note: requires api-token
@@ -45,7 +44,6 @@ Validate a file, and upload if valid.
          --local-filename my_file.ndjson \
          --record-type customer_record \
          --destination-dataset-id a1b2c3d4 \
-         --destination-filename=my_file.ndjson \
          --api-token xxxxxxx
 
 Note: requires api-token

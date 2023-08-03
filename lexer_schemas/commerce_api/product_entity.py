@@ -1,8 +1,9 @@
 from typing import Dict, List, Optional
 
-from lexer_schemas.common import ProductReferenceType, api_name
 from pydantic import BaseModel, Field, root_validator
 from pydantic.networks import HttpUrl
+
+from lexer_schemas.common import ProductReferenceType, api_name
 
 
 @api_name("product")

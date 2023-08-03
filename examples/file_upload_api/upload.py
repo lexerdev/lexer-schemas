@@ -3,10 +3,14 @@
 import argparse
 import os
 import sys
+from time import time
+from typing import Optional
 
 import requests
+
 from lexer_schemas.commerce_api.product_entity import ProductRecord
 from lexer_schemas.commerce_api.transaction_event import PurchaseEvent, ReturnEvent
+from lexer_schemas.common import imported_api_names
 from lexer_schemas.marketing_api.email_event import (
     EmailBounce,
     EmailClick,
@@ -16,13 +20,12 @@ from lexer_schemas.marketing_api.email_event import (
 )
 from lexer_schemas.marketing_api.sms_event import SMSClick, SMSSend, SMSSubscribe
 from lexer_schemas.profile_api.customer_record import CustomerRecord
-from lexer_schemas.common import imported_api_names
 
 
 def upload_file(
     local_filename: str,
     record_type: str,
-    destination_filename: str,
+    destination_filename: Optional[str],
     destination_dataset_id: str,
     api_token: str,
 ) -> None:
@@ -30,6 +33,13 @@ def upload_file(
     # A HTTP POST request to api.lexer.io/v1/uploads, if successful, will return a url that an api user
     # can run a PUT request on to upload a file. The destination parameters here allow lexer to automatically
     # trigger a dataset load after the upload of the file.
+
+    if destination_filename is None:
+        destination_filename = (
+            f"{destination_dataset_id}_{record_type}_{time():.0f}.ndjson"
+        )
+        print(f'Using destination filename "{destination_filename}"')
+
     uploads_response = requests.post(
         url="https://api.lexer.io/v1/uploads",
         headers={"Auth-Api-Token": api_token, "Content-Type": "application/json"},
@@ -151,8 +161,9 @@ if __name__ == "__main__":
     upload_params_argp.add_argument(
         "--destination-filename",
         type=str,
-        help="A name for the file that Lexer can use",
-        required=True,
+        help="A name for the file that Lexer can use, if not provided, this will default to {dataset_id}_{record_type}_{timestamp}.ndjson",
+        default=None,
+        required=False,
     )
 
     read_file_argp = argparse.ArgumentParser(add_help=False)
