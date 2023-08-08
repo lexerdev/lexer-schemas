@@ -3,6 +3,7 @@
 This repository contains schemas for Lexer public data ingestion API's
 
 [![Build status](https://badge.buildkite.com/71b600da5678c24261116bf2ba456e9760207385a5d1cce223.svg)](https://buildkite.com/lexer/lexer-schemas)
+[![Pydantic v1](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v1.json)](https://pydantic.dev)
 
 ## Installation
 Install by running `pip install git+https://github.com/lexerdev/lexer-schemas@0.3.2` in the command line.
