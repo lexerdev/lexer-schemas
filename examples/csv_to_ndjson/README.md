@@ -73,7 +73,7 @@ to upload it to a dataset on Lexer
 ## Troubleshooting
 
 A common pitfall with dealing with CSV files is that they can contain invisible
-control characters that intefere with the parsing of the rows and columns, or the
+control characters that interfere with the parsing of the rows and columns, or the
 file itself might be using an unexpected encoding.
 
 This example script contains some logic to detect the encoding of the file and 
@@ -82,9 +82,9 @@ that it fails to parse.
 
 You can use the `--debug-csv` flag to print out what encoding the script has detected
 and also what headers it has found, which can be useful to identify if you 
-encountering an issue realted to invisible characters or file encoding.
+encountering an issue related to invisible characters or file encoding.
 
-Tools like `vim` can also be used to identify specicial characters,
+Tools like `vim` can also be used to identify special characters,
 e.g. open your CSV file using the `-b` flag:
 ```
 vim -b test_file.csv 
