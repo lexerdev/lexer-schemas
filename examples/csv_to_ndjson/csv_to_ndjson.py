@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
+import codecs
 import csv
 from itertools import groupby
 from typing import Any, Dict
@@ -57,9 +58,48 @@ def nest_dotted_columns(row: Dict[str, str]) -> Dict[str, Any]:
     return out_row
 
 
-def run_convert(input_file: str, record_type: str, output_file: str) -> None:
-    with open(input_file, "r") as input_data:
+CODECS = {
+    "utf-8": [codecs.BOM_UTF8],
+    "utf-16": [codecs.BOM_UTF16, codecs.BOM_UTF16_BE, codecs.BOM_UTF16_LE],
+}
+
+
+def detect_encoding(input_file):
+    """Detect the UTF encoding of a stream by detecting the BOM in the first line"""
+    with open(input_file, "rb") as istream:
+        data = istream.read(2)
+        for encoding, boms in CODECS.items():
+            if any(data.startswith(bom) for bom in boms):
+                return encoding
+    return "utf-8"
+
+
+def clean_bom(data, encoding):
+    """
+    Attempt to remove 'Byte order mark' (BOM) characters that can sometimes corrupt the CSV parsing.
+    See this page for more details: https://www.freecodecamp.org/news/a-quick-tale-about-feff-the-invisible-character-cd25cd4630e7/
+    """
+    for bom in CODECS.get(encoding, []):
+        data = data.removeprefix(bom.decode(encoding=encoding))
+    return data
+
+
+def run_convert(
+    input_file: str, record_type: str, output_file: str, debug_csv: bool = False
+) -> None:
+    encoding = detect_encoding(input_file)
+
+    if debug_csv:
+        print(f"File encoding: {encoding}")
+
+    with open(input_file, mode="r", encoding=encoding) as input_data:
         reader = csv.DictReader(input_data)
+
+        # Clean any BOM characters from the headers
+        reader.fieldnames = [clean_bom(f, encoding) for f in reader.fieldnames]
+
+        if debug_csv:
+            print(f"Detected headers: {reader.fieldnames}")
 
         with open(output_file, "w") as output_data:
             for row in reader:
@@ -70,12 +110,12 @@ def run_convert(input_file: str, record_type: str, output_file: str) -> None:
 
 
 if __name__ == "__main__":
-
     argp = argparse.ArgumentParser()
     argp.add_argument("--input-file", required=True)
     argp.add_argument("--record-type", choices=imported_api_names.keys(), required=True)
     argp.add_argument("--output-file", required=True)
+    argp.add_argument("--debug-csv", required=False, action="store_true")
 
     args = argp.parse_args()
 
-    run_convert(args.input_file, args.record_type, args.output_file)
+    run_convert(args.input_file, args.record_type, args.output_file, args.debug_csv)

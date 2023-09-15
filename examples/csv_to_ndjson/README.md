@@ -50,11 +50,12 @@ to install the dependencies.
 
 ## Running
 
-The script has 3 command line arguments
+The script has 4 command line arguments
 
 - `--input-file` - A CSV file to read
 - `--record-type` - A lexer schema record type api name, eg `customer_record`
 - `--output-file` - A path to write the output ndjson file to.
+- `--debug-csv` - Optional, prints details about the file encoding and headers that were detected.
 
 eg:
 
@@ -69,4 +70,32 @@ Once you have a ndjson file, you can use the script in `examples/file_upload_api
 to upload it to a dataset on Lexer
 
 
+## Troubleshooting
 
+A common pitfall with dealing with CSV files is that they can contain invisible
+control characters that intefere with the parsing of the rows and columns, or the
+file itself might be using an unexpected encoding.
+
+This example script contains some logic to detect the encoding of the file and 
+automatically clean up various "BOM" characters, however you might still encounter files
+that it fails to parse.
+
+You can use the `--debug-csv` flag to print out what encoding the script has detected
+and also what headers it has found, which can be useful to identify if you 
+encountering an issue realted to invisible characters or file encoding.
+
+Tools like `vim` can also be used to identify specicial characters,
+e.g. open your CSV file using the `-b` flag:
+```
+vim -b test_file.csv 
+
+<feff>link.customer_id,custom_fields.loyalty_points^M
+1234,16^M
+5678,188^M
+91011,0^M
+1232,99^M
+```
+
+If the headers detected by the script don't match what you expect or you can see
+special characters in the file you should try manually removing these characters
+and making sure the file is saved as UTF-8 before retrying the script.
