@@ -59,7 +59,7 @@ def nest_dotted_columns(row: Dict[str, str]) -> Dict[str, Any]:
 
 
 CODECS = {
-    "utf-8": [codecs.BOM_UTF8],
+    "utf-8-sig": [codecs.BOM_UTF8],
     "utf-16": [codecs.BOM_UTF16, codecs.BOM_UTF16_BE, codecs.BOM_UTF16_LE],
 }
 
@@ -67,21 +67,11 @@ CODECS = {
 def detect_encoding(input_file):
     """Detect the UTF encoding of a stream by detecting the BOM in the first line"""
     with open(input_file, "rb") as istream:
-        data = istream.read(2)
+        data = istream.read(3)
         for encoding, boms in CODECS.items():
             if any(data.startswith(bom) for bom in boms):
                 return encoding
     return "utf-8"
-
-
-def clean_bom(data, encoding):
-    """
-    Attempt to remove 'Byte order mark' (BOM) characters that can sometimes corrupt the CSV parsing.
-    See this page for more details: https://www.freecodecamp.org/news/a-quick-tale-about-feff-the-invisible-character-cd25cd4630e7/
-    """
-    for bom in CODECS.get(encoding, []):
-        data = data.removeprefix(bom.decode(encoding=encoding))
-    return data
 
 
 def run_convert(
@@ -94,9 +84,6 @@ def run_convert(
 
     with open(input_file, mode="r", encoding=encoding) as input_data:
         reader = csv.DictReader(input_data)
-
-        # Clean any BOM characters from the headers
-        reader.fieldnames = [clean_bom(f, encoding) for f in reader.fieldnames]
 
         if debug_csv:
             print(f"Detected headers: {reader.fieldnames}")
