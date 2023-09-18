@@ -96,6 +96,17 @@ vim -b test_file.csv
 1232,99^M
 ```
 
+You can also use `cat` with the `-vet` option to show non-printing, newline and tab
+characters, e.g.
+```
+cat -vet test_file.csv | head
+M-oM-;M-?link.customer_id,custom_fields.loyalty_points^M$
+1234,16^M$
+5678,188^M$
+91011,0^M$
+1232,99^M$
+```
+
 If the headers detected by the script don't match what you expect or you can see
 special characters in the file you should try manually removing these characters
 and making sure the file is saved as UTF-8 before retrying the script.
