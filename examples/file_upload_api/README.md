@@ -18,6 +18,8 @@ This is accessed in Manage -> Integrations -> API Tokens
 
 The Dataset ID used in the script is accessible by clicking on the dataset item in the list at Manage -> Datasets, then clicking the view button on the right, to load the Datset Details view.
 
+[See here](https://learn.lexer.io/docs/dataset-management#ll-findingyourdatasetsinthehub) to read more about managing datasets.
+
 ## Upload commands
 
 The script is invoked with an action sub command, and various argument parameters.
