@@ -83,5 +83,4 @@ class ReturnEvent(BaseTransactionEvent):
     return_id: str
     products: List[ReturnProductReference] = Field(
         description="Contains the 'order lines' in the return event. Each record in this array represents a specific product that was returned including details such as quantity returned, refund price etc.",
-        min_items=1,
     )
