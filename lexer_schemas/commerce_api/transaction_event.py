@@ -68,7 +68,8 @@ class PurchaseEvent(BaseTransactionEvent):
     purchase_id: str = Field(examples=["53059a..."])
     payment_types: Optional[List[PaymentType]] = None
     products: List[PurchaseProductReference] = Field(
-        description="Contains the 'order lines' in the purchase event. Each record in this array represents a specific product that was purchased including details such as quantity, price paid etc."
+        description="Contains the 'order lines' in the purchase event. Each record in this array represents a specific product that was purchased including details such as quantity, price paid etc.",
+        min_items=1,
     )
 
 
@@ -81,5 +82,6 @@ class ReturnEvent(BaseTransactionEvent):
 
     return_id: str
     products: List[ReturnProductReference] = Field(
-        description="Contains the 'order lines' in the return event. Each record in this array represents a specific product that was returned including details such as quantity returned, refund price etc."
+        description="Contains the 'order lines' in the return event. Each record in this array represents a specific product that was returned including details such as quantity returned, refund price etc.",
+        min_items=1,
     )
