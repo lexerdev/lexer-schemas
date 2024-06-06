@@ -28,6 +28,8 @@
   - [5.1. Property `EmailBounce > from > name`](#from_name)
   - [5.2. Property `EmailBounce > from > email`](#from_email)
 - [6. Property `EmailBounce > to`](#to)
+  - [6.1. Property `EmailBounce > from > name`](#from_name)
+  - [6.2. Property `EmailBounce > from > email`](#from_email)
 
 **Title:** EmailBounce
 
@@ -46,7 +48,7 @@
 | + [email_id](#email_id )   | No      | string      | No         | -                              | Email Id          |
 | - [list](#list )           | No      | object      | No         | In #/definitions/MarketingList | -                 |
 | - [from](#from )           | No      | object      | No         | In                             | From              |
-| - [to](#to )               | No      | object      | No         | Same as [from](#from )         | To                |
+| - [to](#to )               | No      | object      | No         | In                             | To                |
 
 ## <a name="link"></a>1. Property `EmailBounce > link`
 
@@ -481,9 +483,48 @@ Must be one of:
 | **Type**                  | `object`                                                                  |
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
-| **Same definition as**    | [from](#from)                                                             |
+| **Defined in**            |                                                                           |
 
 **Description:** Recipient Details
+
+| Property                | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ----------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [name](#from_name )   | No      | string | No         | -          | Name              |
+| + [email](#from_email ) | No      | string | No         | -          | Email             |
+
+### <a name="from_name"></a>6.1. Property `EmailBounce > from > name`
+
+**Title:** Name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Example:** 
+
+```json
+"Jane Doe"
+```
+
+### <a name="from_email"></a>6.2. Property `EmailBounce > from > email`
+
+**Title:** Email
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | Yes      |
+
+**Example:** 
+
+```json
+"jane@example.com"
+```
+
+| Restrictions                      |                                                                                                                                                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)``` [Test](https://regex101.com/?regex=%28%5E%5Ba-zA-Z0-9_.%2B-%5D%2B%40%5Ba-zA-Z0-9-%5D%2B%5C.%5Ba-zA-Z0-9-.%5D%2B%24%29&testString=%22jane%40example.com%22) |
 
 ----------------------------------------------------------------------------------------------------------------------------
 Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans)

@@ -29,6 +29,8 @@
   - [6.1. Property `SMSClick > from > name`](#from_name)
   - [6.2. Property `SMSClick > from > number`](#from_number)
 - [7. Property `SMSClick > to`](#to)
+  - [7.1. Property `SMSClick > from > name`](#from_name)
+  - [7.2. Property `SMSClick > from > number`](#from_number)
 
 **Title:** SMSClick
 
@@ -49,7 +51,7 @@ These events are used to enrich profiles with attributes like “SMS Click Dates
 | - [list](#list )               | No      | object      | No         | In #/definitions/MarketingList | -                 |
 | - [campaign_id](#campaign_id ) | No      | string      | No         | -                              | Campaign Id       |
 | - [from](#from )               | No      | object      | No         | In                             | From              |
-| - [to](#to )                   | No      | object      | No         | Same as [from](#from )         | To                |
+| - [to](#to )                   | No      | object      | No         | In                             | To                |
 
 ## <a name="link"></a>1. Property `SMSClick > link`
 
@@ -497,9 +499,44 @@ Must be one of:
 | **Type**                  | `object`                                                                  |
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
-| **Same definition as**    | [from](#from)                                                             |
+| **Defined in**            |                                                                           |
 
 **Description:** Recipient Details
+
+| Property                  | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [name](#from_name )     | No      | string | No         | -          | Name              |
+| - [number](#from_number ) | No      | string | No         | -          | Number            |
+
+### <a name="from_name"></a>7.1. Property `SMSClick > from > name`
+
+**Title:** Name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Example:** 
+
+```json
+"Jane Doe"
+```
+
+### <a name="from_number"></a>7.2. Property `SMSClick > from > number`
+
+**Title:** Number
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Example:** 
+
+```json
+"61491570006"
+```
 
 ----------------------------------------------------------------------------------------------------------------------------
 Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans)
