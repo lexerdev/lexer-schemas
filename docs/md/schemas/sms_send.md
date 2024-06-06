@@ -29,6 +29,8 @@
   - [6.1. Property `SMSSend > from > name`](#from_name)
   - [6.2. Property `SMSSend > from > number`](#from_number)
 - [7. Property `SMSSend > to`](#to)
+  - [7.1. Property `SMSSend > from > name`](#from_name)
+  - [7.2. Property `SMSSend > from > number`](#from_number)
 - [8. Property `SMSSend > body`](#body)
 
 **Title:** SMSSend
@@ -50,7 +52,7 @@ These events are used to enrich profiles with attributes like “Last SMS Send D
 | - [list](#list )               | No      | object      | No         | In #/definitions/MarketingList | -                 |
 | - [campaign_id](#campaign_id ) | No      | string      | No         | -                              | Campaign Id       |
 | - [from](#from )               | No      | object      | No         | In                             | From              |
-| - [to](#to )                   | No      | object      | No         | Same as [from](#from )         | To                |
+| - [to](#to )                   | No      | object      | No         | In                             | To                |
 | - [body](#body )               | No      | string      | No         | -                              | Body              |
 
 ## <a name="link"></a>1. Property `SMSSend > link`
@@ -499,9 +501,44 @@ Must be one of:
 | **Type**                  | `object`                                                                  |
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
-| **Same definition as**    | [from](#from)                                                             |
+| **Defined in**            |                                                                           |
 
 **Description:** Recipient Details
+
+| Property                  | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ------------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [name](#from_name )     | No      | string | No         | -          | Name              |
+| - [number](#from_number ) | No      | string | No         | -          | Number            |
+
+### <a name="from_name"></a>7.1. Property `SMSSend > from > name`
+
+**Title:** Name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Example:** 
+
+```json
+"Jane Doe"
+```
+
+### <a name="from_number"></a>7.2. Property `SMSSend > from > number`
+
+**Title:** Number
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Example:** 
+
+```json
+"61491570006"
+```
 
 ## <a name="body"></a>8. Property `SMSSend > body`
 
