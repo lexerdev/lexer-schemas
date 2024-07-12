@@ -29,6 +29,8 @@
   - [6.1. Property `EmailSend > from > name`](#from_name)
   - [6.2. Property `EmailSend > from > email`](#from_email)
 - [7. Property `EmailSend > to`](#to)
+  - [7.1. Property `EmailSend > from > name`](#from_name)
+  - [7.2. Property `EmailSend > from > email`](#from_email)
 - [8. Property `EmailSend > subject`](#subject)
 - [9. Property `EmailSend > body`](#body)
 
@@ -51,7 +53,7 @@ These events are used to enrich profiles with attributes like “Number of Email
 | - [list](#list )               | No      | object      | No         | In #/definitions/MarketingList | -                 |
 | - [campaign_id](#campaign_id ) | No      | string      | No         | -                              | Campaign Id       |
 | - [from](#from )               | No      | object      | No         | In                             | From              |
-| - [to](#to )                   | No      | object      | No         | Same as [from](#from )         | To                |
+| - [to](#to )                   | No      | object      | No         | In                             | To                |
 | - [subject](#subject )         | No      | string      | No         | -                              | Subject Line      |
 | - [body](#body )               | No      | string      | No         | -                              | Email Body        |
 
@@ -505,9 +507,48 @@ Must be one of:
 | **Type**                  | `object`                                                                  |
 | **Required**              | No                                                                        |
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
-| **Same definition as**    | [from](#from)                                                             |
+| **Defined in**            |                                                                           |
 
 **Description:** Recipient Details
+
+| Property                | Pattern | Type   | Deprecated | Definition | Title/Description |
+| ----------------------- | ------- | ------ | ---------- | ---------- | ----------------- |
+| - [name](#from_name )   | No      | string | No         | -          | Name              |
+| + [email](#from_email ) | No      | string | No         | -          | Email             |
+
+### <a name="from_name"></a>7.1. Property `EmailSend > from > name`
+
+**Title:** Name
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Example:** 
+
+```json
+"Jane Doe"
+```
+
+### <a name="from_email"></a>7.2. Property `EmailSend > from > email`
+
+**Title:** Email
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | Yes      |
+
+**Example:** 
+
+```json
+"jane@example.com"
+```
+
+| Restrictions                      |                                                                                                                                                                                                                     |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)``` [Test](https://regex101.com/?regex=%28%5E%5Ba-zA-Z0-9_.%2B-%5D%2B%40%5Ba-zA-Z0-9-%5D%2B%5C.%5Ba-zA-Z0-9-.%5D%2B%24%29&testString=%22jane%40example.com%22) |
 
 ## <a name="subject"></a>8. Property `EmailSend > subject`
 
