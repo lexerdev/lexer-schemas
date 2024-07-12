@@ -1,10 +1,9 @@
 from datetime import date
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, Field, validator
-
 from lexer_schemas.common import api_name
 from lexer_schemas.link import Link
+from pydantic import BaseModel, Field, validator
 
 
 @api_name("customer_record")
@@ -68,6 +67,10 @@ class CustomerRecord(BaseModel):
     city: Optional[str] = Field(default=None, title="City", examples=["St Kilda"])
     postcode: Optional[str] = Field(default=None, title="Postcode", examples=["3182"])
     zip: Optional[str] = Field(default=None, title="Zip", examples=["90291"])
+    address_1: Optional[str] = Field(
+        default=None, title="Address 1", examples=["Inkerman St"]
+    )
+    address_2: Optional[str] = Field(default=None, title="Address 2")
     employee_flag: Optional[bool] = Field(
         default=None,
         description="`true` if this customer is an employee of the business. Useful for suppressing them from messages, ad campaigns, and excluding them from searches.",
@@ -76,10 +79,6 @@ class CustomerRecord(BaseModel):
     customer_type: Optional[str] = Field(
         default=None, title="Customer Type", examples=["VIP"]
     )
-    address_1: Optional[str] = Field(
-        default=None, title="Address 1", examples=["Inkerman St"]
-    )
-    address_2: Optional[str] = Field(default=None, title="Address 2")
 
     @validator("email")
     def lower_email(cls, v: str, values: dict) -> Optional[str]:
