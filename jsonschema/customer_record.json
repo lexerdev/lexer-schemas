@@ -149,6 +149,17 @@
       ],
       "type": "string"
     },
+    "address_1": {
+      "title": "Address 1",
+      "examples": [
+        "Inkerman St"
+      ],
+      "type": "string"
+    },
+    "address_2": {
+      "title": "Address 2",
+      "type": "string"
+    },
     "employee_flag": {
       "title": "Employee Flag",
       "description": "`true` if this customer is an employee of the business. Useful for suppressing them from messages, ad campaigns, and excluding them from searches.",
@@ -162,17 +173,6 @@
       "examples": [
         "VIP"
       ],
-      "type": "string"
-    },
-    "address_1": {
-      "title": "Address 1",
-      "examples": [
-        "Inkerman St"
-      ],
-      "type": "string"
-    },
-    "address_2": {
-      "title": "Address 2",
       "type": "string"
     }
   },
