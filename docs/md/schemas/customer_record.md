@@ -33,10 +33,10 @@
 - [13. Property `CustomerRecord > city`](#city)
 - [14. Property `CustomerRecord > postcode`](#postcode)
 - [15. Property `CustomerRecord > zip`](#zip)
-- [16. Property `CustomerRecord > employee_flag`](#employee_flag)
-- [17. Property `CustomerRecord > customer_type`](#customer_type)
-- [18. Property `CustomerRecord > address_1`](#address_1)
-- [19. Property `CustomerRecord > address_2`](#address_2)
+- [16. Property `CustomerRecord > address_1`](#address_1)
+- [17. Property `CustomerRecord > address_2`](#address_2)
+- [18. Property `CustomerRecord > employee_flag`](#employee_flag)
+- [19. Property `CustomerRecord > customer_type`](#customer_type)
 
 **Title:** CustomerRecord
 
@@ -67,10 +67,10 @@ The Lexer CDXP will resolve related customer records into one profile, creating 
 | - [city](#city )                   | No      | string      | No         | -          | City                |
 | - [postcode](#postcode )           | No      | string      | No         | -          | Postcode            |
 | - [zip](#zip )                     | No      | string      | No         | -          | Zip                 |
-| - [employee_flag](#employee_flag ) | No      | boolean     | No         | -          | Employee Flag       |
-| - [customer_type](#customer_type ) | No      | string      | No         | -          | Customer Type       |
 | - [address_1](#address_1 )         | No      | string      | No         | -          | Address 1           |
 | - [address_2](#address_2 )         | No      | string      | No         | -          | Address 2           |
+| - [employee_flag](#employee_flag ) | No      | boolean     | No         | -          | Employee Flag       |
+| - [customer_type](#customer_type ) | No      | string      | No         | -          | Customer Type       |
 
 ## <a name="link"></a>1. Property `CustomerRecord > link`
 
@@ -617,7 +617,31 @@ Must be one of:
 "90291"
 ```
 
-## <a name="employee_flag"></a>16. Property `CustomerRecord > employee_flag`
+## <a name="address_1"></a>16. Property `CustomerRecord > address_1`
+
+**Title:** Address 1
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+**Example:** 
+
+```json
+"Inkerman St"
+```
+
+## <a name="address_2"></a>17. Property `CustomerRecord > address_2`
+
+**Title:** Address 2
+
+|              |          |
+| ------------ | -------- |
+| **Type**     | `string` |
+| **Required** | No       |
+
+## <a name="employee_flag"></a>18. Property `CustomerRecord > employee_flag`
 
 **Title:** Employee Flag
 
@@ -634,7 +658,7 @@ Must be one of:
 false
 ```
 
-## <a name="customer_type"></a>17. Property `CustomerRecord > customer_type`
+## <a name="customer_type"></a>19. Property `CustomerRecord > customer_type`
 
 **Title:** Customer Type
 
@@ -648,30 +672,6 @@ false
 ```json
 "VIP"
 ```
-
-## <a name="address_1"></a>18. Property `CustomerRecord > address_1`
-
-**Title:** Address 1
-
-|              |          |
-| ------------ | -------- |
-| **Type**     | `string` |
-| **Required** | No       |
-
-**Example:** 
-
-```json
-"Inkerman St"
-```
-
-## <a name="address_2"></a>19. Property `CustomerRecord > address_2`
-
-**Title:** Address 2
-
-|              |          |
-| ------------ | -------- |
-| **Type**     | `string` |
-| **Required** | No       |
 
 ----------------------------------------------------------------------------------------------------------------------------
 Generated using [json-schema-for-humans](https://github.com/coveooss/json-schema-for-humans)
