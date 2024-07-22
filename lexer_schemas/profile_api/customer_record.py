@@ -4,7 +4,7 @@ from typing import Any, Dict, Optional
 
 from lexer_schemas.common import api_name
 from lexer_schemas.link import EMAIL_REGEX, Link
-from pydantic import BaseModel, EmailStr, Field, validator
+from pydantic import BaseModel, Field, validator
 
 
 @api_name("customer_record")
@@ -23,7 +23,7 @@ class CustomerRecord(BaseModel):
             {"mobile": "61491570006"},
         ],
     )
-    email: Optional[EmailStr] = Field(
+    email: Optional[str] = Field(
         default=None,
         pattern=EMAIL_REGEX,
         title="Email Address",
