@@ -400,6 +400,7 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
+| **Format**   | `email`  |
 
 **Description:** Raw email address. This will not be used for linking, but is available for use as an attribute in the CDE
 
@@ -408,6 +409,10 @@ Must be one of:
 ```json
 "jane@fake.com"
 ```
+
+| Restrictions                      |                                                                                                                                                                                                                  |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Must match regular expression** | ```(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)``` [Test](https://regex101.com/?regex=%28%5E%5Ba-zA-Z0-9_.%2B-%5D%2B%40%5Ba-zA-Z0-9-%5D%2B%5C.%5Ba-zA-Z0-9-.%5D%2B%24%29&testString=%22jane%40fake.com%22) |
 
 ## <a name="email_sha256"></a>3. Property `CustomerRecord > email_sha256`
 

@@ -45,10 +45,12 @@
     "email": {
       "title": "Email Address",
       "description": "Raw email address. This will not be used for linking, but is available for use as an attribute in the CDE",
+      "pattern": "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
       "examples": [
         "jane@fake.com"
       ],
-      "type": "string"
+      "type": "string",
+      "format": "email"
     },
     "email_sha256": {
       "title": "Email Sha256",

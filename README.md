@@ -38,7 +38,7 @@ Use Lexer Schemas to validate an `ndjson` file against a given record type, then
 ### Testing
 You can run tests by first building the test docker image `docker-compose build test` then running `docker-compose run test`
 
-### Documentation
+### Generate Documentation
 Generate documentation by first building the docs docker image `docker-compose build docs` then running `docker-compose run docs`
 
 ## Deployment
@@ -46,5 +46,6 @@ For now the package is installed from github, we use tags to denote different ve
 The process of deploying changes should be:
 1. Open a PR for your changes
     - Increment the `VERSION`` file to reflect your changes
+    - Re-generate the [documentation](#generate-documentation)
 2. Once approved merge your PR
 3. Tag the latest `main` commit with the same version, either through the UI or the cli `git tag -a 0.0.0 -m "first release" --force && git push origin --tags --force`
