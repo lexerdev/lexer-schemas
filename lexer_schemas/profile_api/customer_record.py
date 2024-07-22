@@ -1,8 +1,9 @@
+import re
 from datetime import date
 from typing import Any, Dict, Optional
 
 from lexer_schemas.common import api_name
-from lexer_schemas.link import Link
+from lexer_schemas.link import EMAIL_REGEX, Link
 from pydantic import BaseModel, Field, validator
 
 
@@ -24,6 +25,7 @@ class CustomerRecord(BaseModel):
     )
     email: Optional[str] = Field(
         default=None,
+        pattern=EMAIL_REGEX,
         title="Email Address",
         description="Raw email address. This will not be used for linking, but is available for use as an attribute in the CDE",
         examples=["jane@fake.com"],
@@ -81,9 +83,11 @@ class CustomerRecord(BaseModel):
     )
 
     @validator("email")
-    def lower_email(cls, v: str, values: dict) -> Optional[str]:
+    def validate_email(cls, v: str, values: dict) -> Optional[str]:
         if v:
-            return v.lower()
+            if not re.match(EMAIL_REGEX, v):
+                raise ValueError("email link value does not match email regex pattern")
+            return v.lower().strip()
         return v
 
     @validator("email_sha256")
