@@ -1,6 +1,6 @@
 import jsonschema
 from datetime import datetime
-from typing import Optional
+from typing import Dict, Optional
 from pydantic import BaseModel, ValidationError
 from lexer_schemas import validation_helper
 
@@ -57,5 +57,5 @@ if "date-time" not in format_checker.checkers:
         DateTimeValidationModel(datetime_validation=instance)
         return True
 
-def setup_lexer_validator(schema):
-    return CustomDraft7Validator(schema, format_checker=format_checker)
+def setup_lexer_validator(schema: Dict, validator = CustomDraft7Validator):
+    return validator(schema, format_checker=format_checker)
