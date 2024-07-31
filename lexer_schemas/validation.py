@@ -58,4 +58,8 @@ if "date-time" not in format_checker.checkers:
         return True
 
 def setup_lexer_validator(schema: Dict, validator = CustomDraft7Validator):
+    """
+    A universal way to setup the jsonschema validation for Lexer's schema events, using the raw_schema and the validation class as parameters
+    The validation class parameter is defaulted to Lexers custom version of the jsonschema.Draft7Validator class
+    """
     return validator(schema, format_checker=format_checker)
