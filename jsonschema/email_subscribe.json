@@ -247,7 +247,7 @@
     },
     "EmailSubscriptionStatus": {
       "title": "EmailSubscriptionStatus",
-      "description": "The type of subscribe event:\n    `subscribed` - explicitly subscribed to marketing emails\n    `unsubscribed` - explicitly unsubscribed from marketing emails\n    `transactional` - **not** explicitly subscribed but can still be sent 'transactional' emails\n    `undeliverable` - **not** explicitly unsubscribed but emails sent to them are bouncing or are otherwise undeliverable\n    ",
+      "description": "\n    The type of subscribe event:\n    `subscribed` - explicitly subscribed to marketing emails\n    `unsubscribed` - explicitly unsubscribed from marketing emails\n    `transactional` - **not** explicitly subscribed but can still be sent 'transactional' emails\n    `undeliverable` - **not** explicitly unsubscribed but emails sent to them are bouncing or are otherwise undeliverable\n    ",
       "enum": [
         "subscribed",
         "unsubscribed",
