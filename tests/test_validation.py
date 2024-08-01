@@ -89,7 +89,6 @@ class TestValidator(unittest.TestCase):
             },
         ]
         self.schema = {
-                "record_table": "schema_event",
                 "title": "Test Event",
                 "description": "An example of an event",
                 "type": "object",
