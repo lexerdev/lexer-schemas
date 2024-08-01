@@ -1,2 +1,2 @@
-lexer_schemas @ git+https://github.com/lexerdev/lexer-schemas@0.3.4
+lexer_schemas @ git+https://github.com/lexerdev/lexer-schemas@0.3.5
 
