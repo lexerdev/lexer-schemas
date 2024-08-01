@@ -49,17 +49,16 @@ class DateTimeValidationModel(BaseModel):
     datetime_validation: Optional[datetime]
 
 
-format_checker = jsonschema.FormatChecker()
-if "date-time" not in format_checker.checkers:
-
-    @format_checker.checks("date-time", ValidationError)
-    def is_date_time(instance):
-        DateTimeValidationModel(datetime_validation=instance)
-        return True
-
 def setup_lexer_validator(schema: Dict, validator = CustomDraft7Validator):
     """
     A universal way to setup the jsonschema validation for Lexer's schema events, using the raw_schema and the validation class as parameters
     The validation class parameter is defaulted to Lexers custom version of the jsonschema.Draft7Validator class
     """
+    format_checker = jsonschema.FormatChecker()
+    if "date-time" not in format_checker.checkers:
+        @format_checker.checks("date-time", ValidationError)
+        def is_date_time(instance):
+            DateTimeValidationModel(datetime_validation=instance)
+            return True
+
     return validator(schema, format_checker=format_checker)
