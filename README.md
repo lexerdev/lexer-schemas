@@ -6,9 +6,9 @@ This repository contains schemas for Lexer public data ingestion API's
 [![Pydantic v1](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/pydantic/pydantic/main/docs/badge/v1.json)](https://pydantic.dev)
 
 ## Installation
-Install by running `pip install git+https://github.com/lexerdev/lexer-schemas@0.3.5` in the command line.
+Install by running `pip install git+https://github.com/lexerdev/lexer-schemas@0.3.6` in the command line.
 
-Or you can add `lexer_schemas @ git+https://github.com/lexerdev/lexer-schemas@0.3.5` to your `requirements.txt` file.
+Or you can add `lexer_schemas @ git+https://github.com/lexerdev/lexer-schemas@0.3.6` to your `requirements.txt` file.
 
 ## Usage
 ```python
@@ -48,4 +48,4 @@ The process of deploying changes should be:
     - Increment the `VERSION`` file to reflect your changes
     - Re-generate the [documentation](#generate-documentation)
 2. Once approved merge your PR
-3. Tag the latest `main` commit with the same version, either through the UI or the cli `git tag -a 0.0.0 -m "first release" --force && git push origin --tags --force`
+3. Tag the latest `main` commit with the same version, either through the UI or the cli `git tag -a <your_VERSION_number> -m "<helpful message>" --force && git push origin --tags --force`

@@ -85,9 +85,9 @@ class CustomerRecord(BaseModel):
     @validator("email")
     def validate_email(cls, v: str, values: dict) -> Optional[str]:
         if v:
+            v = v.lower().strip()
             if not re.match(EMAIL_REGEX, v):
-                raise ValueError("email link value does not match email regex pattern")
-            return v.lower().strip()
+                raise ValueError("customer email value does not match email regex pattern")
         return v
 
     @validator("email_sha256")
