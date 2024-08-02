@@ -48,4 +48,4 @@ The process of deploying changes should be:
     - Increment the `VERSION`` file to reflect your changes
     - Re-generate the [documentation](#generate-documentation)
 2. Once approved merge your PR
-3. Tag the latest `main` commit with the same version, either through the UI or the cli `git tag -a 0.0.0 -m "first release" --force && git push origin --tags --force`
+3. Tag the latest `main` commit with the same version, either through the UI or the cli `git tag -a <your_VERSION_number> -m "<helpful message>" --force && git push origin --tags --force`

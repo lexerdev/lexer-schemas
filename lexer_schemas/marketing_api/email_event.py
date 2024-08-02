@@ -23,9 +23,10 @@ class EmailAddress(BaseModel):
 
     @validator("email")
     def validate_email(cls, v: str, values: dict) -> str:
-        if not re.match(EMAIL_REGEX, v.lower().strip()):
+        v = v.lower().strip()
+        if not re.match(EMAIL_REGEX, v):
             raise ValueError("email value does not match email regex pattern")
-        return v.lower().strip()
+        return v
 
 
 class BaseEmailEvent(BaseEvent):
