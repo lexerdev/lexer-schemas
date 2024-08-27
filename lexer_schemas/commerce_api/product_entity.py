@@ -1,4 +1,7 @@
+from __future__ import annotations
 from typing import Dict, List, Optional
+from datetime import datetime
+from enum import Enum
 
 from pydantic import BaseModel, Field, root_validator
 from pydantic.networks import HttpUrl
@@ -74,6 +77,8 @@ class ProductRecord(BaseModel):
         examples=[["https://fake.com/images/menswear/sawyer-rib-crew-knit.jpg"]],
         default=None,
     )
+    availability: Optional[ProductAvailability]
+    inventory: Optional[ProductInventory]
 
     @root_validator
     def validate_reference_type(cls, values: dict) -> dict:
@@ -101,3 +106,37 @@ class ProductRecord(BaseModel):
         elif product_reference_type is None:
             raise ValueError("product_reference_type should not be None.")
         return values
+
+
+class ProductChannel(str, Enum):
+    instore = "instore"
+    ecommerce = "ecommerce"
+
+
+class ProductChannelAvailability(BaseModel):
+    type: ProductChannel
+    available: bool = Field(
+        description="Is the product available for purchase via this specific channel?"
+    )
+    published_at: Optional[datetime] = Field(
+        description="When the product was published, or is going to be published to this channel."
+    )
+    unpublished_at: Optional[datetime] = Field(
+        description="When the product was unpublished, or is going to be unpublished to this channel."
+    )
+
+
+class ProductAvailability(BaseModel):
+    available: bool = Field(
+        description="A product is available when it is suitable for sale in any channel, or can be promoted in marketing communications."
+    )
+    channels_availability: Optional[List[ProductChannelAvailability]]
+
+
+class LexerProductConfig(BaseModel):
+    recommendable: Optional[bool] = Field(
+        description="When set to False, the product will be excluded from the output of Product Recommender, e.g.: Free Shipping, Enviro Bag.",
+    )
+    marketable: Optional[bool] = Field(
+        description="When set to False, the product will be excluded from the output of Product Recommender, and Product Attributes, e.g.: Promotional Stickers, any low-margin products.",
+    )
