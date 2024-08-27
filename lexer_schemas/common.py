@@ -18,6 +18,11 @@ def api_name(name):
     return wrapped
 
 
+class Channel(str, Enum):
+    instore = "instore"
+    ecommerce = "ecommerce"
+
+
 class ProductReferenceType(Enum):
     sku = "sku"
     upc = "upc"

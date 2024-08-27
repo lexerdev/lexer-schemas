@@ -5,7 +5,7 @@ from enum import Enum
 from pydantic import BaseModel, Field, root_validator, NonNegativeFloat
 from pydantic.networks import HttpUrl
 
-from lexer_schemas.common import ProductReferenceType, api_name
+from lexer_schemas.common import ProductReferenceType, Channel, api_name
 
 
 @api_name("product")
@@ -76,11 +76,11 @@ class ProductRecord(BaseModel):
         examples=[["https://fake.com/images/menswear/sawyer-rib-crew-knit.jpg"]],
         default=None,
     )
-    availability: Optional['ProductAvailability'] = Field(
+    availability: Optional["ProductAvailability"] = Field(
         title="Product Availability",
         default=None,
     )
-    inventory: Optional['ProductInventory'] = Field(
+    inventory: Optional["ProductInventory"] = Field(
         title="Product Inventory",
         default=None,
     )
@@ -136,13 +136,9 @@ class ProductInventory(BaseModel):
         description="When the product inventory status was last updated"
     )
 
-class ProductChannel(str, Enum):
-    instore = "instore"
-    ecommerce = "ecommerce"
-
 
 class ProductChannelAvailability(BaseModel):
-    type: ProductChannel
+    type: Channel
     available: bool = Field(
         description="Is the product available for purchase via this specific channel?"
     )
