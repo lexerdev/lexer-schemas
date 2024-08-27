@@ -1,9 +1,8 @@
-from __future__ import annotations
 from typing import Dict, List, Optional
 from datetime import datetime
 from enum import Enum
 
-from pydantic import BaseModel, Field, root_validator
+from pydantic import BaseModel, Field, root_validator, NonNegativeFloat
 from pydantic.networks import HttpUrl
 
 from lexer_schemas.common import ProductReferenceType, api_name
@@ -77,8 +76,14 @@ class ProductRecord(BaseModel):
         examples=[["https://fake.com/images/menswear/sawyer-rib-crew-knit.jpg"]],
         default=None,
     )
-    availability: Optional[ProductAvailability]
-    inventory: Optional[ProductInventory]
+    availability: Optional['ProductAvailability'] = Field(
+        title="Product Availability",
+        default=None,
+    )
+    inventory: Optional['ProductInventory'] = Field(
+        title="Product Inventory",
+        default=None,
+    )
 
     @root_validator
     def validate_reference_type(cls, values: dict) -> dict:
@@ -107,6 +112,29 @@ class ProductRecord(BaseModel):
             raise ValueError("product_reference_type should not be None.")
         return values
 
+
+class ProductInventory(BaseModel):
+    id: Optional[str] = Field(
+        description="Identifier of product in the inventory system"
+    )
+    source: Optional[str] = Field(
+        description="Source of inventory product data, e.g. Shopify, Magento.."
+    )
+    quantity: Optional[int] = Field(
+        description="Total number of remaining product units"
+    )
+    cost: Optional[NonNegativeFloat] = Field(
+        description="Total expenditure incurred to produce, store and sell one unit of product"
+    )
+    backorder_allowed: Optional[bool] = Field(
+        description="Can the product item be ordered when it's out of stock?"
+    )
+    tracked: Optional[bool] = Field(
+        description="Is the product quantity being tracked?"
+    )
+    updated_at: Optional[datetime] = Field(
+        description="When the product inventory status was last updated"
+    )
 
 class ProductChannel(str, Enum):
     instore = "instore"
