@@ -78,10 +78,12 @@ class ProductRecord(BaseModel):
     )
     availability: Optional["ProductAvailability"] = Field(
         title="Product Availability",
+        description="The availabitlity of the product.",
         default=None,
     )
     inventory: Optional["ProductInventory"] = Field(
         title="Product Inventory",
+        description="The inventory status of the product.",
         default=None,
     )
 
@@ -113,54 +115,58 @@ class ProductRecord(BaseModel):
         return values
 
 
-class ProductInventory(BaseModel):
-    id: Optional[str] = Field(
-        description="Identifier of product in the inventory system"
+class ProductAvailability(BaseModel):
+    available: bool = Field(
+        description="A product is available when it is suitable for sale in any channel, or can be promoted in marketing communications.",
+        examples=[False],
     )
-    source: Optional[str] = Field(
-        description="Source of inventory product data, e.g. Shopify, Magento.."
-    )
-    quantity: Optional[int] = Field(
-        description="Total number of remaining product units"
-    )
-    cost: Optional[NonNegativeFloat] = Field(
-        description="Total expenditure incurred to produce, store and sell one unit of product"
-    )
-    backorder_allowed: Optional[bool] = Field(
-        description="Can the product item be ordered when it's out of stock?"
-    )
-    tracked: Optional[bool] = Field(
-        description="Is the product quantity being tracked?"
-    )
-    updated_at: Optional[datetime] = Field(
-        description="When the product inventory status was last updated"
+    channels_availability: Optional[List["ProductChannelAvailability"]] = Field(
+        description="A list of channel specific availability statuses.",
     )
 
 
 class ProductChannelAvailability(BaseModel):
     type: Channel
     available: bool = Field(
-        description="Is the product available for purchase via this specific channel?"
+        description="Is the product available for purchase via this specific channel?",
+        examples=[False],
     )
     published_at: Optional[datetime] = Field(
-        description="When the product was published, or is going to be published to this channel."
+        description="An ISO8601 datetime string for when the product was published, or is going to be published to this channel.",
+        examples=["2024-01-01T00:00:00Z"],
     )
     unpublished_at: Optional[datetime] = Field(
-        description="When the product was unpublished, or is going to be unpublished to this channel."
+        description="An ISO8601 datetime string for when the product was unpublished, or is going to be unpublished to this channel.",
+        examples=["2025-01-01T00:00:00Z"],
     )
 
 
-class ProductAvailability(BaseModel):
-    available: bool = Field(
-        description="A product is available when it is suitable for sale in any channel, or can be promoted in marketing communications."
+class ProductInventory(BaseModel):
+    id: Optional[str] = Field(
+        description="Identifier of product in the inventory system",
+        examples=["lzx0h1..."],
     )
-    channels_availability: Optional[List[ProductChannelAvailability]]
-
-
-class LexerProductConfig(BaseModel):
-    recommendable: Optional[bool] = Field(
-        description="When set to False, the product will be excluded from the output of Product Recommender, e.g.: Free Shipping, Enviro Bag.",
+    source: Optional[str] = Field(
+        description="Source of inventory product data, e.g. Shopify, Magento..",
+        examples=["Shopify"],
     )
-    marketable: Optional[bool] = Field(
-        description="When set to False, the product will be excluded from the output of Product Recommender, and Product Attributes, e.g.: Promotional Stickers, any low-margin products.",
+    quantity: Optional[int] = Field(
+        description="Total number of remaining product units",
+        examples=[99],
+    )
+    cost: Optional[NonNegativeFloat] = Field(
+        description="Total expenditure incurred to produce, store and sell one unit of product",
+        examples=[50.00],
+    )
+    backorder_allowed: Optional[bool] = Field(
+        description="Can the product item be ordered when it's out of stock?",
+        examples=[False],
+    )
+    tracked: Optional[bool] = Field(
+        description="Is the product quantity being tracked?",
+        examples=[False],
+    )
+    updated_at: Optional[datetime] = Field(
+        description="An ISO8601 datetime string for when the product inventory status was last updated",
+        examples=["2024-01-01T00:00:00Z"],
     )
