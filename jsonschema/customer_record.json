@@ -49,8 +49,7 @@
       "examples": [
         "jane@fake.com"
       ],
-      "type": "string",
-      "format": "email"
+      "type": "string"
     },
     "email_sha256": {
       "title": "Email Sha256",

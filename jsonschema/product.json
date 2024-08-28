@@ -1,0 +1,298 @@
+{
+  "title": "ProductRecord",
+  "description": "A product object `record_type=product`.\nProduct records are used to represent the current and historical products offered by your brand, including your product taxonomy.\nThe field referenced in `product_reference_type` should be unique and used in purchase and return events.",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "title": "Product ID",
+      "description": "Unique product_id. Required if `product_id` is used as the product identifier in `product_reference_type`.",
+      "examples": [
+        "b7c901..."
+      ],
+      "type": "string"
+    },
+    "sku": {
+      "title": "SKU",
+      "description": "Unique SKU. Required if `sku` is used as a product identifier in `product_reference_type`.",
+      "examples": [
+        "ac6674..."
+      ],
+      "type": "string"
+    },
+    "upc": {
+      "title": "UPC",
+      "description": "Unique UPC. Required if `upc` is used as a product identifier in `product_reference_type`.",
+      "examples": [
+        "ce6378..."
+      ],
+      "type": "string"
+    },
+    "product_reference_type": {
+      "title": "Product Reference Type",
+      "description": "Which field is used to identify the product entity. A value must be provided in the specified field.",
+      "default": "product_id",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProductReferenceType"
+        }
+      ]
+    },
+    "name": {
+      "title": "Product Name",
+      "examples": [
+        "Organic Sawyer Rib Crew Knit"
+      ],
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "examples": [
+        "Whether your look is clean and casual or sharp and sophisticated, Staple Superior has what you need to achieve that effortlessly cool style."
+      ],
+      "type": "string"
+    },
+    "brand": {
+      "title": "Brand Name",
+      "examples": [
+        "Sawyer"
+      ],
+      "type": "string"
+    },
+    "size": {
+      "title": "Size",
+      "examples": [
+        "L"
+      ],
+      "type": "string"
+    },
+    "color": {
+      "title": "Color",
+      "examples": [
+        "Navy"
+      ],
+      "type": "string"
+    },
+    "price": {
+      "title": "Price",
+      "examples": [
+        89.0
+      ],
+      "type": "number"
+    },
+    "options": {
+      "title": "Categories",
+      "description": "Key value pairs of options that define the product, such as departments, categories, styles, etc.",
+      "examples": [
+        {
+          "department": [
+            "menswear"
+          ],
+          "category": [
+            "outerwear"
+          ],
+          "subcategory": [
+            "knits",
+            "wool"
+          ]
+        }
+      ],
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "url": {
+      "title": "Product URL",
+      "description": "A URL to the product listed on the public internet - i.e., an ecommerce link.",
+      "examples": [
+        "https://fake.com/menswear/sawyer-rib-crew-knit"
+      ],
+      "type": "string"
+    },
+    "images": {
+      "title": "Image URLs",
+      "description": "An array of Product Image URLs listed on the public internet.",
+      "examples": [
+        [
+          "https://fake.com/images/menswear/sawyer-rib-crew-knit.jpg"
+        ]
+      ],
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2083,
+        "format": "uri"
+      }
+    },
+    "availability": {
+      "title": "Product Availability",
+      "description": "The availabitlity of the product.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProductAvailability"
+        }
+      ]
+    },
+    "inventory": {
+      "title": "Product Inventory",
+      "description": "The inventory status of the product.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProductInventory"
+        }
+      ]
+    }
+  },
+  "definitions": {
+    "ProductReferenceType": {
+      "title": "ProductReferenceType",
+      "description": "An enumeration.",
+      "enum": [
+        "sku",
+        "upc",
+        "product_id"
+      ]
+    },
+    "Channel": {
+      "title": "Channel",
+      "description": "An enumeration.",
+      "enum": [
+        "instore",
+        "ecommerce"
+      ],
+      "type": "string"
+    },
+    "ProductChannelAvailability": {
+      "title": "ProductChannelAvailability",
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/Channel"
+        },
+        "available": {
+          "title": "Available",
+          "description": "Is the product available for purchase via this specific channel?",
+          "examples": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "published_at": {
+          "title": "Published At",
+          "description": "An ISO8601 datetime string for when the product was published, or is going to be published to this channel.",
+          "examples": [
+            "2024-01-01T00:00:00Z"
+          ],
+          "type": "string",
+          "format": "date-time"
+        },
+        "unpublished_at": {
+          "title": "Unpublished At",
+          "description": "An ISO8601 datetime string for when the product was unpublished, or is going to be unpublished to this channel.",
+          "examples": [
+            "2025-01-01T00:00:00Z"
+          ],
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "type",
+        "available"
+      ]
+    },
+    "ProductAvailability": {
+      "title": "ProductAvailability",
+      "type": "object",
+      "properties": {
+        "available": {
+          "title": "Available",
+          "description": "A product is available when it is suitable for sale in any channel, or can be promoted in marketing communications.",
+          "examples": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "channels_availability": {
+          "title": "Channels Availability",
+          "description": "A list of channel specific availability statuses.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductChannelAvailability"
+          }
+        }
+      },
+      "required": [
+        "available"
+      ]
+    },
+    "ProductInventory": {
+      "title": "ProductInventory",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "Identifier of product in the inventory system",
+          "examples": [
+            "lzx0h1..."
+          ],
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "description": "Source of inventory product data, e.g. Shopify, Magento..",
+          "examples": [
+            "Shopify"
+          ],
+          "type": "string"
+        },
+        "quantity": {
+          "title": "Quantity",
+          "description": "Total number of remaining product units",
+          "examples": [
+            99
+          ],
+          "type": "integer"
+        },
+        "cost": {
+          "title": "Cost",
+          "description": "Total expenditure incurred to produce, store and sell one unit of product",
+          "examples": [
+            50.0
+          ],
+          "minimum": 0,
+          "type": "number"
+        },
+        "backorder_allowed": {
+          "title": "Backorder Allowed",
+          "description": "Can the product item be ordered when it's out of stock?",
+          "examples": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "tracked": {
+          "title": "Tracked",
+          "description": "Is the product quantity being tracked?",
+          "examples": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "updated_at": {
+          "title": "Updated At",
+          "description": "An ISO8601 datetime string for when the product inventory status was last updated",
+          "examples": [
+            "2024-01-01T00:00:00Z"
+          ],
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}
