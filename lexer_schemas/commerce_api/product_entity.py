@@ -7,6 +7,9 @@ from pydantic.networks import HttpUrl
 
 from lexer_schemas.common import ProductReferenceType, Channel, api_name
 
+# Note: the ordering of these classes must be maintained so that the type hints are defined before being used.
+# Changing the order causes an issue when generating the docs https://github.com/pydantic/pydantic/issues/545
+
 
 class ProductChannelAvailability(BaseModel):
     type: Channel
