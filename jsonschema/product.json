@@ -130,7 +130,7 @@
     },
     "availability": {
       "title": "Product Availability",
-      "description": "The availabitlity of the product.",
+      "description": "The availability status of the product.",
       "allOf": [
         {
           "$ref": "#/definitions/ProductAvailability"
@@ -161,7 +161,7 @@
       "title": "Channel",
       "description": "An enumeration.",
       "enum": [
-        "instore",
+        "physical",
         "ecommerce"
       ],
       "type": "string"
@@ -171,7 +171,15 @@
       "type": "object",
       "properties": {
         "type": {
-          "$ref": "#/definitions/Channel"
+          "description": "The channel which this availability record relates to.",
+          "examples": [
+            "ecommerce"
+          ],
+          "allOf": [
+            {
+              "$ref": "#/definitions/Channel"
+            }
+          ]
         },
         "available": {
           "title": "Available",
@@ -236,7 +244,7 @@
       "properties": {
         "id": {
           "title": "Id",
-          "description": "Identifier of product in the inventory system",
+          "description": "Identifier of product in the inventory system.",
           "examples": [
             "lzx0h1..."
           ],
@@ -252,7 +260,7 @@
         },
         "quantity": {
           "title": "Quantity",
-          "description": "Total number of remaining product units",
+          "description": "Total number of remaining product units.",
           "examples": [
             99
           ],
@@ -260,7 +268,7 @@
         },
         "cost": {
           "title": "Cost",
-          "description": "Total expenditure incurred to produce, store and sell one unit of product",
+          "description": "Total expenditure incurred to produce, store and sell one unit of product.",
           "examples": [
             50.0
           ],
@@ -285,7 +293,7 @@
         },
         "updated_at": {
           "title": "Updated At",
-          "description": "An ISO8601 datetime string for when the product inventory status was last updated",
+          "description": "An ISO8601 datetime string for when the product inventory status was last updated.",
           "examples": [
             "2024-01-01T00:00:00Z"
           ],

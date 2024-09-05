@@ -64,18 +64,18 @@
 **Description:** A purchase event object `record_type=purchase`.
 Represents transaction data and is used to enrich profiles with their complete purchase history.
 
-| Property                           | Pattern | Type             | Deprecated | Definition                    | Title/Description |
-| ---------------------------------- | ------- | ---------------- | ---------- | ----------------------------- | ----------------- |
-| + [link](#link )                   | No      | Combination      | No         | -                             | Link              |
-| + [action_at](#action_at )         | No      | string           | No         | -                             | Action At         |
-| + [type](#type )                   | No      | enum (of string) | No         | In #/definitions/PurchaseType | An enumeration.   |
-| - [currency](#currency )           | No      | string           | No         | -                             | Currency          |
-| - [adjustments](#adjustments )     | No      | array            | No         | -                             | Adjustments       |
-| - [custom_fields](#custom_fields ) | No      | object           | No         | -                             | Custom Fields     |
-| - [store](#store )                 | No      | object           | No         | In #/definitions/Store        | A store entity.   |
-| + [purchase_id](#purchase_id )     | No      | string           | No         | -                             | Purchase Id       |
-| - [payment_types](#payment_types ) | No      | array            | No         | -                             | Payment Types     |
-| + [products](#products )           | No      | array            | No         | -                             | Products          |
+| Property                           | Pattern | Type             | Deprecated | Definition               | Title/Description |
+| ---------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
+| + [link](#link )                   | No      | Combination      | No         | -                        | Link              |
+| + [action_at](#action_at )         | No      | string           | No         | -                        | Action At         |
+| + [type](#type )                   | No      | enum (of string) | No         | In #/definitions/Channel | An enumeration.   |
+| - [currency](#currency )           | No      | string           | No         | -                        | Currency          |
+| - [adjustments](#adjustments )     | No      | array            | No         | -                        | Adjustments       |
+| - [custom_fields](#custom_fields ) | No      | object           | No         | -                        | Custom Fields     |
+| - [store](#store )                 | No      | object           | No         | In #/definitions/Store   | A store entity.   |
+| + [purchase_id](#purchase_id )     | No      | string           | No         | -                        | Purchase Id       |
+| - [payment_types](#payment_types ) | No      | array            | No         | -                        | Payment Types     |
+| + [products](#products )           | No      | array            | No         | -                        | Products          |
 
 ## <a name="link"></a>1. Property `PurchaseEvent > link`
 
@@ -386,11 +386,11 @@ Must be one of:
 
 ## <a name="type"></a>3. Property `PurchaseEvent > type`
 
-|                |                            |
-| -------------- | -------------------------- |
-| **Type**       | `enum (of string)`         |
-| **Required**   | Yes                        |
-| **Defined in** | #/definitions/PurchaseType |
+|                |                       |
+| -------------- | --------------------- |
+| **Type**       | `enum (of string)`    |
+| **Required**   | Yes                   |
+| **Defined in** | #/definitions/Channel |
 
 **Description:** An enumeration.
 
@@ -523,12 +523,12 @@ Must be one of:
 
 **Description:** A store entity.
 
-| Property                       | Pattern | Type             | Deprecated | Definition                   | Title/Description |
-| ------------------------------ | ------- | ---------------- | ---------- | ---------------------------- | ----------------- |
-| - [store_id](#store_store_id ) | No      | string           | No         | -                            | Store Id          |
-| + [type](#store_type )         | No      | enum (of string) | No         | In #/definitions/StoreType   | An enumeration.   |
-| + [name](#store_name )         | No      | string           | No         | -                            | Name              |
-| - [location](#store_location ) | No      | object           | No         | In #/definitions/GeoLocation | -                 |
+| Property                       | Pattern | Type             | Deprecated | Definition                   | Title/Description                                                                                                                                                            |
+| ------------------------------ | ------- | ---------------- | ---------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| - [store_id](#store_store_id ) | No      | string           | No         | -                            | Store Id                                                                                                                                                                     |
+| + [type](#store_type )         | No      | enum (of string) | No         | In                           | <br />        The type of store. <br />        Note: \`online\` has been deprecated and may be removed in the future. <br />        Use \`ecommerce\` instead.<br />         |
+| + [name](#store_name )         | No      | string           | No         | -                            | Name                                                                                                                                                                         |
+| - [location](#store_location ) | No      | object           | No         | In #/definitions/GeoLocation | -                                                                                                                                                                            |
 
 ### <a name="store_store_id"></a>7.1. Property `PurchaseEvent > store > store_id`
 
@@ -547,19 +547,35 @@ Must be one of:
 
 ### <a name="store_type"></a>7.2. Property `PurchaseEvent > store > type`
 
-|                |                         |
-| -------------- | ----------------------- |
-| **Type**       | `enum (of string)`      |
-| **Required**   | Yes                     |
-| **Defined in** | #/definitions/StoreType |
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | Yes                |
+| **Defined in** |                    |
 
-**Description:** An enumeration.
+**Description:** 
+        The type of store. 
+        Note: `online` has been deprecated and may be removed in the future. 
+        Use `ecommerce` instead.
+
+**Example:** 
+
+```json
+"ecommerce"
+```
+
+**Example:** 
+
+```json
+"ecommerce"
+```
 
 Must be one of:
 * "physical"
-* "online"
+* "ecommerce"
 * "concession"
 * "outlet"
+* "online"
 
 ### <a name="store_name"></a>7.3. Property `PurchaseEvent > store > name`
 

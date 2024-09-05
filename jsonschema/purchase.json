@@ -35,7 +35,7 @@
       "format": "date-time"
     },
     "type": {
-      "$ref": "#/definitions/PurchaseType"
+      "$ref": "#/definitions/Channel"
     },
     "currency": {
       "title": "Currency",
@@ -261,13 +261,14 @@
       ],
       "additionalProperties": false
     },
-    "PurchaseType": {
-      "title": "PurchaseType",
+    "Channel": {
+      "title": "Channel",
       "description": "An enumeration.",
       "enum": [
         "physical",
         "ecommerce"
-      ]
+      ],
+      "type": "string"
     },
     "TransactionAdjustment": {
       "title": "TransactionAdjustment",
@@ -302,9 +303,10 @@
       "description": "An enumeration.",
       "enum": [
         "physical",
-        "online",
+        "ecommerce",
         "concession",
-        "outlet"
+        "outlet",
+        "online"
       ]
     },
     "GeoCoordinate": {
@@ -358,7 +360,15 @@
           "type": "string"
         },
         "type": {
-          "$ref": "#/definitions/StoreType"
+          "description": "\n        The type of store. \n        Note: `online` has been deprecated and may be removed in the future. \n        Use `ecommerce` instead.\n        ",
+          "examples": [
+            "ecommerce"
+          ],
+          "allOf": [
+            {
+              "$ref": "#/definitions/StoreType"
+            }
+          ]
         },
         "name": {
           "title": "Name",

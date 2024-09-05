@@ -353,7 +353,7 @@ Must be one of:
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 | **Defined in**            |                                                                           |
 
-**Description:** The availabitlity of the product.
+**Description:** The availability status of the product.
 
 | Property                                                        | Pattern | Type    | Deprecated | Definition | Title/Description     |
 | --------------------------------------------------------------- | ------- | ------- | ---------- | ---------- | --------------------- |
@@ -409,25 +409,37 @@ false
 | **Additional properties** | [[Any type: allowed]](# "Additional Properties of any type are allowed.") |
 | **Defined in**            | #/definitions/ProductChannelAvailability                                  |
 
-| Property                                                                      | Pattern | Type             | Deprecated | Definition               | Title/Description |
-| ----------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ------------------------ | ----------------- |
-| + [type](#availability_channels_availability_items_type )                     | No      | enum (of string) | No         | In #/definitions/Channel | An enumeration.   |
-| + [available](#availability_channels_availability_items_available )           | No      | boolean          | No         | -                        | Available         |
-| - [published_at](#availability_channels_availability_items_published_at )     | No      | string           | No         | -                        | Published At      |
-| - [unpublished_at](#availability_channels_availability_items_unpublished_at ) | No      | string           | No         | -                        | Unpublished At    |
+| Property                                                                      | Pattern | Type             | Deprecated | Definition | Title/Description                                      |
+| ----------------------------------------------------------------------------- | ------- | ---------------- | ---------- | ---------- | ------------------------------------------------------ |
+| + [type](#availability_channels_availability_items_type )                     | No      | enum (of string) | No         | In         | The channel which this availability record relates to. |
+| + [available](#availability_channels_availability_items_available )           | No      | boolean          | No         | -          | Available                                              |
+| - [published_at](#availability_channels_availability_items_published_at )     | No      | string           | No         | -          | Published At                                           |
+| - [unpublished_at](#availability_channels_availability_items_unpublished_at ) | No      | string           | No         | -          | Unpublished At                                         |
 
 ##### <a name="availability_channels_availability_items_type"></a>14.2.1.1. Property `ProductRecord > availability > channels_availability > ProductChannelAvailability > type`
 
-|                |                       |
-| -------------- | --------------------- |
-| **Type**       | `enum (of string)`    |
-| **Required**   | Yes                   |
-| **Defined in** | #/definitions/Channel |
+|                |                    |
+| -------------- | ------------------ |
+| **Type**       | `enum (of string)` |
+| **Required**   | Yes                |
+| **Defined in** |                    |
 
-**Description:** An enumeration.
+**Description:** The channel which this availability record relates to.
+
+**Example:** 
+
+```json
+"ecommerce"
+```
+
+**Example:** 
+
+```json
+"ecommerce"
+```
 
 Must be one of:
-* "instore"
+* "physical"
 * "ecommerce"
 
 ##### <a name="availability_channels_availability_items_available"></a>14.2.1.2. Property `ProductRecord > availability > channels_availability > ProductChannelAvailability > available`
@@ -515,7 +527,7 @@ false
 | **Type**     | `string` |
 | **Required** | No       |
 
-**Description:** Identifier of product in the inventory system
+**Description:** Identifier of product in the inventory system.
 
 **Example:** 
 
@@ -549,7 +561,7 @@ false
 | **Type**     | `integer` |
 | **Required** | No        |
 
-**Description:** Total number of remaining product units
+**Description:** Total number of remaining product units.
 
 **Example:** 
 
@@ -566,7 +578,7 @@ false
 | **Type**     | `number` |
 | **Required** | No       |
 
-**Description:** Total expenditure incurred to produce, store and sell one unit of product
+**Description:** Total expenditure incurred to produce, store and sell one unit of product.
 
 **Example:** 
 
@@ -622,7 +634,7 @@ false
 | **Required** | No          |
 | **Format**   | `date-time` |
 
-**Description:** An ISO8601 datetime string for when the product inventory status was last updated
+**Description:** An ISO8601 datetime string for when the product inventory status was last updated.
 
 **Example:** 
 
