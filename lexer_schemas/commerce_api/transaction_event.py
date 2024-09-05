@@ -4,13 +4,14 @@ from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, Field, confloat, conint
 
-from lexer_schemas.common import BaseEvent, ProductReferenceType, Store, api_name
+from lexer_schemas.common import (
+    BaseEvent,
+    Channel,
+    ProductReferenceType,
+    Store,
+    api_name,
+)
 from lexer_schemas.link import Link
-
-
-class PurchaseType(Enum):
-    physical = "physical"
-    ecommerce = "ecommerce"
 
 
 class ProductReference(BaseModel):
@@ -45,7 +46,7 @@ class PaymentType(BaseModel):
 
 
 class BaseTransactionEvent(BaseEvent):
-    type: PurchaseType
+    type: Channel
     currency: Optional[str] = Field(
         description="Currency code as ISO 4217", examples=["USD"], default=None
     )

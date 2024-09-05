@@ -19,7 +19,7 @@ def api_name(name):
 
 
 class Channel(str, Enum):
-    instore = "instore"
+    physical = "physical"
     ecommerce = "ecommerce"
 
 

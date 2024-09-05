@@ -12,7 +12,10 @@ from lexer_schemas.common import ProductReferenceType, Channel, api_name
 
 
 class ProductChannelAvailability(BaseModel):
-    type: Channel
+    type: Channel = Field(
+        description="The channel which this availability record relates to.",
+        examples=[Channel.ecommerce],
+    )
     available: bool = Field(
         description="Is the product available for purchase via this specific channel?",
         examples=[False],
@@ -39,7 +42,7 @@ class ProductAvailability(BaseModel):
 
 class ProductInventory(BaseModel):
     id: Optional[str] = Field(
-        description="Identifier of product in the inventory system",
+        description="Identifier of product in the inventory system.",
         examples=["lzx0h1..."],
     )
     source: Optional[str] = Field(
@@ -47,11 +50,11 @@ class ProductInventory(BaseModel):
         examples=["Shopify"],
     )
     quantity: Optional[int] = Field(
-        description="Total number of remaining product units",
+        description="Total number of remaining product units.",
         examples=[99],
     )
     cost: Optional[NonNegativeFloat] = Field(
-        description="Total expenditure incurred to produce, store and sell one unit of product",
+        description="Total expenditure incurred to produce, store and sell one unit of product.",
         examples=[50.00],
     )
     backorder_allowed: Optional[bool] = Field(
@@ -63,7 +66,7 @@ class ProductInventory(BaseModel):
         examples=[False],
     )
     updated_at: Optional[datetime] = Field(
-        description="An ISO8601 datetime string for when the product inventory status was last updated",
+        description="An ISO8601 datetime string for when the product inventory status was last updated.",
         examples=["2024-01-01T00:00:00Z"],
     )
 
@@ -138,7 +141,7 @@ class ProductRecord(BaseModel):
     )
     availability: Optional[ProductAvailability] = Field(
         title="Product Availability",
-        description="The availabitlity of the product.",
+        description="The availability status of the product.",
         default=None,
     )
     inventory: Optional[ProductInventory] = Field(
