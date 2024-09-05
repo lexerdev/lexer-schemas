@@ -43,16 +43,25 @@ class GeoLocation(BaseModel):
 
 class StoreType(Enum):
     physical = "physical"
-    online = "online"
+    ecommerce = "ecommerce"
     concession = "concession"
     outlet = "outlet"
+    # online is in the process of being deprecated in favour of ecommerce
+    online = "online"
 
 
 class Store(BaseModel):
     """A store entity."""
 
     store_id: Optional[str] = Field(examples=["40bf96..."], default=None)
-    type: StoreType
+    type: StoreType = Field(
+        description="""
+        The type of store. 
+        Note: `online` has been deprecated and may be removed in the future. 
+        Use `ecommerce` instead.
+        """,
+        examples=[StoreType.ecommerce],
+    )
     name: str = Field(examples=["St Kilda Outlet"])
     location: Optional[GeoLocation] = None
 
