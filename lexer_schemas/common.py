@@ -23,7 +23,7 @@ class Channel(str, Enum):
     ecommerce = "ecommerce"
 
 
-class ProductReferenceType(Enum):
+class ProductReferenceType(str, Enum):
     sku = "sku"
     upc = "upc"
     product_id = "product_id"
@@ -41,7 +41,7 @@ class GeoLocation(BaseModel):
     coordinate: Optional[GeoCoordinate] = None
 
 
-class StoreType(Enum):
+class StoreType(str, Enum):
     physical = "physical"
     ecommerce = "ecommerce"
     concession = "concession"
@@ -76,7 +76,7 @@ class MarketingList(BaseModel):
     name: str = Field(examples=["All Customers List", "Lapsed Customers"])
 
 
-class SMSSubscriptionStatus(Enum):
+class SMSSubscriptionStatus(str, Enum):
     """
     The type of subscribe event:
     `subscribed` - explicitly subscribed to marketing SMS messages
@@ -95,7 +95,7 @@ class SMSSubscriptionStatus(Enum):
     list_unsubscribed = "list_unsubscribed"
 
 
-class EmailSubscriptionStatus(Enum):
+class EmailSubscriptionStatus(str, Enum):
     """
     The type of subscribe event:
     `subscribed` - explicitly subscribed to marketing emails
