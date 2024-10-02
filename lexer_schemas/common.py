@@ -18,7 +18,12 @@ def api_name(name):
     return wrapped
 
 
-class ProductReferenceType(Enum):
+class Channel(str, Enum):
+    physical = "physical"
+    ecommerce = "ecommerce"
+
+
+class ProductReferenceType(str, Enum):
     sku = "sku"
     upc = "upc"
     product_id = "product_id"
@@ -36,18 +41,27 @@ class GeoLocation(BaseModel):
     coordinate: Optional[GeoCoordinate] = None
 
 
-class StoreType(Enum):
+class StoreType(str, Enum):
     physical = "physical"
-    online = "online"
+    ecommerce = "ecommerce"
     concession = "concession"
     outlet = "outlet"
+    # online is in the process of being deprecated in favour of ecommerce
+    online = "online"
 
 
 class Store(BaseModel):
     """A store entity."""
 
     store_id: Optional[str] = Field(examples=["40bf96..."], default=None)
-    type: StoreType
+    type: StoreType = Field(
+        description="""
+        The type of store. 
+        Note: `online` has been deprecated and may be removed in the future. 
+        Use `ecommerce` instead.
+        """,
+        examples=[StoreType.ecommerce],
+    )
     name: str = Field(examples=["St Kilda Outlet"])
     location: Optional[GeoLocation] = None
 
@@ -62,7 +76,7 @@ class MarketingList(BaseModel):
     name: str = Field(examples=["All Customers List", "Lapsed Customers"])
 
 
-class SMSSubscriptionStatus(Enum):
+class SMSSubscriptionStatus(str, Enum):
     """
     The type of subscribe event:
     `subscribed` - explicitly subscribed to marketing SMS messages
@@ -81,7 +95,7 @@ class SMSSubscriptionStatus(Enum):
     list_unsubscribed = "list_unsubscribed"
 
 
-class EmailSubscriptionStatus(Enum):
+class EmailSubscriptionStatus(str, Enum):
     """
     The type of subscribe event:
     `subscribed` - explicitly subscribed to marketing emails

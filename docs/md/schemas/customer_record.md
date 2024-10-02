@@ -400,7 +400,6 @@ Must be one of:
 | ------------ | -------- |
 | **Type**     | `string` |
 | **Required** | No       |
-| **Format**   | `email`  |
 
 **Description:** Raw email address. This will not be used for linking, but is available for use as an attribute in the CDE
 

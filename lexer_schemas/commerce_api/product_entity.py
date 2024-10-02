@@ -1,9 +1,74 @@
 from typing import Dict, List, Optional
+from datetime import datetime
+from enum import Enum
 
-from pydantic import BaseModel, Field, root_validator
+from pydantic import BaseModel, Field, root_validator, NonNegativeFloat
 from pydantic.networks import HttpUrl
 
-from lexer_schemas.common import ProductReferenceType, api_name
+from lexer_schemas.common import ProductReferenceType, Channel, api_name
+
+# Note: the ordering of these classes must be maintained so that the type hints are defined before being used.
+# Changing the order causes an issue when generating the docs https://github.com/pydantic/pydantic/issues/545
+
+
+class ProductChannelAvailability(BaseModel):
+    type: Channel = Field(
+        description="The channel which this availability record relates to.",
+        examples=[Channel.ecommerce],
+    )
+    available: bool = Field(
+        description="Is the product available for purchase via this specific channel?",
+        examples=[False],
+    )
+    published_at: Optional[datetime] = Field(
+        description="An ISO8601 datetime string for when the product was published, or is going to be published to this channel.",
+        examples=["2024-01-01T00:00:00Z"],
+    )
+    unpublished_at: Optional[datetime] = Field(
+        description="An ISO8601 datetime string for when the product was unpublished, or is going to be unpublished to this channel.",
+        examples=["2025-01-01T00:00:00Z"],
+    )
+
+
+class ProductAvailability(BaseModel):
+    available: bool = Field(
+        description="A product is available when it is suitable for sale in any channel, or can be promoted in marketing communications.",
+        examples=[False],
+    )
+    channels_availability: Optional[List[ProductChannelAvailability]] = Field(
+        description="A list of channel specific availability statuses.",
+    )
+
+
+class ProductInventory(BaseModel):
+    id: Optional[str] = Field(
+        description="Identifier of product in the inventory system.",
+        examples=["lzx0h1..."],
+    )
+    source: Optional[str] = Field(
+        description="Source of inventory product data, e.g. Shopify, Magento..",
+        examples=["Shopify"],
+    )
+    quantity: Optional[int] = Field(
+        description="Total number of remaining product units.",
+        examples=[99],
+    )
+    cost: Optional[NonNegativeFloat] = Field(
+        description="Total expenditure incurred to produce, store and sell one unit of product.",
+        examples=[50.00],
+    )
+    backorder_allowed: Optional[bool] = Field(
+        description="Can the product item be ordered when it's out of stock?",
+        examples=[False],
+    )
+    tracked: Optional[bool] = Field(
+        description="Is the product quantity being tracked?",
+        examples=[False],
+    )
+    updated_at: Optional[datetime] = Field(
+        description="An ISO8601 datetime string for when the product inventory status was last updated.",
+        examples=["2024-01-01T00:00:00Z"],
+    )
 
 
 @api_name("product")
@@ -72,6 +137,16 @@ class ProductRecord(BaseModel):
         title="Image URLs",
         description="An array of Product Image URLs listed on the public internet.",
         examples=[["https://fake.com/images/menswear/sawyer-rib-crew-knit.jpg"]],
+        default=None,
+    )
+    availability: Optional[ProductAvailability] = Field(
+        title="Product Availability",
+        description="The availability status of the product.",
+        default=None,
+    )
+    inventory: Optional[ProductInventory] = Field(
+        title="Product Inventory",
+        description="The inventory status of the product.",
         default=None,
     )
 

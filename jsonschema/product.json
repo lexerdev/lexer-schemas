@@ -127,6 +127,24 @@
         "maxLength": 2083,
         "format": "uri"
       }
+    },
+    "availability": {
+      "title": "Product Availability",
+      "description": "The availability status of the product.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProductAvailability"
+        }
+      ]
+    },
+    "inventory": {
+      "title": "Product Inventory",
+      "description": "The inventory status of the product.",
+      "allOf": [
+        {
+          "$ref": "#/definitions/ProductInventory"
+        }
+      ]
     }
   },
   "definitions": {
@@ -138,6 +156,151 @@
         "upc",
         "product_id"
       ]
+    },
+    "Channel": {
+      "title": "Channel",
+      "description": "An enumeration.",
+      "enum": [
+        "physical",
+        "ecommerce"
+      ],
+      "type": "string"
+    },
+    "ProductChannelAvailability": {
+      "title": "ProductChannelAvailability",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The channel which this availability record relates to.",
+          "examples": [
+            "ecommerce"
+          ],
+          "allOf": [
+            {
+              "$ref": "#/definitions/Channel"
+            }
+          ]
+        },
+        "available": {
+          "title": "Available",
+          "description": "Is the product available for purchase via this specific channel?",
+          "examples": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "published_at": {
+          "title": "Published At",
+          "description": "An ISO8601 datetime string for when the product was published, or is going to be published to this channel.",
+          "examples": [
+            "2024-01-01T00:00:00Z"
+          ],
+          "type": "string",
+          "format": "date-time"
+        },
+        "unpublished_at": {
+          "title": "Unpublished At",
+          "description": "An ISO8601 datetime string for when the product was unpublished, or is going to be unpublished to this channel.",
+          "examples": [
+            "2025-01-01T00:00:00Z"
+          ],
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "type",
+        "available"
+      ]
+    },
+    "ProductAvailability": {
+      "title": "ProductAvailability",
+      "type": "object",
+      "properties": {
+        "available": {
+          "title": "Available",
+          "description": "A product is available when it is suitable for sale in any channel, or can be promoted in marketing communications.",
+          "examples": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "channels_availability": {
+          "title": "Channels Availability",
+          "description": "A list of channel specific availability statuses.",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ProductChannelAvailability"
+          }
+        }
+      },
+      "required": [
+        "available"
+      ]
+    },
+    "ProductInventory": {
+      "title": "ProductInventory",
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "Id",
+          "description": "Identifier of product in the inventory system.",
+          "examples": [
+            "lzx0h1..."
+          ],
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "description": "Source of inventory product data, e.g. Shopify, Magento..",
+          "examples": [
+            "Shopify"
+          ],
+          "type": "string"
+        },
+        "quantity": {
+          "title": "Quantity",
+          "description": "Total number of remaining product units.",
+          "examples": [
+            99
+          ],
+          "type": "integer"
+        },
+        "cost": {
+          "title": "Cost",
+          "description": "Total expenditure incurred to produce, store and sell one unit of product.",
+          "examples": [
+            50.0
+          ],
+          "minimum": 0,
+          "type": "number"
+        },
+        "backorder_allowed": {
+          "title": "Backorder Allowed",
+          "description": "Can the product item be ordered when it's out of stock?",
+          "examples": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "tracked": {
+          "title": "Tracked",
+          "description": "Is the product quantity being tracked?",
+          "examples": [
+            false
+          ],
+          "type": "boolean"
+        },
+        "updated_at": {
+          "title": "Updated At",
+          "description": "An ISO8601 datetime string for when the product inventory status was last updated.",
+          "examples": [
+            "2024-01-01T00:00:00Z"
+          ],
+          "type": "string",
+          "format": "date-time"
+        }
+      }
     }
   }
 }

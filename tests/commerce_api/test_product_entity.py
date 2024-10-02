@@ -23,6 +23,8 @@ class TestProductEntity:
             "options": None,
             "url": None,
             "images": None,
+            "availability": None,
+            "inventory": None,
         }
 
         assert json.loads(actual_record.json()) == expected_record
@@ -44,6 +46,8 @@ class TestProductEntity:
             "options": None,
             "url": None,
             "images": None,
+            "availability": None,
+            "inventory": None,
         }
 
         assert json.loads(actual_record.json()) == expected_record
