@@ -1,3 +1,3 @@
-requests==2.32.2
+requests==2.32.4
 lexer_schemas @ git+https://github.com/lexerdev/lexer-schemas@0.4.1
 
